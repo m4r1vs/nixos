@@ -1,0 +1,27 @@
+pkgs:
+with pkgs; [
+  alejandra
+  bash-language-server
+  black
+  docker-compose-language-service
+  fd
+  fzf
+  gcc
+  go
+  goimports-reviser
+  gopls
+  helm-ls
+  hyprls
+  kotlin-language-server
+  lazygit
+  lua-language-server
+  nixd
+  nodejs_22
+  prettierd
+  ripgrep
+  rust-analyzer-unwrapped
+  vscode-langservers-extracted
+  vtsls
+  yaml-language-server
+  yazi
+]
