@@ -223,6 +223,9 @@
         };
         stateVersion = "24.05";
       };
+      xdg.userDirs = {
+        enable = true;
+      };
       xdg.desktopEntries = {
         brave-work = {
           name = "CC.systems Browser";
