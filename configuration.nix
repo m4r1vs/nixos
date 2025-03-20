@@ -102,10 +102,21 @@
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
-    networkmanagerapplet
+    curl
+    ffmpeg
+    fzf
+    htop-vim
+    imagemagick
+    jq
     kdePackages.kwallet
     kdePackages.kwalletmanager
+    killall
     kwalletcli
+    networkmanagerapplet
+    ripgrep
+    unzip
+    wget
+    xdg-utils
   ];
 
   environment.sessionVariables = {

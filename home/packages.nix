@@ -1,28 +1,24 @@
 pkgs:
 with pkgs; [
+  blender
   discord
   dunst
   emote
   fastfetch
-  htop-vim
+  gimp
   hyprcursor
   hyprpicker
   hyprshot
   hyprutils
-  imagemagick
-  jq
-  killall
   kwalletcli
   libnotify
   nerd-fonts.jetbrains-mono
   obsidian
   pavucontrol
   polkit_gnome
-  ripgrep
   slack
   spotify
   wireplumber
   wl-clipboard
-  xdg-utils
   zathura
 ]
