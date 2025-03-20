@@ -102,6 +102,7 @@
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
+    networkmanagerapplet
     kdePackages.kwallet
     kdePackages.kwalletmanager
     kwalletcli
