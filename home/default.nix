@@ -197,8 +197,8 @@
           name = "Dracula";
         };
         iconTheme = {
-          package = pkgs.tela-circle-icon-theme;
-          name = "Tela-circle-dracula";
+          package = pkgs.adwaita-icon-theme;
+          name = "adwaita-icon-theme";
         };
         cursorTheme = {
           package = pkgs.bibata-cursors;
@@ -218,6 +218,56 @@
           NIXOS_OZONE_WL = "1";
         };
         stateVersion = "24.05";
+      };
+      xdg.desktopEntries = {
+        brave-work = {
+          name = "CC.systems Browser";
+          exec = ''${pkgs.brave}/bin/brave --profile-directory="Profile 1" --ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation %U'';
+          icon = "brave-browser";
+          terminal = false;
+          type = "Application";
+          categories = ["WebBrowser" "Network"];
+          mimeType = [
+            "application/pdf"
+            "application/rdf+xml"
+            "application/rss+xml"
+            "application/xhtml+xml"
+            "application/xhtml_xml"
+            "application/xml"
+            "image/gif"
+            "image/jpeg"
+            "image/png"
+            "image/webp"
+            "text/html"
+            "text/xml"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+          ];
+        };
+        brave-personal = {
+          name = "Personal Browser";
+          exec = ''${pkgs.brave}/bin/brave --profile-directory="Default" --ozone-platform-hint=auto --enable-features=TouchpadOverscrollHistoryNavigation %U'';
+          icon = "brave-browser";
+          terminal = false;
+          type = "Application";
+          categories = ["WebBrowser" "Network"];
+          mimeType = [
+            "application/pdf"
+            "application/rdf+xml"
+            "application/rss+xml"
+            "application/xhtml+xml"
+            "application/xhtml_xml"
+            "application/xml"
+            "image/gif"
+            "image/jpeg"
+            "image/png"
+            "image/webp"
+            "text/html"
+            "text/xml"
+            "x-scheme-handler/http"
+            "x-scheme-handler/https"
+          ];
+        };
       };
     };
 
