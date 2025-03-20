@@ -169,6 +169,7 @@
               "$mod SHIFT, s, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
               "$mod, q, killactive"
               "$mod SHIFT, w, exec, ${import ./scripts/random-wallpaper.nix pkgs}/bin/random-wallpaper"
+              "$mod SHIFT, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
             ]
             ++ (
               builtins.concatLists (builtins.genList (
