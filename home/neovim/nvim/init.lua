@@ -26,8 +26,8 @@ require("lazy").setup("plugins", {
 vim.cmd("colorscheme cyberdream")
 
 -- Set common options
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
