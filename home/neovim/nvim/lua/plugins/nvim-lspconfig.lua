@@ -99,6 +99,7 @@ return {
     c.jsonls.setup({})
     c.html.setup({})
     c.gopls.setup({})
+    c.golangci_lint_ls.setup({})
     c.dockerls.setup({})
     c.cssls.setup({})
     c.gitlab_ci_ls.setup({})
@@ -110,6 +111,7 @@ return {
     c.vtsls.setup({})
     c.eslint.setup({})
     c.marksman.setup({})
+    c.kotlin_language_server.setup({})
     c.taplo.setup({})
     -- c.ccls.setup({})
     c.clangd.setup({})
@@ -118,7 +120,6 @@ return {
     c.jdtls.setup({})
     c.nixd.setup({})
     c.texlab.setup({})
-    -- c.ts_ls.setup({})
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
