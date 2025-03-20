@@ -126,6 +126,9 @@ vim.keymap.set("n", "<C-T>", ":tabnew<CR>:Telescope<CR>")
 -- Use <leader>" to change current selection ' to "
 vim.keymap.set("v", "<leader>\"", ":s/'/\"/g<CR>")
 
+-- Change cursor depending on mode
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+
 -- save cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
