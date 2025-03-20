@@ -13,7 +13,7 @@ pkgs: {
       gtk-layer-shell = true;
       reload_style_on_change = true;
 
-      modules-left = ["custom/padd" "custom/l_end" "idle_inhibitor" "clock" "cpu" "memory" "custom/r_end" "custom/padd"];
+      modules-left = ["custom/padd" "custom/l_end" "idle_inhibitor" "clock" "cpu" "memory" "custom/cpuinfo" "custom/r_end" "custom/padd"];
       modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "custom/r_end" "custom/padd"];
       modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "pulseaudio" "pulseaudio#microphone" "custom/updates" "custom/r_end" "custom/l_end" "privacy" "tray" "battery" "custom/r_end" "custom/padd"];
 
@@ -77,15 +77,15 @@ pkgs: {
         tooltip-format = " {percentage}%\n {used:0.1f}GB/{total:0.1f}GB";
       };
 
-      # "custom/cpuinfo" = {
-      #     exec = "cpuinfo.sh";
-      #     return-type = "json";
-      #     format = "{}";
-      #     rotate = 0;
-      #     interval = 5, // once every 5 seconds
-      #     tooltip = true;
-      #     max-length = 1000
-      # };
+      "custom/cpuinfo" = {
+        exec = "${import ../scripts/cpu-info.nix pkgs}/bin/cpu-info";
+        return-type = "json";
+        format = "{}";
+        rotate = 0;
+        interval = 10;
+        tooltip = true;
+        max-length = 1000;
+      };
 
       # "custom/spotify = {
       #     "exec = "mediaplayer.py --player spotify";
