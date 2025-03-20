@@ -12,6 +12,7 @@ with pkgs; [
   imagemagick
   jq
   killall
+  kwalletcli
   libnotify
   nerd-fonts.jetbrains-mono
   obsidian

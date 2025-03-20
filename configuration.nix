@@ -91,6 +91,8 @@
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
 
+  programs.kdeconnect.enable = true;
+
   # 1May require "hardware acceleration" to be enabled in order to work on Wayland
   programs._1password.enable = true;
   programs._1password-gui = {
@@ -100,6 +102,9 @@
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
+    kdePackages.kwallet
+    kdePackages.kwalletmanager
+    kwalletcli
   ];
 
   environment.sessionVariables = {
@@ -129,7 +134,10 @@
     };
   };
 
-  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.greetd.kwallet = {
+    enable = true;
+    package = pkgs.kdePackages.kwallet-pam;
+  };
 
   system.copySystemConfiguration = true;
 
