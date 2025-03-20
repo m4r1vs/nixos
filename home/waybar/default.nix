@@ -15,7 +15,7 @@ pkgs: {
 
       modules-left = ["custom/padd" "custom/l_end" "idle_inhibitor" "clock" "cpu" "memory" "custom/cpuinfo" "custom/r_end" "custom/padd"];
       modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "custom/r_end" "custom/padd"];
-      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "pulseaudio" "pulseaudio#microphone" "custom/updates" "custom/r_end" "custom/l_end" "privacy" "tray" "battery" "custom/r_end" "custom/padd"];
+      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "pulseaudio" "custom/updates" "custom/r_end" "custom/l_end" "privacy" "tray" "battery" "custom/r_end" "custom/padd"];
 
       idle_inhibitor = {
         format = "{icon}";
@@ -123,38 +123,37 @@ pkgs: {
 
       network = {
         tooltip = true;
-        format-wifi = " ";
+        format-wifi = "";
         rotate = 0;
-        format-ethernet = "󰈀 ";
+        format-ethernet = "󰈀";
         tooltip-format = "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
         format-linked = "󰈀 {ifname} (No IP)";
-        format-disconnected = "󰖪 ";
+        format-disconnected = "󰖪";
         tooltip-format-disconnected = "Disconnected";
         format-alt = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
         interval = 2;
       };
 
-      # "pulseaudio = {
-      #     "format = "{icon} {volume}";
-      #     "rotate = 0;
-      #     "format-muted = "婢";
-      #     "on-click = "pavucontrol -t 3";
-      #     "on-click-right = "volumecontrol.sh -s ''";
-      #     "on-click-middle = "volumecontrol.sh -o m";
-      #     "on-scroll-up = "volumecontrol.sh -o i";
-      #     "on-scroll-down = "volumecontrol.sh -o d";
-      #     "tooltip-format = "{icon} {desc} // {volume}%";
-      #     "scroll-step = 5;
-      #     "format-icons = {
-      #         "headphone = "";
-      #         "hands-free = "";
-      #         "headset = "";
-      #         "phone = "";
-      #         "portable = "";
-      #         "car = "";
-      #         "default = ["", "", ""]
-      #     }
-      # };
+      pulseaudio = {
+        format = "{icon} {volume}";
+        rotate = 0;
+        format-muted = "";
+        on-click = "${pkgs.pavucontrol}/bin/pavucontrol -t 3";
+        on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
+        on-scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
+        on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
+        tooltip-format = "{icon} {desc} // {volume}%";
+        scroll-step = 5;
+        format-icons = {
+          headphone = "";
+          hands-free = "";
+          headset = "";
+          phone = "";
+          portable = "";
+          car = "";
+          default = ["" "" ""];
+        };
+      };
 
       # "pulseaudio#microphone = {
       #     "format = "{format_source}";
@@ -198,7 +197,7 @@ pkgs: {
       };
 
       tray = {
-        icon-size = 16;
+        icon-size = 14;
         rotate = 0;
         spacing = 5;
       };
