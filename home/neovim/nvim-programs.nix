@@ -15,6 +15,7 @@ with pkgs; [
   kotlin-language-server
   lazygit
   lua-language-server
+  marksman
   nixd
   nodejs_22
   prettierd
