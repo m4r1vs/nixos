@@ -1,5 +1,6 @@
 pkgs:
 with pkgs; [
+  _1password-cli
   alejandra
   bash-language-server
   black

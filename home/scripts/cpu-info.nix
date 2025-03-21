@@ -1,6 +1,6 @@
 # All credits to https://github.com/mislah
 pkgs:
-pkgs.writeShellScriptBin "cpu-info"
+pkgs.writeShellScript "cpu-info"
 # bash
 ''
   map_floor() {

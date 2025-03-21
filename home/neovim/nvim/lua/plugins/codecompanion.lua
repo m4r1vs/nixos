@@ -28,7 +28,7 @@ return {
     },
     strategies = {
       chat = {
-        adapter = "openai",
+        adapter = "gemini",
         roles = {
           llm = "Language Model 󰅏",
           user = "Input Prompt ",
@@ -39,10 +39,28 @@ return {
       openai = function()
         return require("codecompanion.adapters").extend("openai", {
           env = {
-            api_key = "cmd: secret-tool lookup openai_key password",
+            api_key = "cmd: op read op://Employee/OpenAI/credential",
+          },
+          schema = {
+            model = {
+              default = "gpt-4.5-preview",
+            },
+          },
+        })
+      end,
+      gemini = function()
+        return require("codecompanion.adapters").extend("gemini", {
+          env = {
+            api_key = "cmd: op read op://Employee/Gemini/credential",
+          },
+          schema = {
+            model = {
+              default = "gemini-2.0-flash",
+            },
           },
         })
       end,
     },
   }
+
 }

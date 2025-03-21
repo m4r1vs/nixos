@@ -1,7 +1,7 @@
 pkgs: {
   package = pkgs.waybar;
   enable = true;
-  style = builtins.readFile ./style.css;
+  style = import ./style.css.nix;
   settings = {
     mainBar = {
       layer = "top";
@@ -13,9 +13,9 @@ pkgs: {
       gtk-layer-shell = true;
       reload_style_on_change = true;
 
-      modules-left = ["custom/padd" "custom/l_end" "idle_inhibitor" "clock" "cpu" "memory" "custom/cpuinfo" "custom/r_end" "custom/padd"];
-      modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "custom/r_end" "custom/padd"];
-      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "pulseaudio" "custom/updates" "custom/r_end" "custom/l_end" "privacy" "tray" "battery" "custom/r_end" "custom/padd"];
+      modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "memory" "custom/cpuinfo" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
+      modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
+      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "tray" "battery" "custom/r_end" "custom/padd"];
 
       idle_inhibitor = {
         format = "{icon}";
@@ -27,7 +27,7 @@ pkgs: {
       };
 
       clock = {
-        format = "{:%I:%M %p}";
+        format = "{:%H:%M %p}";
         rotate = 0;
         format-alt = "{:%R 󰃭 %d·%m·%y}";
         tooltip-format = "<span>{calendar}</span>";
@@ -53,7 +53,7 @@ pkgs: {
 
       cpu = {
         interval = 10;
-        format = "󰍛 {usage}%";
+        format = " {usage}%";
         rotate = 0;
         format-alt = "{icon0}{icon1}{icon2}{icon3}";
         format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
@@ -78,7 +78,7 @@ pkgs: {
       };
 
       "custom/cpuinfo" = {
-        exec = "${import ../scripts/cpu-info.nix pkgs}/bin/cpu-info";
+        exec = "${import ../scripts/cpu-info.nix pkgs}";
         return-type = "json";
         format = "{}";
         rotate = 0;
@@ -87,20 +87,46 @@ pkgs: {
         max-length = 1000;
       };
 
-      # "custom/spotify = {
-      #     "exec = "mediaplayer.py --player spotify";
-      #     "format = " {}";
-      #     "rotate = 0;
-      #     "return-type = "json";
-      #     "on-click = "playerctl play-pause --player spotify";
-      #     "on-click-right = "playerctl next --player spotify";
-      #     "on-click-middle = "playerctl previous --player spotify";
-      #     "on-scroll-up = "volumecontrol.sh -p spotify i";
-      #     "on-scroll-down = "volumecontrol.sh -p spotify d";
-      #     "max-length = 40;
-      #     "escape = true;
-      #     "tooltip = true
-      # };
+      "custom/media" = {
+        exec = "${import ../scripts/mediaplayer-wrapper.nix pkgs}";
+        format = "{}";
+        return-type = "json";
+        on-click = "${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle";
+        on-click-right = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-next";
+        on-click-middle = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-prev";
+        max-length = 52;
+        escape = true;
+        tooltip = true;
+      };
+
+      "custom/notifications" = {
+        tooltip = false;
+        format = "{icon}";
+        format-icons = {
+          notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+          none = "";
+          dnd-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+          dnd-none = "";
+          inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+          inhibited-none = "󰮯";
+          dnd-inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+          dnd-inhibited-none = "󱝁";
+        };
+        return-type = "json";
+        exec = "${pkgs.swaynotificationcenter}/bin/swaync-client -swb";
+        on-click = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+        on-click-right = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
+        escape = true;
+      };
+
+      "custom/webcam" = {
+        return-type = "text";
+        interval = 2;
+        escape = true;
+        tooltip = false;
+        exec = "${import ../scripts/webcam-privacy.nix pkgs}";
+      };
+
       "hyprland/workspaces" = {
         rotate = 0;
         all-outputs = false;
@@ -123,14 +149,11 @@ pkgs: {
 
       network = {
         tooltip = true;
-        format-wifi = "";
         rotate = 0;
-        format-ethernet = "󰈀";
         tooltip-format = "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
         format-linked = "󰈀 {ifname} (No IP)";
-        format-disconnected = "󰖪";
         tooltip-format-disconnected = "Disconnected";
-        format-alt = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
+        format = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
         interval = 2;
       };
 
@@ -179,7 +202,7 @@ pkgs: {
       #        "signal = 20;
       #    };
       privacy = {
-        icon-size = 12;
+        icon-size = 10;
         icon-spacing = 5;
         transition-duration = 250;
         modules = [

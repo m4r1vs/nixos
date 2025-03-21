@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -16,7 +15,7 @@
     experimental-features = nix-command flakes
   '';
 
-  gc = {
+  nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
@@ -63,9 +62,51 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
+  fonts.enableDefaultPackages = true;
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    ubuntu_font_family
+    garamond-libre
+    (stdenv.mkDerivation {
+      name = "Apple Color Emoji Font";
+      enableParallelBuilding = true;
+      src = fetchFromGitHub {
+        owner = "samuelngs";
+        repo = "apple-emoji-linux";
+        rev = "ios-17.4";
+        sha256 = "sha256-r0xswLw6h4tk2Z2vLSl+5svhLZognn7/xqcmOSyUq0s=";
+      };
+      buildInputs = [
+        which
+        python3
+        python3Packages.fonttools
+        python3Packages.nototools
+        optipng
+        zopfli
+        pngquant
+        gnumake
+        imagemagick
+      ];
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/share/fonts/truetype
+        cp ./AppleColorEmoji.ttf $out/share/fonts/truetype
+        runHook postInstall
+      '';
+    })
   ];
+
+  fonts.fontconfig = {
+    defaultFonts = {
+      serif = ["Garamond Libre" "Gentium Plus"];
+      sansSerif = ["Ubuntu" "Cantarell"];
+      monospace = ["JetBrainsMono Nerd Font Proto" "Source Code Pro"];
+      emoji = ["Apple Color Emoji"];
+    };
+  };
+
+  fonts.fontDir.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -96,6 +137,7 @@
 
   programs.zsh.enable = true;
   programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
 
   programs.kdeconnect.enable = true;
 
@@ -152,10 +194,14 @@
     };
   };
 
+  services.dbus.enable = true;
+
   security.pam.services.greetd.kwallet = {
     enable = true;
     package = pkgs.kdePackages.kwallet-pam;
   };
+
+  security.pam.services.hyprlock = {};
 
   system.copySystemConfiguration = true;
 

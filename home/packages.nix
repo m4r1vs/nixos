@@ -1,9 +1,7 @@
-pkgs:
+{pkgs, ...}:
 with pkgs; [
   blender
   discord
-  dunst
-  emote
   fastfetch
   gimp
   hyprcursor
@@ -12,13 +10,17 @@ with pkgs; [
   hyprutils
   kwalletcli
   libnotify
+  mpv
   nerd-fonts.jetbrains-mono
   obsidian
   pavucontrol
   polkit_gnome
   slack
   spotify
+  dracula-theme
+  swayimg
   wireplumber
   wl-clipboard
+  yt-dlp
   zathura
 ]
