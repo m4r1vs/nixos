@@ -46,10 +46,10 @@ pkgs: {
         position = "0, -102";
       }
       {
-        shadow_passes = 3;
+        shadow_passes = 2;
         shadow_size = 1;
-        shadow_boost = 0.8;
-        text = "cmd[update:1000] date +\"%a, %b %d\"";
+        shadow_boost = 1;
+        text = "cmd[update:60000] echo \"$(date +\"%a, %b %d\")  $(${pkgs.wttrbar}/bin/wttrbar --nerd --custom-indicator \"{ICON} {temp_C}°\" | ${pkgs.jq}/bin/jq .text -r)\"";
         font_family = "JetBrainsMono NF Light";
         color = "rgba(${(import ../theme.nix).primaryColorRGB},0.83)";
         font_size = 14;
