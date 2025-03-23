@@ -149,6 +149,7 @@
 
   environment.systemPackages = with pkgs; [
     bibata-cursors
+    comma
     curl
     ffmpeg
     fzf
