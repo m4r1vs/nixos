@@ -190,6 +190,10 @@
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "mn";
       };
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "mn";
+      };
     };
   };
 

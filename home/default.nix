@@ -13,6 +13,7 @@
     ./services/darkman.nix
     ./services/kdeconnect.nix
     ./services/swaync.nix
+    ./services/hypridle.nix
   ];
 
   home = {
@@ -29,6 +30,7 @@
   services = {
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
+    polkit-gnome.enable = true;
     swww.enable = true;
   };
 

@@ -6,6 +6,14 @@ pkgs: {
       grace = 5;
       hide_cursor = true;
     };
+    auth = {
+      fingerprint = {
+        enabled = true;
+      };
+      pam = {
+        enabled = true;
+      };
+    };
     animations = {
       enabled = true;
       bezier = [
@@ -75,7 +83,7 @@ pkgs: {
         dots_center = true;
         fade_on_empty = false;
         font_color = "rgb(${(import ../theme.nix).secondaryColorRGB})";
-        check_color = "rgb(${(import ../theme.nix).primaryColorRGB})";
+        check_color = "rgb(${(import ../theme.nix).secondaryColorRGB})";
         inner_color = "rgb(${(import ../theme.nix).backgroundColorRGB})";
         outline_thickness = 0;
         fail_color = "rgb(${(import ../theme.nix).backgroundColorRGB})";
