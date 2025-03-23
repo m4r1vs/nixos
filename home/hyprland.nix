@@ -91,6 +91,9 @@
         ];
       };
       windowrulev2 = [
+        "float,initialClass:^(ghostty.yazi)$"
+        "size 1400 700, initialClass:^(ghostty.yazi)$"
+
         "float,initialClass:^(ghostty.spotify_player)$"
         "size 1700 900, initialClass:^(ghostty.spotify_player)$"
         "workspace special:spotify_player silent,initialClass:^(ghostty.spotify_player)$"
