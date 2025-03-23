@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./home
     ./programs.nix
   ];
 
@@ -194,6 +193,23 @@
     };
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [prev.nss];
+      });
+    })
+  ];
+
+  services."06cb-009a-fingerprint-sensor" = {
+    enable = true;
+    backend = "libfprint-tod";
+    calib-data-file = ./calib-data.bin;
+  };
+
+  security.pam.services.login.fprintAuth = true;
+  security.pam.services.sudo.fprintAuth = true;
+
   services.dbus.enable = true;
 
   security.pam.services.greetd.kwallet = {
@@ -202,8 +218,6 @@
   };
 
   security.pam.services.hyprlock = {};
-
-  system.copySystemConfiguration = true;
 
   system.stateVersion = "24.11";
 }
