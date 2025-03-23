@@ -15,7 +15,7 @@ pkgs: {
 
       modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "memory" "custom/cpuinfo" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
       modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
-      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "tray" "battery" "custom/r_end" "custom/padd"];
+      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "custom/weather" "tray" "battery" "custom/r_end" "custom/padd"];
 
       idle_inhibitor = {
         format = "{icon}";
@@ -125,6 +125,14 @@ pkgs: {
         escape = true;
         tooltip = false;
         exec = "${import ../scripts/webcam-privacy.nix pkgs}";
+      };
+
+      "custom/weather" = {
+        format = "{}°C";
+        tooltip = true;
+        interval = 3600;
+        exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{temp_C}\"";
+        return-type = "json";
       };
 
       "hyprland/workspaces" = {
