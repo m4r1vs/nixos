@@ -26,7 +26,7 @@ pkgs: {
     };
     background = [
       {
-        path = builtins.path {path = ./wallpaper/sunset-tree.jpg;};
+        path = builtins.path {path = ./wallpaper/Sunset_Tree.jpg;};
         blur_passes = 0;
         blur_size = 0;
       }
