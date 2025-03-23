@@ -52,7 +52,9 @@
       inherit lib;
     };
     waybar = import ./waybar pkgs;
-    yazi = import ./yazi.nix;
+    yazi = import ./yazi {
+      inherit pkgs;
+    };
     zoxide = import ./zoxide.nix;
     zsh = import ./zsh {
       inherit pkgs;

@@ -25,7 +25,6 @@
   };
   shellAliases = {
     lg = "${pkgs.lazygit}/bin/lazygit";
-    y = "${pkgs.yazi}/bin/yazi";
     update = "sudo nixos-rebuild switch --flake ~/nixos/#nixpad";
   };
   initExtra = import ./init.nix pkgs;
