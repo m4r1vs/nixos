@@ -18,11 +18,11 @@
         }
         {
           timeout = 500;
-          on-timeout = "${pkgs.libnotify}/bin/notify-send -e -t 50000 \"Locking the Screen in a Minute, Chief\"";
+          on-timeout = "${import ../scripts/nixos-notify.nix pkgs} -e -t 50000 \"Locking the Screen in a Minute, Chief\"";
         }
         {
           timeout = 550;
-          on-timeout = "${pkgs.libnotify}/bin/notify-send -e -t 10000 \"10 Seconds left.\"";
+          on-timeout = "${import ../scripts/nixos-notify.nix pkgs} -e -t 10000 \"10 Seconds left.\"";
         }
         {
           timeout = 560;
