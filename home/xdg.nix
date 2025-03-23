@@ -74,4 +74,8 @@
     default_dir=$HOME
     env=TERMCMD=${pkgs.ghostty}/bin/ghostty
   '';
+  home.file."./.config/xdg-desktop-portal/portals.conf".text = ''
+    [preferred]
+    org.freedesktop.impl.portal.FileChooser=termfilechooser
+  '';
 }

@@ -44,7 +44,7 @@ pkgs.writeShellScript "term-file-chooser"
     set -- --chooser-file="$(escape_args "$out")"
   fi
 
-  ${pkgs.ghostty}/bin/ghostty -e $cmd "$(escape_args "$@") $(escape_args "$path")"
+  ${pkgs.ghostty}/bin/ghostty --class=ghostty.yazi -e $cmd "$(escape_args "$@") $(escape_args "$path")"
   if [ "$save" = "1" ] && [ ! -s "$out" ]; then
     rm "$path"
   fi
