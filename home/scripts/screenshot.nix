@@ -3,10 +3,11 @@ pkgs.writeShellScript "screenshot"
 # bash
 ''
   OUTPUT="$HOME/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d-%H-%M-%S).png"
-  ${pkgs.hyprshot}/bin/hyprshot -m region -o "/tmp" --freeze -f "tmp_screenshot.png" --silent
+  HYPR_OUTPUT="$(mktemp)"
+  ${pkgs.hyprshot}/bin/hyprshot -m region -o "/tmp" --freeze -f "tmp_screenshot.png" --silent 2> "$HYPR_OUTPUT"
 
-  if [ $? -eq 1 ]; then
-    ${pkgs.libnotify}/bin/notify-send "Screenshot Cancelled"
+  if cat $HYPR_OUTPUT | grep -q "cancelled"; then
+    ${import ./nixos-notify.nix pkgs} -e "Screenshot Cancelled"
     exit 0
   fi
 
@@ -15,5 +16,5 @@ pkgs.writeShellScript "screenshot"
     mv /tmp/tmp_screenshot.png "$OUTPUT"
   fi
   ${pkgs.wl-clipboard}/bin/wl-copy < "$OUTPUT"
-  ${pkgs.libnotify}/bin/notify-send "Copied and saved!" -i "$OUTPUT"
+  ${import ./nixos-notify.nix pkgs} -e -i "$OUTPUT" "Copied and saved!"
 ''
