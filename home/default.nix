@@ -66,8 +66,8 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
-    style.name = "adwaita";
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
   };
 
   fonts.fontconfig.enable = true;
