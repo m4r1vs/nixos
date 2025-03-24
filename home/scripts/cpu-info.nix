@@ -115,11 +115,11 @@ pkgs.writeShellScript "cpu-info"
 
   # Define glyphs
   if [[ $CPUINFO_EMOJI -ne 1 ]]; then
-      temp_lv="85:, 65:, 45:"
+      temp_lv="85:, 65:, 0:"
   else
-      temp_lv="85:, 65:, 45:"
+      temp_lv="85:, 65:, 0:"
   fi
-  util_lv="90:, 60:󰓅, 30:󰾅, 󰾆"
+  util_lv="90:󰓅, 60:󰓅, 30:󰾅, 󰾆"
 
   # Main loop
 
