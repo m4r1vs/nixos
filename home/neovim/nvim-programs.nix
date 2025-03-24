@@ -4,6 +4,8 @@ with pkgs; [
   alejandra
   bash-language-server
   black
+  clang-tools
+  dart
   docker-compose-language-service
   fd
   fzf
@@ -17,13 +19,18 @@ with pkgs; [
   lazygit
   lua-language-server
   marksman
+  nil
   nixd
   nodejs_22
   prettierd
   ripgrep
   rust-analyzer-unwrapped
+  sourcekit-lsp
+  swift
+  tree-sitter
   vscode-langservers-extracted
   vtsls
   yaml-language-server
   yazi
+  zls
 ]

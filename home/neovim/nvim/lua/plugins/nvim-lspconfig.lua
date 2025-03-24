@@ -94,9 +94,18 @@ return {
       }
     })
 
+    -- Kotlin
+    c.kotlin_language_server.setup({
+      init_options = {
+        storagePath = vim.fn.stdpath("cache") .. "/kotlinlsp",
+      },
+      filetypes = {
+        "kotlin"
+      }
+    })
+
     -- Other ones without config
 
-    -- c.ccls.setup({})
     c.clangd.setup({})
     c.cssls.setup({})
     c.dockerls.setup({})
@@ -107,12 +116,13 @@ return {
     c.html.setup({})
     c.jdtls.setup({})
     c.jsonls.setup({})
-    c.kotlin_language_server.setup({})
     c.lua_ls.setup({})
     c.marksman.setup({})
+    c.nil_ls.setup({})
     c.nixd.setup({})
     c.pyright.setup({})
     c.rust_analyzer.setup({})
+    c.sourcekit.setup({})
     c.taplo.setup({})
     c.terraformls.setup({})
     c.texlab.setup({})
@@ -120,6 +130,8 @@ return {
     c.vtsls.setup({})
     c.yamlls.setup({})
     c.zls.setup({})
+
+    -- c.ccls.setup({})
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
