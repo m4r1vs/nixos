@@ -5,12 +5,31 @@
       createDirectories = true;
     };
     desktopEntries = {
-      rofi-theme-selector = {
-        name = "Hidden Rofi Theme Selector";
+      darkman = {
+        name = "Toggle Darkmode";
+        genericName = "Darkman";
+        exec = "${pkgs.darkman}/bin/darkman toggle";
+        icon = "com.github.coslyk.MoonPlayer";
+        type = "Application";
+        noDisplay = true;
+        categories = ["Settings"];
+      };
+      spotify_player = {
+        name = "Spotify TUI";
+        genericName = "Spotify";
+        icon = "spotify-client";
+        type = "Application";
+        categories = ["Music"];
         noDisplay = true;
       };
-      rofi = {
-        name = "Hidden Rofi";
+      blueman = {
+        name = "Bluetooth";
+        genericName = "Blueman";
+        icon = "blueman";
+        type = "Application";
+        categories = ["Settings"];
+        noDisplay = true;
+      };
       nixpad = {
         name = "Marius' NixPad";
         genericName = "NixOS on ThinkPad";
