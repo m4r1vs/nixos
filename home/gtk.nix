@@ -1,8 +1,8 @@
 pkgs: {
   enable = true;
   theme = {
-    package = pkgs.gnome-themes-extra;
-    name = "Adwaita";
+    package = pkgs.whitesur-gtk-theme;
+    name = "WhiteSur";
   };
   iconTheme = {
     package = pkgs.papirus-icon-theme;

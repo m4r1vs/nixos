@@ -13,7 +13,7 @@
     };
     lightModeScripts = {
       mode = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/color-scheme \"'prefer-light'\"";
-      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'Adwaita'\"";
+      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'WhiteSur'\"";
       notify = "${import ../scripts/nixos-notify.nix pkgs} -e -r 91191 -t 900 \"Welcome to the bright side :)\"";
     };
   };
