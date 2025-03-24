@@ -63,6 +63,15 @@
 
   fonts.enableDefaultPackages = true;
 
+  fonts.fontconfig = {
+    defaultFonts = {
+      serif = ["Garamond Libre" "Gentium Plus"];
+      sansSerif = ["Ubuntu" "Cantarell"];
+      monospace = ["JetBrainsMono Nerd Font Proto" "Source Code Pro"];
+      emoji = ["Apple Color Emoji"];
+    };
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     ubuntu_font_family
@@ -95,15 +104,6 @@
       '';
     })
   ];
-
-  fonts.fontconfig = {
-    defaultFonts = {
-      serif = ["Garamond Libre" "Gentium Plus"];
-      sansSerif = ["Ubuntu" "Cantarell"];
-      monospace = ["JetBrainsMono Nerd Font Proto" "Source Code Pro"];
-      emoji = ["Apple Color Emoji"];
-    };
-  };
 
   fonts.fontDir.enable = true;
 
@@ -202,6 +202,14 @@
     (final: prev: {
       libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
         buildInputs = oldAttrs.buildInputs ++ [prev.nss];
+      });
+    })
+    (final: prev: {
+      rofi-unwrapped = prev.rofi-unwrapped.overrideAttrs (oldAttrs: {
+        patchPhase = ''
+          echo "NoDisplay=true" >> ./data/rofi-theme-selector.desktop
+          echo "NoDisplay=true" >> ./data/rofi.desktop
+        '';
       });
     })
   ];
