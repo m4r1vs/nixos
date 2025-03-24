@@ -68,68 +68,75 @@ in {
   mouse = true;
   historyLimit = 5000;
   terminal = "xterm-256color";
-  extraConfig = ''
-    set-option -g set-titles on
-    set-option -g set-titles-string "${mkTmuxWindowStatusFormat {}}"
+  extraConfig =
+    /*
+    tmux
+    */
+    ''
+      set-option -g set-titles on
+      set-option -g set-titles-string "${mkTmuxWindowStatusFormat {}}"
 
-    set -g allow-passthrough all
-    set -ga update-environment TERM
-    set -ga update-environment TERM_PROGRAM
+      set -g allow-passthrough all
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
 
-    bind-key -n M-L switch-client -n
-    bind-key -n M-H switch-client -p
-    bind-key -n M-N new-session
+      bind-key -n M-L switch-client -n
+      bind-key -n M-H switch-client -p
+      bind-key -n M-N new-session
 
-    bind-key C-e copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-e" "copy-mode \; send-keys C-e"
-    bind-key C-y copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-y" "copy-mode \; send-keys C-y"
-    bind-key C-u copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-u" "copy-mode \; send-keys C-u"
-    bind-key C-d copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-d" "copy-mode \; send-keys C-d"
+      bind-key C-e copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-e" "copy-mode \; send-keys C-e"
+      bind-key C-y copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-y" "copy-mode \; send-keys C-y"
+      bind-key C-u copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-u" "copy-mode \; send-keys C-u"
+      bind-key C-d copy-mode \; if-shell -F "#{pane_in_mode}" "send-keys C-d" "copy-mode \; send-keys C-d"
 
-    bind-key -T copy-mode-vi v send-keys -X begin-selection
-    bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-    bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-    bind-key v copy-mode
-    bind-key k copy-mode
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      bind-key v copy-mode
+      bind-key k copy-mode
 
-    # Window bindings
-    bind-key -n M-l next
-    bind-key -n M-h prev
-    bind-key -n M-n new-window -c "#{pane_current_path}" \;
-    bind-key -n M-x kill-window
-    bind-key -n M-1 select-window -t 1
-    bind-key -n M-2 select-window -t 2
-    bind-key -n M-3 select-window -t 3
-    bind-key -n M-4 select-window -t 4
-    bind-key -n M-5 select-window -t 5
-    bind-key -n M-6 select-window -t 6
-    bind-key -n M-7 select-window -t 7
-    bind-key -n M-8 select-window -t 8
-    bind-key -n M-9 select-window -t 9
-    bind-key -n M-0 select-window -t 10
+      # Window bindings
+      bind-key -n M-l next
+      bind-key -n M-h prev
+      bind-key -n M-n new-window -c "#{pane_current_path}" \;
+      bind-key -n M-x kill-window
+      bind-key -n M-1 select-window -t 1
+      bind-key -n M-2 select-window -t 2
+      bind-key -n M-3 select-window -t 3
+      bind-key -n M-4 select-window -t 4
+      bind-key -n M-5 select-window -t 5
+      bind-key -n M-6 select-window -t 6
+      bind-key -n M-7 select-window -t 7
+      bind-key -n M-8 select-window -t 8
+      bind-key -n M-9 select-window -t 9
+      bind-key -n M-0 select-window -t 10
 
-    bind-key l swap-window -t +1 \; next
-    bind-key h swap-window -t -1 \; prev
+      # Toggle Status bar
+      bind-key z set status
 
-    # Pane bindings
-    bind-key -n M-v split-window -h -c "#{pane_current_path}"
-    bind-key -n M-s split-window -v -c "#{pane_current_path}"
+      bind-key l swap-window -t +1 \; next
+      bind-key h swap-window -t -1 \; prev
 
-    # Resize pane bindings
-    bind-key -n M-f resize-pane -Z \;
-    bind-key -n M-Left resize-pane -L 5
-    bind-key -n M-Down resize-pane -D 5
-    bind-key -n M-Up resize-pane -U 5
-    bind-key -n M-Right resize-pane -R 5
+      # Pane bindings
+      bind-key -n M-v split-window -h -c "#{pane_current_path}"
+      bind-key -n M-s split-window -v -c "#{pane_current_path}"
 
-    # dont ask for confirmation closing panes
-    bind-key x kill-pane
-    bind-key Enter split-window
+      # Resize pane bindings
+      bind-key -n M-f resize-pane -Z \;
+      bind-key -n M-Left resize-pane -L 5
+      bind-key -n M-Down resize-pane -D 5
+      bind-key -n M-Up resize-pane -U 5
+      bind-key -n M-Right resize-pane -R 5
 
-    # If getting strings cut in left status or right
-    # Here 20 is the length of the characters in the string
-    set -g status-right-length 20
-    set -g status-left-length 20
-  '';
+      # dont ask for confirmation closing panes
+      bind-key x kill-pane
+      bind-key Enter split-window
+
+      # If getting strings cut in left status or right
+      # Here 20 is the length of the characters in the string
+      set -g status-right-length 20
+      set -g status-left-length 20
+    '';
   plugins = with pkgs; [
     tmuxPlugins.vim-tmux-navigator
     tmuxPlugins.jump
