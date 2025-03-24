@@ -35,6 +35,11 @@
   };
 
   programs = {
+    lazydocker.enable = true;
+    newsboat.enable = true;
+    obs-studio.enable = true;
+    k9s.enable = true;
+
     bat = import ./bat.nix;
     chromium = import ./brave.nix pkgs;
     direnv = import ./direnv.nix;

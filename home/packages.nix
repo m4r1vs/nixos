@@ -2,12 +2,14 @@
 with pkgs; [
   blender
   discord
+  dracula-theme
   fastfetch
   gimp
   hyprcursor
   hyprpicker
   hyprshot
   hyprutils
+  inkscape-with-extensions
   kwalletcli
   libnotify
   mpv
@@ -17,7 +19,6 @@ with pkgs; [
   polkit_gnome
   slack
   spotify
-  dracula-theme
   swayimg
   wireplumber
   wl-clipboard
