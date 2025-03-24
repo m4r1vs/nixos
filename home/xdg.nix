@@ -11,6 +11,12 @@
       };
       rofi = {
         name = "Hidden Rofi";
+      nixpad = {
+        name = "Marius' NixPad";
+        genericName = "NixOS on ThinkPad";
+        icon = "nix-snowflake";
+        type = "Application";
+        categories = ["Settings"];
         noDisplay = true;
       };
       brave-browser = {
