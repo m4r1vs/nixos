@@ -1,8 +1,8 @@
 pkgs: {
   enable = true;
   theme = {
-    package = pkgs.whitesur-gtk-theme;
-    name = "WhiteSur";
+    package = pkgs.gnome-themes-extra;
+    name = "Adwaita";
   };
   iconTheme = {
     package = pkgs.papirus-icon-theme;
@@ -15,7 +15,7 @@ pkgs: {
   };
   font = {
     package = pkgs.nerd-fonts.jetbrains-mono;
-    name = "JetBrainsMono Nerd Font Proto";
+    name = "JetBrainsMono NF";
     size = 10;
   };
 }

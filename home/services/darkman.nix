@@ -8,12 +8,12 @@
     };
     darkModeScripts = {
       mode = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/color-scheme \"'prefer-dark'\"";
-      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'Dracula'\"";
+      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'Adwaita-dark'\"";
       notify = "${import ../scripts/nixos-notify.nix pkgs} -e -r 91191 -t 900 \"Dark Mode Activated\"";
     };
     lightModeScripts = {
       mode = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/color-scheme \"'prefer-light'\"";
-      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'WhiteSur'\"";
+      theme = "${pkgs.dconf}/bin/dconf write\ /org/gnome/desktop/interface/gtk-theme \"'Adwaita'\"";
       notify = "${import ../scripts/nixos-notify.nix pkgs} -e -r 91191 -t 900 \"Welcome to the bright side :)\"";
     };
   };
