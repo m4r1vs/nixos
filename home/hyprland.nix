@@ -1,6 +1,18 @@
 {pkgs, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [
+      pkgs.hyprlandPlugins.hypr-dynamic-cursors
+      (pkgs.hyprlandPlugins.hyprfocus.overrideAttrs {
+        src = pkgs.fetchFromGitHub {
+          owner = "daxisunder";
+          repo = "hyprfocus";
+          rev = "main";
+          hash = "sha256-ST5FFxyw5El4A7zWLaWbXb9bD9C/tunU+flmNxWCcEY=";
+        };
+        meta.broken = false;
+      })
+    ];
     settings = {
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
@@ -45,6 +57,30 @@
         border_size = 0;
         gaps_in = 4;
         gaps_out = 8;
+      };
+      plugin = {
+        hyprfocus = {
+          enabled = true;
+          animate_floating = true;
+          animate_workspacechange = true;
+          focus_animation = "flash";
+          bezier = "realsmooth, 0.28,0.29,0.69,1.08";
+          flash = {
+            flash_opacity = 0.88;
+            in_bezier = "realsmooth";
+            in_speed = 0.4;
+            out_bezier = "realsmooth";
+            out_speed = 1.5;
+          };
+        };
+        dynamic-cursors = {
+          enabled = true;
+          threshold = 1;
+          mode = "tilt";
+          shake = {
+            enabled = false;
+          };
+        };
       };
       dwindle = {
         pseudotile = true;
