@@ -123,6 +123,7 @@
   #pulseaudio,
   #custom-media,
   #custom-webcam,
+  #custom-fprint,
   #custom-weather,
   #taskbar,
   #custom-theme,
