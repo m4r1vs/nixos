@@ -33,7 +33,7 @@
     pathFormat = "#{s|mn|~|:#{b:pane_current_path}}";
 
     format =
-      " #{?#{==:#{pane_current_command},zsh},"
+      "#{?#{==:#{pane_current_command},zsh},"
       + "#{?#{window_active},,} ${pathFormat},"
       + "${
         if showShellIcons
@@ -45,7 +45,7 @@
         if showPaneCount
         then "#{?#{>:#{window_panes},1}, ${paneCountFormat},}"
         else ""
-      } ";
+      }";
   in
     format;
 in {
@@ -181,7 +181,7 @@ in {
         # To make the selection box rounded () or edged <>
         set -g @minimal-tmux-use-arrow false
 
-        set -g @minimal-tmux-window-status-format "${mkTmuxWindowStatusFormat {}}"
+        set -g @minimal-tmux-window-status-format " ${mkTmuxWindowStatusFormat {}} "
 
         # Not recommended to change these values
         set -g @minimal-tmux-status-right " %d.%m. 󰥔 %H:%M"
