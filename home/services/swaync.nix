@@ -63,6 +63,11 @@
           color: #D6D6D6;
         }
 
+        .floating-notifications.background .notification-row .notification-background .notification .notification-content .image {
+          border-radius: 4px;
+          margin-right: 8px;
+        }
+
         .floating-notifications.background .notification-row .notification-background .notification>*:last-child>* {
           min-height: 3.4em;
         }
@@ -164,6 +169,41 @@
           border: 0px;
         }
 
+        .notification-group-headers {
+          box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);
+          background: ${(import ../../theme.nix).backgroundColor};
+          margin: 5px 18px;
+          padding: 7px 18px 7px 12px;
+          border-radius: 5px;
+        }
+
+        .notification-group-buttons {
+          box-shadow: 0 3px 6px rgba(0,0,0,0.26), 0 3px 6px rgba(0,0,0,0.23);
+          background: ${(import ../../theme.nix).backgroundColor};
+          margin: 5px 18px;
+          padding: 7px 18px;
+          border-radius: 5px;
+        }
+
+        .notification-group-close-all-button {
+          padding: 5px;
+          background: ${(import ../../theme.nix).primaryColor};
+          margin-left: 4px;
+          border-radius: 4px;
+        }
+        .notification-group-close-all-button:hover {
+          background-color: #272629;
+        }
+
+        .notification-group-collapse-button {
+          padding: 5px;
+          background: ${(import ../../theme.nix).primaryColor};
+          border-radius: 4px;
+        }
+        .notification-group-collapse-button:hover {
+          background-color: #272629;
+        }
+
         .control-center .notification-row {
           padding: 0px 0px 0px 18px;
           margin: 0 0 0 18px;
@@ -199,6 +239,11 @@
 
         .control-center .notification-row .notification-background .notification .notification-content .body {
           color: #D6D6D6;
+        }
+
+        .control-center .notification-row .notification-background .notification .notification-content .image {
+          border-radius: 4px;
+          margin-right: 8px;
         }
 
         .control-center .notification-row .notification-background .notification>*:last-child>* {
