@@ -14,8 +14,8 @@ pkgs: {
     name = "Bibata-Modern-Ice";
   };
   font = {
-    package = pkgs.nerd-fonts.jetbrains-mono;
-    name = "JetBrainsMono NF";
+    package = pkgs.ubuntu_font_family;
+    name = "Ubuntu";
     size = 10;
   };
 }
