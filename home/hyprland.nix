@@ -162,6 +162,7 @@
           "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
           "SUPER+Shift, N, movecurrentworkspacetomonitor, +1"
           "SUPER, F, fullscreen,"
+          "SUPER, E, exec, ${pkgs.xdg-utils}/bin/xdg-open ~/Downloads"
           "SUPER+Shift, F, fullscreenstate, 2,"
           "SUPER+Ctrl, s, togglesplit"
           "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
