@@ -221,7 +221,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${pkgs.hyprland}/bin/Hyprland --theme border=red;text=red;prompt=green;time=green;action=blue;button=blue;container=black;input=green";
         user = "mn";
       };
       initial_session = {
