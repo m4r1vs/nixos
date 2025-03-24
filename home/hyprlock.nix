@@ -4,6 +4,7 @@ pkgs: {
     general = {
       disable_loading_bar = true;
       grace = 5;
+      text_trim = false;
       hide_cursor = true;
     };
     auth = {
@@ -59,6 +60,19 @@ pkgs: {
         position = "0, -218";
       }
       {
+        shadow_passes = 3;
+        shadow_size = 1;
+        shadow_boost = 1.8;
+        text = "cmd[update:2000] echo \" $(${import ./scripts/fprint-privacy.nix pkgs}) \"";
+        font_family = "JetBrainsMono Nerd Font";
+        color = "rgba(${(import ../theme.nix).secondaryColorRGB},0.83)";
+        font_size = 42;
+        text_align = "center";
+        halign = "center";
+        valign = "bottom";
+        position = "0, 122";
+      }
+      {
         shadow_passes = 2;
         shadow_size = 1;
         shadow_boost = 1.5;
@@ -69,16 +83,16 @@ pkgs: {
         text_align = "left";
         halign = "left";
         valign = "bottom";
-        position = "20, 0";
+        position = "70, 0";
       }
     ];
     input-field = [
       {
         size = "256, 42";
         rounding = 4;
-        position = "0, 40";
+        position = "0, 128";
         halign = "center";
-        valign = "center";
+        valign = "bottom";
         monitor = "";
         dots_center = true;
         fade_on_empty = false;
@@ -90,7 +104,7 @@ pkgs: {
         fail_timeout = 4000;
         font_family = "JetBrainsMono Nerd Font";
         fail_text = "Keep Trying.";
-        placeholder_text = "<span foreground=\"#${(import ../theme.nix).secondaryColor}\"> 󰌾 Locked </span>";
+        placeholder_text = "<span foreground=\"#${(import ../theme.nix).secondaryColor}\"> 󰌾 Password </span>";
         shadow_passes = 4;
         shadow_size = 2;
       }
