@@ -13,6 +13,7 @@ with pkgs; [
   kwalletcli
   libnotify
   mpv
+  nautilus
   nerd-fonts.jetbrains-mono
   obsidian
   pavucontrol

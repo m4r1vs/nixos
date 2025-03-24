@@ -1,5 +1,16 @@
 pkgs: {
   enable = true;
+  gtk3 = {
+    bookmarks = [
+      "file:///home/mn/Desktop"
+      "file:///home/mn/Downloads"
+      "file:///home/mn/Documents"
+      "file:///home/mn/Pictures"
+      "file:///home/mn/Music"
+      "file:///home/mn/Projects"
+      "file:///home/mn/Videos"
+    ];
+  };
   theme = {
     package = pkgs.gnome-themes-extra;
     name = "Adwaita";
