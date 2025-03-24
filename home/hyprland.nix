@@ -60,6 +60,7 @@
         border_size = 0;
         gaps_in = 4;
         gaps_out = 8;
+        layout = "dwindle";
       };
       plugin = {
         hyprfocus = {
@@ -87,6 +88,7 @@
       };
       dwindle = {
         pseudotile = true;
+        preserve_split = true;
       };
       decoration = {
         rounding = 5;
@@ -146,33 +148,37 @@
       binds.movefocus_cycles_fullscreen = false;
       bind =
         [
-          "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
-          "SUPER, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -theme-str \"entry {placeholder: \\\"  Launch...\\\";}\" -selected-row -1"
+          "SUPER, q, killactive"
+
           "SUPER, h, movefocus, l"
           "SUPER, l, movefocus, r"
           "SUPER, k, movefocus, u"
           "SUPER, j, movefocus, d"
+
+          "SUPER, t, togglesplit"
+          "SUPER+Shift, N, movecurrentworkspacetomonitor, +1"
+
+          "SUPER, F, fullscreen,"
+          "SUPER+Shift, F, fullscreenstate, 2,"
+          "SUPER+Shift, Space, togglefloating"
+
+          "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
+          "SUPER, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -theme-str \"entry {placeholder: \\\"  Launch...\\\";}\" -selected-row -1"
           "SUPER, s, exec, ${import ./scripts/screenshot.nix pkgs}"
+          "SUPER, E, exec, ${pkgs.xdg-utils}/bin/xdg-open ~/Downloads"
+          "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
+          "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
+          "SUPER, F1, togglespecialworkspace, spotify_player"
+          "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
           "SUPER+Shift, s, exec, ${import ./scripts/screenshot.nix pkgs} edit"
           "SUPER+Shift, c, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
           "SUPER+Shift, d, exec, ${pkgs.darkman}/bin/darkman toggle"
-          "SUPER, q, killactive"
           "SUPER+Shift, w, exec, ${import ./scripts/random-wallpaper.nix pkgs}"
           "SUPER+Shift, z, exec, ${import ./scripts/toggle-zen.nix pkgs}"
           "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-          "SUPER+Shift, N, movecurrentworkspacetomonitor, +1"
-          "SUPER, F, fullscreen,"
-          "SUPER, E, exec, ${pkgs.xdg-utils}/bin/xdg-open ~/Downloads"
-          "SUPER+Shift, F, fullscreenstate, 2,"
-          "SUPER+Ctrl, s, togglesplit"
-          "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
-          "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
           "SUPER+Shift, q, exec,  ${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{width:12em;height:12em;fullscreen:false;padding: 0;}\""
           "SUPER+Shift, i, exec, ${pkgs._1password-gui}/bin/1password --quick-access --ozone-platform-hint=x11"
           "SUPER+Shift, v, exec, ${import ./scripts/rofi-cliphist.nix pkgs}"
-          "SUPER, F1, togglespecialworkspace, spotify_player"
-          "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
-          "SUPER+Shift, Space, togglefloating"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
@@ -185,6 +191,11 @@
             )
             9)
         );
+      bindle = [
+        "SUPER, bracketright, exec, ${pkgs.pamixer}/bin/pamixer -i 5"
+        "SUPER, slash, exec, ${pkgs.pamixer}/bin/pamixer -d 5"
+        "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
+      ];
       bindm = [
         "SUPER, mouse:272, movewindow"
         "SUPER, mouse:273, resizewindow"
@@ -193,13 +204,15 @@
         "SUPER, Z, movewindow"
       ];
       "$moveactivewindow" = "grep -q \"true\" <<< $(${pkgs.hyprland}/bin/hyprctl activewindow -j | jq -r .floating) && ${pkgs.hyprland}/bin/hyprctl dispatch moveactive";
-      binded = [
-        "SUPER+Shift, h,Move activewindow to the right,exec, $moveactivewindow -30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow l"
-        "SUPER+Shift, l,Move activewindow to the right,exec, $moveactivewindow 30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow r"
-        "SUPER+Shift, k,Move activewindow to the right,exec, $moveactivewindow  0 -30 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow u"
-        "SUPER+Shift, j,Move activewindow to the right,exec, $moveactivewindow 0 30 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow d"
-      ];
       binde = [
+        "SUPER+Shift, bracketright, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 1%+"
+        "SUPER+Shift, slash, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 1%-"
+
+        "SUPER+Shift, h,exec, $moveactivewindow -30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow l"
+        "SUPER+Shift, l,exec, $moveactivewindow 30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow r"
+        "SUPER+Shift, k,exec, $moveactivewindow  0 -30 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow u"
+        "SUPER+Shift, j,exec, $moveactivewindow 0 30 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow d"
+
         "SUPER+alt, l, resizeactive, 30 0"
         "SUPER+alt, h, resizeactive, -30 0"
         "SUPER+alt, k, resizeactive, 0 -30"
