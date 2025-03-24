@@ -8,6 +8,7 @@
     ./xdg.nix
     ./swappy.nix
     ./hyprland.nix
+    ./waybar
 
     ./services/cliphist.nix
     ./services/darkman.nix
@@ -56,7 +57,6 @@
       inherit pkgs;
       inherit lib;
     };
-    waybar = import ./waybar pkgs;
     yazi = import ./yazi {
       inherit pkgs;
     };

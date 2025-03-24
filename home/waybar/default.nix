@@ -1,300 +1,331 @@
-pkgs: {
-  package = pkgs.waybar;
-  enable = true;
-  style = import ./style.css.nix;
-  settings = {
-    mainBar = {
-      layer = "top";
-      position = "bottom";
-      mod = "dock";
-      height = 28;
-      exclusive = true;
-      passthrough = false;
-      gtk-layer-shell = true;
-      reload_style_on_change = true;
+{pkgs, ...}: {
+  home.file.".config/waybar/style-light.css".text =
+    /*
+    css
+    */
+    ''
+      @define-color bar-bg rgba(0,0,0,0);
+      @define-color main-bg #F5E6CC;
+      @define-color main-fg #000000;
+      @define-color wb-act-bg ${(import ../../theme.nix).secondaryColor};
+      @define-color wb-act-fg rgba(252,252,252,1);
+      @define-color wb-hvr-bg rgba(0,0,0,0.1);
+      @define-color wb-hvr-fg #000000;
 
-      modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "custom/cpuinfo" "memory" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
-      modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
-      modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "custom/weather" "tray" "battery" "custom/r_end" "custom/padd"];
+      @import url("${builtins.path {path = ./base.css;}}");
+    '';
+  home.file.".config/waybar/style-dark.css".text =
+    /*
+    css
+    */
+    ''
+      @define-color bar-bg rgba(0,0,0,0);
+      @define-color main-bg ${(import ../../theme.nix).backgroundColor};
+      @define-color main-fg rgba(214,214,214,1);
+      @define-color wb-act-bg ${(import ../../theme.nix).primaryColor};
+      @define-color wb-act-fg rgba(252,252,252,1);
+      @define-color wb-hvr-bg rgba(61,61,61,0.4);
+      @define-color wb-hvr-fg rgba(214,214,214,0.8);
 
-      idle_inhibitor = {
-        format = "{icon}";
-        rotate = 0;
-        format-icons = {
-          activated = "󰥔";
-          deactivated = "";
-        };
-      };
+      @import url("${builtins.path {path = ./base.css;}}");
+    '';
+  programs.waybar = {
+    package = pkgs.waybar;
+    enable = true;
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "bottom";
+        mod = "dock";
+        height = 28;
+        exclusive = true;
+        passthrough = false;
+        gtk-layer-shell = true;
+        reload_style_on_change = true;
 
-      clock = {
-        format = "{:%H:%M %p}";
-        rotate = 0;
-        format-alt = "{:%R 󰃭 %d·%m·%y}";
-        tooltip-format = "<span>{calendar}</span>";
-        calendar = {
-          mode = "month";
-          mode-mon-col = 3;
-          on-scroll = 1;
-          on-click-right = "mode";
-          format = {
-            months = "<span color='#ffead3'><b>{}</b></span>";
-            weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-            today = "<span color='#ff6699'><b>{}</b></span>";
+        modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "custom/cpuinfo" "memory" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
+        modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
+        modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "custom/weather" "tray" "battery" "custom/r_end" "custom/padd"];
+
+        idle_inhibitor = {
+          format = "{icon}";
+          rotate = 0;
+          format-icons = {
+            activated = "󰥔";
+            deactivated = "";
           };
         };
-        actions = {
-          on-click-right = "mode";
-          on-click-forward = "tz_up";
-          on-click-backward = "tz_down";
-          on-scroll-up = "shift_up";
-          on-scroll-down = "shift_down";
+
+        clock = {
+          format = "{:%H:%M %p}";
+          rotate = 0;
+          format-alt = "{:%R 󰃭 %d·%m·%y}";
+          tooltip-format = "<span>{calendar}</span>";
+          calendar = {
+            mode = "month";
+            mode-mon-col = 3;
+            on-scroll = 1;
+            on-click-right = "mode";
+            format = {
+              months = "<span color='#ffead3'><b>{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b>{}</b></span>";
+            };
+          };
+          actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
         };
-      };
 
-      cpu = {
-        interval = 10;
-        format = " {usage}%";
-        rotate = 0;
-        format-alt = "{icon0}{icon1}{icon2}{icon3}";
-        format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-      };
-
-      memory = {
-        states = {
-          c = 90;
-          h = 60;
-          m = 30;
+        cpu = {
+          interval = 10;
+          format = " {usage}%";
+          rotate = 0;
+          format-alt = "{icon0}{icon1}{icon2}{icon3}";
+          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
         };
-        interval = 30;
-        format = " {used}GB";
-        rotate = 0;
-        format-m = " {used}GB";
-        format-h = " {used}GB";
-        format-c = " {used}GB";
-        format-alt = " {percentage}%";
-        max-length = 10;
-        tooltip = true;
-        tooltip-format = " {percentage}%\n {used:0.1f}GB/{total:0.1f}GB";
-      };
 
-      "custom/cpuinfo" = {
-        exec = "${import ../scripts/cpu-info.nix pkgs}";
-        return-type = "json";
-        format = "{}";
-        rotate = 0;
-        interval = 10;
-        tooltip = true;
-        max-length = 1000;
-      };
-
-      "custom/media" = {
-        exec = "${import ../scripts/mediaplayer-wrapper.nix pkgs}";
-        format = "{}";
-        return-type = "json";
-        on-click = "${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle";
-        on-click-right = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-next";
-        on-click-middle = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-prev";
-        max-length = 52;
-        escape = true;
-        tooltip = true;
-      };
-
-      "custom/notifications" = {
-        tooltip = false;
-        format = "{icon}";
-        format-icons = {
-          notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
-          none = "";
-          dnd-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
-          dnd-none = "";
-          inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
-          inhibited-none = "󰮯";
-          dnd-inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
-          dnd-inhibited-none = "󱝁";
+        memory = {
+          states = {
+            c = 90;
+            h = 60;
+            m = 30;
+          };
+          interval = 30;
+          format = " {used}GB";
+          rotate = 0;
+          format-m = " {used}GB";
+          format-h = " {used}GB";
+          format-c = " {used}GB";
+          format-alt = " {percentage}%";
+          max-length = 10;
+          tooltip = true;
+          tooltip-format = " {percentage}%\n {used:0.1f}GB/{total:0.1f}GB";
         };
-        return-type = "json";
-        exec = "${pkgs.swaynotificationcenter}/bin/swaync-client -swb";
-        on-click = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
-        on-click-right = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
-        escape = true;
-      };
 
-      "custom/webcam" = {
-        return-type = "text";
-        interval = 2;
-        escape = true;
-        tooltip = false;
-        exec = "${import ../scripts/webcam-privacy.nix pkgs}";
-      };
-
-      "custom/fprint" = {
-        return-type = "text";
-        interval = 2;
-        escape = true;
-        tooltip = false;
-        exec = "${import ../scripts/fprint-privacy.nix pkgs}";
-      };
-
-      "custom/weather" = {
-        format = "{}°C";
-        tooltip = true;
-        interval = 1800;
-        exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{temp_C}\"";
-        return-type = "json";
-      };
-
-      "hyprland/workspaces" = {
-        rotate = 0;
-        all-outputs = false;
-        active-only = false;
-        on-click = "activate";
-        disable-scroll = true;
-        on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace -1";
-        on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace +1";
-        persistent-workspaces = {};
-      };
-      backlight = {
-        device = "intel_backlight";
-        rotate = 0;
-        format = "{icon} {percent}%";
-        format-icons = ["" "" "" "" "" "" "" "" ""];
-        on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set 1%+";
-        on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 1%-";
-        min-length = 6;
-      };
-
-      network = {
-        tooltip = true;
-        rotate = 0;
-        tooltip-format = "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
-        format-linked = "󰈀 {ifname} (No IP)";
-        tooltip-format-disconnected = "Disconnected";
-        format = "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>";
-        interval = 2;
-      };
-
-      pulseaudio = {
-        format = "{icon} {volume}";
-        rotate = 0;
-        format-muted = "";
-        on-click = "${pkgs.pavucontrol}/bin/pavucontrol -t 3";
-        on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
-        on-scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
-        on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
-        tooltip-format = "{icon} {desc} // {volume}%";
-        scroll-step = 5;
-        format-icons = {
-          headphone = "";
-          hands-free = "";
-          headset = "";
-          phone = "";
-          portable = "";
-          car = "";
-          default = ["" "" ""];
+        "custom/cpuinfo" = {
+          exec = "${import ../scripts/cpu-info.nix pkgs}";
+          return-type = "json";
+          format = "{}";
+          rotate = 0;
+          interval = 10;
+          tooltip = true;
+          max-length = 1000;
         };
-      };
 
-      # "pulseaudio#microphone = {
-      #     "format = "{format_source}";
-      #     "rotate = 0;
-      #     "format-source = "";
-      #     "format-source-muted = "";
-      #     "on-click = "pavucontrol -t 4";
-      #     "on-click-middle = "volumecontrol.sh -i m";
-      #     "on-scroll-up = "volumecontrol.sh -i i";
-      #     "on-scroll-down = "volumecontrol.sh -i d";
-      #     "tooltip-format = "{format_source} {source_desc} // {source_volume}%";
-      #     "scroll-step = 5
-      # };
-
-      #    "custom/updates = {
-      #        "exec = "systemupdate.sh";
-      #        "return-type = "json";
-      #        "format = "{}";
-      #        "rotate = 0;
-      #        "on-click = "hyprctl dispatch exec 'systemupdate.sh up'";
-      #        "interval = 86400, // once every day
-      #        "tooltip = true;
-      #        "signal = 20;
-      #    };
-      privacy = {
-        icon-size = 10;
-        icon-spacing = 5;
-        transition-duration = 250;
-        modules = [
-          {
-            type = "screenshare";
-            tooltip = true;
-            tooltip-icon-size = 24;
-          }
-          {
-            type = "audio-in";
-            tooltip = true;
-            tooltip-icon-size = 24;
-          }
-        ];
-      };
-
-      tray = {
-        icon-size = 14;
-        rotate = 0;
-        spacing = 5;
-      };
-
-      battery = {
-        states = {
-          good = 95;
-          warning = 30;
-          critical = 20;
+        "custom/media" = {
+          exec = "${import ../scripts/mediaplayer-wrapper.nix pkgs}";
+          format = "{}";
+          return-type = "json";
+          on-click = "${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle";
+          on-click-right = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-next";
+          on-click-middle = "${pkgs.waybar-mpris}/bin/waybar-mpris --send player-prev";
+          max-length = 52;
+          escape = true;
+          tooltip = true;
         };
-        format = "{icon} {capacity}%";
-        rotate = 0;
-        format-charging = " {capacity}%";
-        format-plugged = " {capacity}%";
-        format-alt = "{time} {icon}";
-        format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-      };
 
-      "custom/l_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        "custom/notifications" = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+            none = "";
+            dnd-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+            dnd-none = "";
+            inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+            inhibited-none = "󰮯";
+            dnd-inhibited-notification = "<span foreground='${(import ../../theme.nix).primaryColor}'><sup></sup></span>";
+            dnd-inhibited-none = "󱝁";
+          };
+          return-type = "json";
+          exec = "${pkgs.swaynotificationcenter}/bin/swaync-client -swb";
+          on-click = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+          on-click-right = "${pkgs.swaynotificationcenter}/bin/swaync-client -d -sw";
+          escape = true;
+        };
 
-      "custom/r_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        "custom/webcam" = {
+          return-type = "text";
+          interval = 2;
+          escape = true;
+          tooltip = false;
+          exec = "${import ../scripts/webcam-privacy.nix pkgs}";
+        };
 
-      "custom/sl_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        "custom/fprint" = {
+          return-type = "text";
+          interval = 2;
+          escape = true;
+          tooltip = false;
+          exec = "${import ../scripts/fprint-privacy.nix pkgs}";
+        };
 
-      "custom/sr_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        "custom/weather" = {
+          format = "{}°C";
+          tooltip = true;
+          interval = 1800;
+          exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{temp_C}\"";
+          return-type = "json";
+        };
 
-      "custom/rl_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        "hyprland/workspaces" = {
+          rotate = 0;
+          all-outputs = false;
+          active-only = false;
+          on-click = "activate";
+          disable-scroll = true;
+          on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace -1";
+          on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace +1";
+          persistent-workspaces = {};
+        };
+        backlight = {
+          device = "intel_backlight";
+          rotate = 0;
+          format = "{icon} {percent}%";
+          format-icons = ["" "" "" "" "" "" "" "" ""];
+          on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set 1%+";
+          on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 1%-";
+          min-length = 6;
+        };
 
-      "custom/rr_end" = {
-        format = " ";
-        interval = "once";
-        tooltip = false;
-      };
+        network = {
+          tooltip = true;
+          rotate = 0;
+          tooltip-format = "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+          format-linked = "󰈀 {ifname} (No IP)";
+          tooltip-format-disconnected = "Disconnected";
+          format = "<span foreground='${(import ../../theme.nix).primaryColor}'> {bandwidthDownBytes}</span> <span foreground='${(import ../../theme.nix).secondaryColor}'> {bandwidthUpBytes}</span>";
+          interval = 2;
+        };
 
-      "custom/padd" = {
-        format = "  ";
-        interval = "once";
-        tooltip = false;
+        pulseaudio = {
+          format = "{icon} {volume}";
+          rotate = 0;
+          format-muted = "";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol -t 3";
+          on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
+          on-scroll-up = "${pkgs.pamixer}/bin/pamixer -i 1";
+          on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
+          tooltip-format = "{icon} {desc} // {volume}%";
+          scroll-step = 5;
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+        };
+
+        # "pulseaudio#microphone = {
+        #     "format = "{format_source}";
+        #     "rotate = 0;
+        #     "format-source = "";
+        #     "format-source-muted = "";
+        #     "on-click = "pavucontrol -t 4";
+        #     "on-click-middle = "volumecontrol.sh -i m";
+        #     "on-scroll-up = "volumecontrol.sh -i i";
+        #     "on-scroll-down = "volumecontrol.sh -i d";
+        #     "tooltip-format = "{format_source} {source_desc} // {source_volume}%";
+        #     "scroll-step = 5
+        # };
+
+        #    "custom/updates = {
+        #        "exec = "systemupdate.sh";
+        #        "return-type = "json";
+        #        "format = "{}";
+        #        "rotate = 0;
+        #        "on-click = "hyprctl dispatch exec 'systemupdate.sh up'";
+        #        "interval = 86400, // once every day
+        #        "tooltip = true;
+        #        "signal = 20;
+        #    };
+        privacy = {
+          icon-size = 10;
+          icon-spacing = 5;
+          transition-duration = 250;
+          modules = [
+            {
+              type = "screenshare";
+              tooltip = true;
+              tooltip-icon-size = 24;
+            }
+            {
+              type = "audio-in";
+              tooltip = true;
+              tooltip-icon-size = 24;
+            }
+          ];
+        };
+
+        tray = {
+          icon-size = 14;
+          rotate = 0;
+          spacing = 5;
+        };
+
+        battery = {
+          states = {
+            good = 95;
+            warning = 30;
+            critical = 20;
+          };
+          format = "{icon} {capacity}%";
+          rotate = 0;
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{time} {icon}";
+          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        };
+
+        "custom/l_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/r_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/sl_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/sr_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/rl_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/rr_end" = {
+          format = " ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/padd" = {
+          format = "  ";
+          interval = "once";
+          tooltip = false;
+        };
       };
     };
   };
