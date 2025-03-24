@@ -19,6 +19,9 @@
         "${pkgs._1password-gui}/bin/1password --silent --ozone-platform-hint=x11"
         "${pkgs.slack}/bin/slack --startup"
       ];
+      cursor = {
+        inactive_timeout = 3;
+      };
       exec = "${pkgs.hyprland}/bin/hyprctl setcursor Bibata-Modern-Ice 20";
       env = [
         "LIBVA_DRIVER_NAME,nvidia"
@@ -155,6 +158,7 @@
           "SUPER+Shift, d, exec, ${pkgs.darkman}/bin/darkman toggle"
           "SUPER, q, killactive"
           "SUPER+Shift, w, exec, ${import ./scripts/random-wallpaper.nix pkgs}"
+          "SUPER+Shift, z, exec, ${import ./scripts/toggle-zen.nix pkgs}"
           "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
           "SUPER+Shift, N, movecurrentworkspacetomonitor, +1"
           "SUPER, F, fullscreen,"
@@ -167,6 +171,7 @@
           "SUPER+Shift, v, exec, ${import ./scripts/rofi-cliphist.nix pkgs}"
           "SUPER, F1, togglespecialworkspace, spotify_player"
           "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
+          "SUPER+Shift, Space, togglefloating"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
