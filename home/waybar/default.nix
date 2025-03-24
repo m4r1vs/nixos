@@ -130,7 +130,7 @@ pkgs: {
       "custom/weather" = {
         format = "{}°C";
         tooltip = true;
-        interval = 3600;
+        interval = 1800;
         exec = "${pkgs.wttrbar}/bin/wttrbar --custom-indicator \"{temp_C}\"";
         return-type = "json";
       };
