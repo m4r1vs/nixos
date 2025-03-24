@@ -25,7 +25,7 @@
   };
   shellAliases = {
     lg = "${pkgs.lazygit}/bin/lazygit";
-    update = "sudo nixos-rebuild switch --flake ~/nixos/#nixpad";
+    update = "sudo nixos-rebuild switch --flake ~/NixOS/#nixpad";
   };
   initExtra = import ./init.nix pkgs;
   plugins = [
