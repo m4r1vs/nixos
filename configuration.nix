@@ -6,7 +6,13 @@
   imports = [
     ./hardware-configuration.nix
     ./programs.nix
+    ./home/scripts/thinkmorse.nix
   ];
+
+  services.thinkmorse = {
+    message = "Leck Eier";
+    enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
