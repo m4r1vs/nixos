@@ -1,5 +1,5 @@
 pkgs:
-pkgs.writeShellScript "mediaplayer-wrapper"
+pkgs.writeShellScript "webcam-privacy"
 ''
   if command -v ${pkgs.psmisc}/bin/fuser /dev/video0 &>/dev/null && ${pkgs.psmisc}/bin/fuser /dev/video0 &>/dev/null; then
       echo " 󰄀"
