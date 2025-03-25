@@ -14,7 +14,7 @@
     desktopEntries = {
       yazi = {
         name = "Yazi";
-        icon = "yazi";
+        icon = "duckstation";
         comment = "Blazing fast terminal file manager written in Rust, based on async I/O";
         terminal = false;
         exec = "${pkgs.ghostty}/bin/ghostty --class=ghostty.yazi -e ${pkgs.yazi}/bin/yazi %u";
