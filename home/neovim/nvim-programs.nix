@@ -25,6 +25,7 @@ with pkgs; [
   prettierd
   ripgrep
   rust-analyzer-unwrapped
+  shfmt
   sourcekit-lsp
   swift
   tree-sitter
