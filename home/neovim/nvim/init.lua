@@ -126,6 +126,9 @@ vim.keymap.set("n", "<C-T>", ":tabnew<CR>:Telescope find_files<CR>")
 -- Use <leader>" to change current selection ' to "
 vim.keymap.set("v", "<leader>\"", ":s/'/\"/g<CR>")
 
+-- Use <leader>rs to sort the current selection
+vim.keymap.set("v", "<leader>rs", ":!sort<CR>")
+
 -- Change cursor depending on mode
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
