@@ -5,6 +5,7 @@ return {
   ft = { "typst" },
   opts = {
     invert_colors = "auto",
+    dependencies_bin = { ['tinymist'] = 'tinymist' },
   },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
