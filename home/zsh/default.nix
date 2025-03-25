@@ -12,7 +12,6 @@
     enable = true;
     plugins = [
       "git"
-      "sudo"
       "tmux"
     ];
     extraConfig = ''
