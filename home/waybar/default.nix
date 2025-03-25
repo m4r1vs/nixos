@@ -5,7 +5,7 @@
     */
     ''
       @define-color bar-bg rgba(0,0,0,0);
-      @define-color main-bg #F5E6CC;
+      @define-color main-bg ${(import ../../theme.nix).backgroundColorLight};
       @define-color main-fg #000000;
       @define-color wb-act-bg ${(import ../../theme.nix).secondaryColor};
       @define-color wb-act-fg rgba(252,252,252,1);

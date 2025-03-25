@@ -9,6 +9,7 @@
     ./swappy.nix
     ./hyprland.nix
     ./waybar
+    ./rofi.nix
 
     ./services/cliphist.nix
     ./services/darkman.nix
@@ -50,7 +51,6 @@
     home-manager.enable = true;
     hyprlock = import ./hyprlock.nix pkgs;
     lazygit = import ./lazygit.nix;
-    rofi = import ./rofi.nix pkgs;
     spotify-player = import ./spotify-player.nix pkgs;
     ssh = import ./ssh.nix;
     tmux = import ./tmux {
