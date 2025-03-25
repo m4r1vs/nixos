@@ -43,7 +43,7 @@
         gtk-layer-shell = true;
         reload_style_on_change = true;
 
-        modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "custom/cpuinfo" "memory" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
+        modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "custom/cpuinfo" "memory" "disk" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
         modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
         modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "custom/weather" "tray" "battery" "custom/r_end" "custom/padd"];
 
@@ -85,7 +85,6 @@
           interval = 10;
           format = " {usage}%";
           rotate = 0;
-          format-alt = "{icon0}{icon1}{icon2}{icon3}";
           format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
         };
 
@@ -101,7 +100,6 @@
           format-m = " {used}GB";
           format-h = " {used}GB";
           format-c = " {used}GB";
-          format-alt = " {percentage}%";
           max-length = 10;
           tooltip = true;
           tooltip-format = " {percentage}%\n {used:0.1f}GB/{total:0.1f}GB";
@@ -203,6 +201,13 @@
           interval = 2;
         };
 
+        disk = {
+          interval = 30;
+          format = "󰋊 {free}";
+          tooltip = true;
+          tooltip-format = "󰋊 {percentage_used}%\n {used}/{total}";
+        };
+
         pulseaudio = {
           format = "{icon} {volume}";
           rotate = 0;
@@ -281,7 +286,6 @@
           rotate = 0;
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
-          format-alt = "{time} {icon}";
           format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
 
