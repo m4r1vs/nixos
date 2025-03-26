@@ -2,7 +2,14 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-      pkgs.hyprlandPlugins.hypr-dynamic-cursors
+      (pkgs.hyprlandPlugins.hypr-dynamic-cursors.overrideAttrs {
+        src = pkgs.fetchFromGitHub {
+          owner = "VirtCode";
+          repo = "hypr-dynamic-cursors";
+          rev = "main";
+          hash = "sha256-/teXJjfdp4cZetlD7lsunettI5QB3UWeODhrrDXooOs=";
+        };
+      })
       (pkgs.hyprlandPlugins.hyprfocus.overrideAttrs {
         src = pkgs.fetchFromGitHub {
           owner = "daxisunder";
