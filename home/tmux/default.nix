@@ -6,13 +6,12 @@
   mkTmuxWindowStatusFormat = {
     showShellIcons ? true,
     shellIconMap ? {
-      btop = "";
       htop = "";
       lazygit = "";
       mpv = "";
       newsboat = "󰎕";
       nvim = "";
-      paru = "󰮯";
+      nix = "󱄅";
       sudo = "";
       yazi = "󰇥";
       bash = "";
