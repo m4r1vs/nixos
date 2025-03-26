@@ -17,7 +17,7 @@
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
         "${pkgs._1password-gui}/bin/1password --silent --ozone-platform-hint=x11"
-        "${pkgs.slack}/bin/slack --startup"
+        "${pkgs.slack}/bin/slack"
       ];
       cursor = {
         inactive_timeout = 3;
@@ -138,9 +138,14 @@
         "float,initialClass:^(ghostty.spotify_player)$"
         "size 1700 900, initialClass:^(ghostty.spotify_player)$"
         "workspace special:spotify_player silent,initialClass:^(ghostty.spotify_player)$"
+
+        "size 1700 900, initialClass:^(Slack)$"
+        "workspace special:Slack silent,initialClass:^(Slack)$"
+
         "noblur,class:^()$,title:^()$"
       ];
       monitor = [
+        "DP-1,3440x1440@59.94,-760x-1440, 1"
         "eDP-1,1920x1080@60.01,0x0, 1"
         "eDP-2,1920x1080@60.01,0x0, 1"
         "HDMI-A-1,3440x1440@59.94,-760x-1440, 1"
@@ -163,13 +168,19 @@
           "SUPER+Shift, Space, togglefloating"
 
           "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
-          "SUPER, D, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun -theme-str \"entry {placeholder: \\\"  Launch...\\\";}\" -selected-row -1"
+          "SUPER, d, exec, ${pkgs.rofi-wayland}/bin/rofi -theme-str \"entry {placeholder: \\\"  Launch...\\\";}\" -combi-modi search:${import ./scripts/rofi-search.nix pkgs},drun -show combi"
           "SUPER, s, exec, ${import ./scripts/screenshot.nix pkgs}"
           "SUPER, E, exec, ${pkgs.xdg-utils}/bin/xdg-open ~/Downloads"
           "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
           "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
+          "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator"
+
           "SUPER, F1, togglespecialworkspace, spotify_player"
           "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
+
+          "SUPER, F2, togglespecialworkspace, Slack"
+          "SUPER, F2, exec, pgrep Slack || ${pkgs.slack}/bin/slack"
+
           "SUPER+Shift, s, exec, ${import ./scripts/screenshot.nix pkgs} edit"
           "SUPER+Shift, c, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
           "SUPER+Shift, d, exec, ${pkgs.darkman}/bin/darkman toggle"
