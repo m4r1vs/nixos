@@ -27,19 +27,19 @@ pkgs: {
     };
     background = [
       {
-        path = builtins.path {path = ./wallpaper/Sunset_Tree.jpg;};
+        path = builtins.path {path = ./wallpaper/Staten_Island_Ferry.jpg;};
         blur_passes = 0;
         blur_size = 0;
       }
     ];
     label = [
       {
-        shadow_passes = 3;
-        shadow_size = 1;
-        shadow_boost = 0.3;
+        # shadow_passes = 3;
+        # shadow_size = 1;
+        # shadow_boost = 0.3;
         text = "$TIME";
         font_family = "JetBrainsMono NF Light";
-        color = "rgba(${(import ../theme.nix).primaryColorRGB},0.62)";
+        color = "rgba(255,255,255,0.54)";
         font_size = 72;
         text_align = "center";
         halign = "center";
@@ -47,12 +47,12 @@ pkgs: {
         position = "0, -102";
       }
       {
-        shadow_passes = 2;
-        shadow_size = 1;
-        shadow_boost = 1;
+        # shadow_passes = 2;
+        # shadow_size = 1;
+        # shadow_boost = 1;
         text = "cmd[update:60000] echo \"$(date +\"%a, %b %d\")  $(${pkgs.wttrbar}/bin/wttrbar --nerd --custom-indicator \"{ICON} {temp_C}°\" | ${pkgs.jq}/bin/jq .text -r)\"";
         font_family = "JetBrainsMono NF Light";
-        color = "rgba(${(import ../theme.nix).primaryColorRGB},0.83)";
+        color = "rgba(255,255,255,0.42)";
         font_size = 14;
         text_align = "center";
         halign = "center";
@@ -73,12 +73,12 @@ pkgs: {
         position = "0, 122";
       }
       {
-        shadow_passes = 2;
-        shadow_size = 1;
-        shadow_boost = 1.5;
+        # shadow_passes = 2;
+        # shadow_size = 1;
+        # shadow_boost = 1.5;
         text = "cmd[update:128000] ${import ./scripts/date-trivia.nix pkgs} | ${pkgs.cowsay}/bin/cowsay -r";
         font_family = "JetBrainsMono Nerd Font";
-        color = "rgba(${(import ../theme.nix).primaryColorRGB},0.72)";
+        color = "rgba(255,255,255,0.32)";
         font_size = 8;
         text_align = "left";
         halign = "left";
@@ -106,6 +106,7 @@ pkgs: {
         fail_text = "Keep Trying.";
         placeholder_text = "<span foreground=\"#${(import ../theme.nix).secondaryColor}\"> 󰌾 Password </span>";
         shadow_passes = 4;
+        shadow_boost = 0.8;
         shadow_size = 2;
       }
     ];
