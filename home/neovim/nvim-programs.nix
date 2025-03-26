@@ -10,6 +10,7 @@ with pkgs; [
   fd
   fzf
   gcc
+  gnumake
   go
   goimports-reviser
   gopls
