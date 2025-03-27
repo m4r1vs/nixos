@@ -35,6 +35,7 @@ with pkgs; [
   tree-sitter
   vscode-langservers-extracted
   vtsls
+  websocat
   yaml-language-server
   yazi
   zls
