@@ -49,14 +49,7 @@
     format;
 in {
   enable = true;
-  package = pkgs.tmux.overrideAttrs {
-    src = pkgs.fetchFromGitHub {
-      owner = "m4r1vs";
-      repo = "tmux";
-      rev = "master";
-      hash = "sha256-zO1g83jNVXaiVH1vsSN3BRF3CiT4dChY7uE+g5SkIrc=";
-    };
-  };
+  package = pkgs.tmux;
   keyMode = "vi";
   shortcut = "Space";
   escapeTime = 0;

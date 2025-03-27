@@ -1,44 +1,6 @@
 pkgs: {
   enable = true;
-  package = with pkgs;
-    rustPlatform.buildRustPackage {
-      pname = "spotify-player";
-      version = "latest";
-
-      src = fetchFromGitHub {
-        owner = "m4r1vs";
-        repo = "spotify-player";
-        rev = "master";
-        hash = "sha256-VGEjSVacYXAEMg1GJQEacP1vxhtKYnTBc8h1QfekoHM=";
-      };
-
-      useFetchCargoVendor = true;
-      cargoHash = "sha256-0vIhAJ3u+PfujUGI07fddDs33P35Q4CSDz1sMuQwVws=";
-      nativeBuildInputs = [
-        pkg-config
-        cmake
-        rustPlatform.bindgenHook
-      ];
-      buildInputs = [
-        openssl
-        dbus
-        fontconfig
-        libpulseaudio
-      ];
-      buildNoDefaultFeatures = true;
-      buildFeatures = [
-        "pulseaudio-backend"
-        "media-control"
-        "image"
-        "daemon"
-        "notify"
-        "streaming"
-        "fzf"
-      ];
-      passthru = {
-        updateScript = nix-update-script {};
-      };
-    };
+  package = pkgs.spotify-player;
   keymaps = [
     {
       command = "None";

@@ -7,26 +7,8 @@
     ./hardware-configuration.nix
     ./programs.nix
     ./home/scripts/thinkmorse.nix
+    ./nixpkgs.nix
   ];
-
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (final: prev: {
-        libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ [prev.nss];
-        });
-      })
-      (final: prev: {
-        rofi-unwrapped = prev.rofi-unwrapped.overrideAttrs (oldAttrs: {
-          patchPhase = ''
-            echo "NoDisplay=true" >> ./data/rofi-theme-selector.desktop
-            echo "NoDisplay=true" >> ./data/rofi.desktop
-          '';
-        });
-      })
-    ];
-  };
 
   services = {
     /*

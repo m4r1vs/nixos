@@ -1,24 +1,9 @@
 {pkgs, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [
-      (pkgs.hyprlandPlugins.hypr-dynamic-cursors.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "VirtCode";
-          repo = "hypr-dynamic-cursors";
-          rev = "main";
-          hash = "sha256-/teXJjfdp4cZetlD7lsunettI5QB3UWeODhrrDXooOs=";
-        };
-      })
-      (pkgs.hyprlandPlugins.hyprfocus.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "daxisunder";
-          repo = "hyprfocus";
-          rev = "main";
-          hash = "sha256-ST5FFxyw5El4A7zWLaWbXb9bD9C/tunU+flmNxWCcEY=";
-        };
-        meta.broken = false;
-      })
+    plugins = with pkgs; [
+      hypr-dynamic-cursors
+      hyprfocus
     ];
     settings = {
       exec-once = [
