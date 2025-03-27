@@ -282,5 +282,8 @@
     pathsToLink = ["/share/zsh"];
   };
 
-  system.stateVersion = "24.11";
+  system = {
+    nixos.label = "ThinkPad.cc.systems";
+    stateVersion = "24.11";
+  };
 }
