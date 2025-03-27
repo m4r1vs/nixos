@@ -34,6 +34,7 @@
     network-manager-applet.enable = true;
     polkit-gnome.enable = true;
     swww.enable = true;
+    mpris-proxy.enable = true;
   };
 
   programs = {
