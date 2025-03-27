@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./disks.nix
     ./hardware-configuration.nix
     ./programs.nix
     ./home/scripts/thinkmorse.nix
