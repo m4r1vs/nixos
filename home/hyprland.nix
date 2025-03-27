@@ -26,6 +26,7 @@
         "${pkgs._1password-gui}/bin/1password --silent --ozone-platform-hint=x11"
         "${pkgs.slack}/bin/slack"
         "${import ./scripts/volume-change-notify.nix pkgs}"
+        "${import ./scripts/brightness-change-notify.nix pkgs}"
       ];
       cursor = {
         inactive_timeout = 3;
