@@ -13,9 +13,13 @@
       url = "github:m4r1vs/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {...} @ inputs: {
+  outputs = {disko, ...} @ inputs: {
     nixosConfigurations = {
       nixpad = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -28,6 +32,7 @@
           };
         };
         modules = [
+          disko.nixosModules.disko
           ./configuration.nix
           inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           inputs.home-manager.nixosModules.home-manager
