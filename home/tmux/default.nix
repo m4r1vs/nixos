@@ -72,9 +72,6 @@ in {
     tmux
     */
     ''
-      set-option -g set-titles on
-      set-option -g set-titles-string "${mkTmuxWindowStatusFormat {}}"
-
       set -g allow-passthrough all
       set -ga update-environment TERM
       set -ga update-environment TERM_PROGRAM
