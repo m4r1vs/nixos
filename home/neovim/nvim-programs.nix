@@ -4,6 +4,7 @@ with pkgs; [
   alejandra
   bash-language-server
   black
+  cargo
   clang-tools
   dart
   docker-compose-language-service
@@ -25,7 +26,9 @@ with pkgs; [
   nodejs_22
   prettierd
   ripgrep
-  rust-analyzer-unwrapped
+  rust-analyzer
+  rustc
+  rustfmt
   shfmt
   sourcekit-lsp
   swift
