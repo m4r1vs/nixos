@@ -126,6 +126,17 @@
     };
 
     /*
+    B-Tree FS
+    */
+    btrfs = {
+      autoScrub = {
+        enable = true;
+        interval = "weekly";
+        fileSystems = ["/"];
+      };
+    };
+
+    /*
     Misc
     */
     dbus.enable = true;
