@@ -327,12 +327,13 @@
       enable = true;
       polkitPolicyOwners = ["mn"];
     };
+
+    nix-index-database.comma.enable = true;
   };
 
   environment = {
     systemPackages = with pkgs; [
       bibata-cursors
-      comma
       curl
       ffmpeg
       fzf
