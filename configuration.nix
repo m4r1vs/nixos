@@ -37,7 +37,13 @@
     /*
     CUPS
     */
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        brlaser
+      ];
+    };
+
     pipewire = {
       enable = true;
       pulse.enable = true;
