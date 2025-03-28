@@ -27,17 +27,37 @@
         ]
       },
       "locked": {
-        "lastModified": 1743097780,
-        "narHash": "sha256-5tUbaMBKYbfTe/4aXACxmiXG22TgwPBNcfZ8Kg3rt+g=",
+        "lastModified": 1743136572,
+        "narHash": "sha256-uwaVrKgi6g1TUq56247j6QvvFtYHloCkjCrEpGBvV54=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b14a70c40f4fd0b73d095ab04a7c6e31fbc18e52",
+        "rev": "1efd2503172016a6742c87b47b43ca2c8145607d",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "ref": "master",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1742701275,
+        "narHash": "sha256-AulwPVrS9859t+eJ61v24wH/nfBEIDSXYxlRo3fL/SA=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "36dc43cb50d5d20f90a28d53abb33a32b0a2aae6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
         "type": "github"
       }
     },
@@ -78,29 +98,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_gimp3": {
-      "locked": {
-        "lastModified": 1743081868,
-        "narHash": "sha256-F1TlnVSuPzJKdGQtc5ERA+sbYm4n08HJ3PKCSmhTDc4=",
-        "owner": "m4r1vs",
-        "repo": "nixpkgs",
-        "rev": "2858003bce7782bd13db349135eba425f904879f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "m4r1vs",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_main": {
       "locked": {
-        "lastModified": 1743125403,
-        "narHash": "sha256-ax5yY7IA9XaO+qHiu2XNs7oivWlD4+YG+G8+VaAl8bE=",
+        "lastModified": 1743161949,
+        "narHash": "sha256-uVKESyx3Ltwjfo+n32LEZdbJqzSkitH7wn3vqB5YId4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b25d37292b5b6a56a6a508d4632feceb52266333",
+        "rev": "1b1a61b803c2fffb230262ac0c9ac0ab9dae6023",
         "type": "github"
       },
       "original": {
@@ -114,9 +118,9 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
+        "nix-index-database": "nix-index-database",
         "nixos-06cb-009a-fingerprint-sensor": "nixos-06cb-009a-fingerprint-sensor",
         "nixpkgs": "nixpkgs",
-        "nixpkgs_gimp3": "nixpkgs_gimp3",
         "nixpkgs_main": "nixpkgs_main"
       }
     }

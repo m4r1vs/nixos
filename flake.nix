@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs_main.url = "github:nixos/nixpkgs?ref=master";
-    nixpkgs_gimp3.url = "github:m4r1vs/nixpkgs?ref=master";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,9 +16,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {disko, ...} @ inputs: {
+  outputs = {...} @ inputs: {
     nixosConfigurations = {
       nixpad = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -27,13 +30,10 @@
           pkgs_main = import inputs.nixpkgs_main {
             system = "x86_64-linux";
           };
-          pkgs_gimp3 = import inputs.nixpkgs_gimp3 {
-            system = "x86_64-linux";
-          };
         };
         modules = [
-          disko.nixosModules.disko
           ./configuration.nix
+          inputs.disko.nixosModules.disko
           inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           inputs.home-manager.nixosModules.home-manager
           {
@@ -41,6 +41,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.mn = import ./home;
           }
+          inputs.nix-index-database.nixosModules.nix-index
         ];
       };
     };
