@@ -119,7 +119,7 @@
           user = "mn";
         };
         initial_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
+          command = "${pkgs.hyprland}/bin/Hyprland > ~/.hyprland.log 2>&1";
           user = "mn";
         };
       };
