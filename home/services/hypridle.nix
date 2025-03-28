@@ -4,15 +4,17 @@
     settings = {
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
-        before_sleep_cmd = "hyprlock";
+        before_sleep_cmd = "pidof hyprlock || hyprlock";
+        on_lock_cmd = "pidof hyprlock || hyprlock";
         after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
         ignore_systemd_inhibit = false;
+        inhibit_sleep = 1;
       };
 
       listener = [
         {
-          timeout = 120;
+          timeout = 180;
           on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10";
           on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
         }
