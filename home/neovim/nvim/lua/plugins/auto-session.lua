@@ -19,7 +19,7 @@ return {
     end,
     suppressed_dirs = { "~/", "/run/*" },
     auto_restore = true,
-    cwd_change_handling = false,
+    cwd_change_handling = true,
     bypass_save_filetypes = { "alpha", "dashboard" },
     session_lens = {
       load_on_setup = true,
