@@ -4,6 +4,5 @@ pkgs: {
   commandLineArgs = [
     "--ozone-platform-hint=auto"
     "--enable-features=TouchpadOverscrollHistoryNavigation"
-    "--disable-session-restore"
   ];
 }
