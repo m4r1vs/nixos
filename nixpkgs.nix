@@ -1,12 +1,14 @@
 {
   pkgs,
   pkgs_main,
-  pkgs_gimp3,
   ...
 }: {
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
+      /*
+      Temporary Fixes / Updates
+      */
       (final: prev: {
         libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ [prev.nss];
@@ -14,9 +16,6 @@
       })
       (final: prev: {
         neovim-unwrapped = pkgs_main.neovim-unwrapped;
-      })
-      (final: prev: {
-        gimp = pkgs_gimp3.gimp;
       })
       (final: prev: {
         hypr-dynamic-cursors = pkgs_main.hyprlandPlugins.hypr-dynamic-cursors;
@@ -42,6 +41,9 @@
           meta.broken = false;
         };
       })
+      /*
+      Own Forks
+      */
       (final: prev: {
         spotify-player =
           (prev.spotify-player.override {
@@ -63,6 +65,9 @@
             };
           };
       })
+      /*
+      Mods to packages
+      */
       (final: prev: {
         rofi-unwrapped = prev.rofi-unwrapped.overrideAttrs (oldAttrs: {
           patchPhase = ''
