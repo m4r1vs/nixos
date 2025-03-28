@@ -53,11 +53,25 @@
       nssmdns4 = true;
       openFirewall = true;
     };
+
+    /*
+    Audio
+    */
     pipewire = {
       enable = true;
+      raopOpenFirewall = true;
       pulse.enable = true;
       wireplumber = {
         enable = true;
+      };
+      extraConfig.pipewire = {
+        "10-airplay" = {
+          "context.modules" = [
+            {
+              name = "libpipewire-module-raop-discover";
+            }
+          ];
+        };
       };
     };
 
@@ -130,6 +144,7 @@
       };
       hyprlock = {};
     };
+    rtkit.enable = true;
   };
 
   nix = {
@@ -161,6 +176,12 @@
       ];
       allowedUDPPortRanges = [
         {
+          # Apple AirPlay
+          from = 6001;
+          to = 6002;
+        }
+        {
+          # KDE Connect
           from = 1714;
           to = 1764;
         }
