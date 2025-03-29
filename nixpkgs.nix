@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs_main,
-  ...
-}: {
+{pkgs, ...}: {
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
@@ -13,12 +9,6 @@
         libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
           buildInputs = oldAttrs.buildInputs ++ [prev.nss];
         });
-      })
-      (final: prev: {
-        neovim-unwrapped = pkgs_main.neovim-unwrapped;
-      })
-      (final: prev: {
-        hypr-dynamic-cursors = pkgs_main.hyprlandPlugins.hypr-dynamic-cursors;
       })
       (final: prev: {
         tmux = prev.tmux.overrideAttrs {
