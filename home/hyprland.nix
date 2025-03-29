@@ -177,6 +177,7 @@
           "SUPER, F2, togglespecialworkspace, Slack"
           "SUPER, F2, exec, pgrep Slack || ${pkgs.slack}/bin/slack"
 
+          "SUPER+Shift, l, exec, ${import ./scripts/random-album-of-the-day.nix pkgs}"
           "SUPER+Shift, s, exec, ${import ./scripts/screenshot.nix pkgs} edit"
           "SUPER+Shift, c, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
           "SUPER+Shift, d, exec, ${pkgs.darkman}/bin/darkman toggle"
