@@ -43,6 +43,7 @@
         "unset,waybar"
         "blur,rofi"
         "dimaround,rofi"
+        "blur,swaync-control-center"
         "dimaround,swaync-control-center"
       ];
       gestures = {
@@ -100,10 +101,10 @@
           color_inactive = "0x33000000";
         };
         blur = {
-          special = false;
+          special = true;
           enabled = true;
-          size = 5;
-          passes = 3;
+          size = 4;
+          passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           xray = false;
@@ -115,15 +116,16 @@
           "wind, 0.05, 0.9, 0.1, 1"
           "winIn, 0.1, 1.1, 0.1, 1"
           "winOut, 0.3, 0, 0, 1"
-          "liner, 1, 1, 1, 1"
         ];
         animation = [
-          "windows, 1, 1, wind, slide"
-          "windowsIn, 1, 1, winIn, slide"
-          "windowsOut, 1, 1, winOut, slide"
-          "windowsMove, 1, 1, wind, slide"
+          "windows, 1, 1, wind, popin 75%"
+          "windowsIn, 1, 1, winIn, popin 75%"
+          "windowsOut, 1, 1, winOut, popin 75%"
+          "windowsMove, 1, 1.5, wind, slide"
+          "layers, 1, 1, wind, popin 75%"
           "fade, 1, 2, default"
-          "workspaces, 1, 1, wind"
+          "workspaces, 1, 1, wind, slide"
+          "specialWorkspace, 1, 2, wind, slidefadevert 10%"
         ];
       };
       windowrulev2 = [
