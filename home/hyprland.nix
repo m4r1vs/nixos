@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs; [
-      hypr-dynamic-cursors
+      hyprlandPlugins.hypr-dynamic-cursors
       hyprfocus
     ];
     settings = {
@@ -28,7 +28,7 @@
           natural_scroll = true;
         };
         follow_mouse = 1;
-        sensitivity = 0.8;
+        sensitivity = 0.6;
         force_no_accel = false;
         accel_profile = "flat";
         numlock_by_default = true;
@@ -45,6 +45,7 @@
         "dimaround,rofi"
         "blur,swaync-control-center"
         "dimaround,swaync-control-center"
+        "noanim,hyprpicker"
       ];
       gestures = {
         workspace_swipe = true;
