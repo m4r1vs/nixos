@@ -181,6 +181,7 @@
           "SUPER+Shift, z, exec, ${import ./scripts/toggle-zen.nix pkgs}"
           "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
           "SUPER+Shift, q, exec,  ${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:${import ./scripts/rofi-power-menu.nix pkgs} -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 44%;}\""
+          "SUPER+Shift, b, exec,  ${import ./scripts/rofi-bluetooth.nix pkgs}"
           "SUPER+Shift, i, exec, ${pkgs._1password-gui}/bin/1password --quick-access --ozone-platform-hint=x11"
           "SUPER+Shift, v, exec, ${import ./scripts/rofi-cliphist.nix pkgs}"
         ]
