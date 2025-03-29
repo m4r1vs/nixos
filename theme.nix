@@ -10,16 +10,16 @@
 
   # primaryColor = "#5F6E84";
 
-  # primaryColor = "#716C45";
-  # primaryColorRGB = "113,108,69";
+  primaryColor = "#716C45";
+  primaryColorRGB = "113,108,69";
 
   # Green
   # primaryColor = "#ADA559";
   # primaryColorRGB = "173,165,89";
 
   # Teal
-  primaryColor = "#57826f";
-  primaryColorRGB = "87,130,111";
+  # primaryColor = "#57826f";
+  # primaryColorRGB = "87,130,111";
 
   # Orange
   secondaryColor = "#fa8621";
