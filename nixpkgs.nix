@@ -26,7 +26,7 @@
             owner = "m4r1vs";
             repo = "tmux";
             rev = "master";
-            hash = "sha256-wSZ30YSB8SD18ynwQvSAaNbA6q3eShtZJI1Nm0MN82A=";
+            hash = "sha256-O24yiUNPzUvn7ba2nvDzzKGl1j5hOBi5CHYIbCiIWhg=";
           };
         };
       })
