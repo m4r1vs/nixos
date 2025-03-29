@@ -42,8 +42,6 @@
       layerrule = [
         "unset,waybar"
         "blur,rofi"
-        "dimaround,rofi"
-        "blur,swaync-control-center"
         "dimaround,swaync-control-center"
         "noanim,hyprpicker"
       ];
@@ -67,11 +65,11 @@
           focus_animation = "flash";
           bezier = "realsmooth, 0.28,0.29,0.69,1.08";
           flash = {
-            flash_opacity = 0.88;
+            flash_opacity = 0.96;
             in_bezier = "realsmooth";
-            in_speed = 0.4;
+            in_speed = 0.3;
             out_bezier = "realsmooth";
-            out_speed = 1.5;
+            out_speed = 0.6;
           };
         };
         dynamic-cursors = {
@@ -92,19 +90,21 @@
         rounding_power = 3;
         dim_inactive = true;
         dim_strength = 0.10;
-        inactive_opacity = 0.95;
+        inactive_opacity = 0.96;
         dim_special = 0.3;
         shadow = {
           enabled = true;
-          range = 12;
-          render_power = 2;
-          color = "0x66000000";
-          color_inactive = "0x33000000";
+          range = 20;
+          scale = 0.99;
+          offset = "0 3";
+          render_power = 3;
+          color = "0x75000000";
+          color_inactive = "0x32000000";
         };
         blur = {
           special = true;
           enabled = true;
-          size = 4;
+          size = 6;
           passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
@@ -123,8 +123,8 @@
           "windowsIn, 1, 1, winIn, popin 75%"
           "windowsOut, 1, 1, winOut, popin 75%"
           "windowsMove, 1, 1.5, wind, slide"
-          "layers, 1, 1, wind, popin 75%"
-          "fade, 1, 2, default"
+          "layers, 1, 3.3, wind, fade"
+          "fade, 1, 3.3, wind"
           "workspaces, 1, 1, wind, slide"
           "specialWorkspace, 1, 2, wind, slidefadevert 10%"
         ];
@@ -151,10 +151,21 @@
         [
           "SUPER, q, killactive"
 
+          "SUPER, Tab, cyclenext"
+          "SUPER, Tab, bringactivetotop"
+
+          "SUPER+Shift, Tab, cyclenext, prev"
+          "SUPER+Shift, Tab, bringactivetotop"
+
           "SUPER, h, movefocus, l"
           "SUPER, l, movefocus, r"
           "SUPER, k, movefocus, u"
           "SUPER, j, movefocus, d"
+
+          "SUPER, h, bringactivetotop, l"
+          "SUPER, l, bringactivetotop, r"
+          "SUPER, k, bringactivetotop, u"
+          "SUPER, j, bringactivetotop, d"
 
           "SUPER, t, togglesplit"
           "SUPER+Shift, N, movecurrentworkspacetomonitor, +1"
@@ -164,14 +175,13 @@
           "SUPER+Shift, Space, togglefloating"
 
           "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
-          "SUPER, d, exec, ${pkgs.rofi-wayland}/bin/rofi -theme-str \"entry {placeholder: \\\"  Launch...\\\";}\" -combi-modi search:${import ./scripts/rofi-search.nix pkgs},drun -show combi"
+          "SUPER, d, exec, ${pkgs.rofi-wayland}/bin/rofi -theme-str \"entry {placeholder: \\\"Launch a Program...\\\";}entry{padding: 10 10 0 12;}\" -combi-modi search:${import ./scripts/rofi-search.nix pkgs},drun -show combi"
           "SUPER, s, exec, ${import ./scripts/screenshot.nix pkgs}"
           "SUPER, E, exec, ${pkgs.xdg-utils}/bin/xdg-open ~/Downloads"
-          "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
+          "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:32px;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 24;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
           "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
-          "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator"
+          "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator -theme-str \"entry {placeholder:\\\"Ask a Question...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}\""
           "SUPER, p, exec, ${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle"
-          "SUPER, l, exec, ${pkgs.spotify-player}/bin/spotify_player like && ${import ./scripts/nixos-notify.nix pkgs} -e -t 1800 \"Liked currentry playing Track on Spotify\""
 
           "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
 
@@ -181,7 +191,9 @@
           "SUPER, F2, togglespecialworkspace, Slack"
           "SUPER, F2, exec, pgrep Slack || ${pkgs.slack}/bin/slack"
 
-          "SUPER+Shift, l, exec, ${import ./scripts/random-album-of-the-day.nix pkgs}"
+          "SUPER, F12, exec, ${pkgs.spotify-player}/bin/spotify_player like && ${import ./scripts/nixos-notify.nix pkgs} -e -t 1800 \"Liked currentry playing Track on Spotify\""
+          "SUPER+Shift, F12, exec, ${import ./scripts/random-album-of-the-day.nix pkgs}"
+
           "SUPER+Shift, s, exec, ${import ./scripts/screenshot.nix pkgs} edit"
           "SUPER+Shift, c, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
           "SUPER+Shift, d, exec, ${pkgs.darkman}/bin/darkman toggle"
