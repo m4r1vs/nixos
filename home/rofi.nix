@@ -64,11 +64,11 @@
         }
 
         window {
-          fullscreen: false;
+          transparency: "real";
+          fullscreen: true;
           orientation: vertical;
-          width: 745px;
-          height: 480px;
-          border-radius: 4px;
+          padding: 27.5% 31.5%;
+          background-color: transparent;
         }
 
         mainbox {

@@ -41,6 +41,7 @@
       };
       layerrule = [
         "unset,waybar"
+        "blur,rofi"
         "dimaround,rofi"
         "dimaround,swaync-control-center"
       ];
@@ -135,8 +136,6 @@
 
         "size 1700 900, initialClass:^(Slack)$"
         "workspace special:Slack silent,initialClass:^(Slack)$"
-
-        "noblur,class:^()$,title:^()$"
       ];
       monitor = [
         "DP-1,3440x1440@99.98,-760x-1440, 1"
@@ -181,7 +180,7 @@
           "SUPER+Shift, w, exec, ${import ./scripts/random-wallpaper.nix pkgs}"
           "SUPER+Shift, z, exec, ${import ./scripts/toggle-zen.nix pkgs}"
           "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-          "SUPER+Shift, q, exec,  ${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:${pkgs.rofi-power-menu}/bin/rofi-power-menu -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{width:12em;height:12em;fullscreen:false;padding: 0;}\""
+          "SUPER+Shift, q, exec,  ${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:${import ./scripts/rofi-power-menu.nix pkgs} -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 44%;}\""
           "SUPER+Shift, i, exec, ${pkgs._1password-gui}/bin/1password --quick-access --ozone-platform-hint=x11"
           "SUPER+Shift, v, exec, ${import ./scripts/rofi-cliphist.nix pkgs}"
         ]
