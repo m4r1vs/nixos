@@ -36,7 +36,6 @@
       mainBar = {
         layer = "top";
         position = "bottom";
-        mod = "dock";
         height = 28;
         exclusive = true;
         passthrough = false;
