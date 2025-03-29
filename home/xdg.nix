@@ -57,7 +57,7 @@
       nixpad = {
         name = "Marius' NixPad";
         genericName = "NixOS on ThinkPad";
-        icon = "nix-snowflake";
+        icon = "element4l";
         type = "Application";
         categories = ["Settings"];
         noDisplay = true;
