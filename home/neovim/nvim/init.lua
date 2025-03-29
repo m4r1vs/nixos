@@ -154,7 +154,6 @@ vim.keymap.set("n", "<S-Tab>", "gT", { noremap = true, silent = true })
 -- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#DA698D" })
     vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 100 })
   end,
 })
