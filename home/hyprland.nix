@@ -170,6 +170,7 @@
           "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
           "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator"
           "SUPER, p, exec, ${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle"
+          "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
 
           "SUPER, F1, togglespecialworkspace, spotify_player"
           "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
@@ -203,7 +204,6 @@
       bindle = [
         "SUPER, bracketright, exec, ${pkgs.pamixer}/bin/pamixer -i 5"
         "SUPER, slash, exec, ${pkgs.pamixer}/bin/pamixer -d 5"
-        "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
       ];
       bindm = [
         "SUPER, mouse:272, movewindow"
@@ -214,8 +214,8 @@
       ];
       "$moveactivewindow" = "grep -q \"true\" <<< $(${pkgs.hyprland}/bin/hyprctl activewindow -j | jq -r .floating) && ${pkgs.hyprland}/bin/hyprctl dispatch moveactive";
       binde = [
-        "SUPER+Shift, bracketright, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 1%+"
-        "SUPER+Shift, slash, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 1%-"
+        "SUPER+Shift, bracketright, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+"
+        "SUPER+Shift, slash, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
 
         "SUPER+Shift, h,exec, $moveactivewindow -30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow l"
         "SUPER+Shift, l,exec, $moveactivewindow 30 0 || ${pkgs.hyprland}/bin/hyprctl dispatch movewindow r"

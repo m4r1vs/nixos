@@ -1,5 +1,6 @@
 pkgs:
-pkgs.writeShellScript "brightness-change-notify" ''
+pkgs.writeShellScript "brightness-change-notify"
+''
 
   BACKLIGHT_DEVICE=$(ls /sys/class/backlight/ | head -n 1)
   if [ -z "$BACKLIGHT_DEVICE" ]; then
@@ -50,7 +51,8 @@ pkgs.writeShellScript "brightness-change-notify" ''
     else
       nerd_icon="󰃠"
     fi
-    notify-send -h "int:value:$percent" \
+    notify-send -e \
+                -h "int:value:$percent" \
                 -h string:synchronous:brightness-change-notify \
                 -t 1600 \
                 "Backlight $nerd_icon" "$percent%"
