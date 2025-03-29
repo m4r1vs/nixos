@@ -36,23 +36,60 @@
       mainBar = {
         layer = "top";
         position = "bottom";
-        height = 28;
+        height = 26;
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
         reload_style_on_change = true;
 
-        modules-left = ["custom/padd" "custom/l_end" "clock" "cpu" "custom/cpuinfo" "memory" "disk" "custom/r_end" "custom/l_end" "custom/media" "pulseaudio" "custom/r_end" "custom/padd"];
-        modules-center = ["custom/padd" "custom/l_end" "hyprland/workspaces" "privacy" "custom/webcam" "custom/r_end" "custom/padd"];
-        modules-right = ["custom/padd" "custom/l_end" "backlight" "network" "custom/notifications" "custom/r_end" "custom/l_end" "custom/weather" "tray" "battery" "custom/r_end" "custom/padd"];
+        modules-left = ["group/time-and-sysinfo" "group/media-and-volume"];
+        modules-center = ["group/workspaces-and-privacy"];
+        modules-right = ["group/misc" "group/tray-and-battery"];
 
-        idle_inhibitor = {
-          format = "{icon}";
-          rotate = 0;
-          format-icons = {
-            activated = "󰥔";
-            deactivated = "";
-          };
+        "group/time-and-sysinfo" = {
+          orientation = "horizontal";
+          modules = [
+            "clock"
+            "cpu"
+            "custom/cpuinfo"
+            "memory"
+            "disk"
+          ];
+        };
+
+        "group/media-and-volume" = {
+          orientation = "horizontal";
+          modules = [
+            "custom/media"
+            "pulseaudio"
+          ];
+        };
+
+        "group/workspaces-and-privacy" = {
+          orientation = "horizontal";
+          modules = [
+            "hyprland/workspaces"
+            "privacy"
+            "custom/webcam"
+          ];
+        };
+
+        "group/misc" = {
+          orientation = "horizontal";
+          modules = [
+            "backlight"
+            "network"
+            "custom/notifications"
+          ];
+        };
+
+        "group/tray-and-battery" = {
+          orientation = "horizontal";
+          modules = [
+            "custom/weather"
+            "tray"
+            "battery"
+          ];
         };
 
         clock = {
