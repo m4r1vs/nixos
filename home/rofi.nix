@@ -5,14 +5,22 @@
     rasi
     */
     ''
-      * {
-        background-color: ${(import ../theme.nix).backgroundColor};
+      mainbox {
+        background-color: transparent;
+      }
+      window {
+        background-color: rgba(0, 0, 0, 0.28);
       }
       entry {
         text-color: #EFE7DD;
+        placeholder-color: #b5afa7;
       }
       element {
         text-color: #EFE7DD;
+      }
+      element selected {
+        background-color: rgba(${(import ../theme.nix).secondaryColorRGB}, 0.48);
+        border-radius: 5px;
       }
     '';
   home.file."./.theme/rofi/light.rasi".text =
@@ -20,14 +28,22 @@
     rasi
     */
     ''
-      * {
-        background-color: ${(import ../theme.nix).backgroundColorLight};
+      mainbox {
+        background-color: transparent;
+      }
+      window {
+        background-color: rgba(245, 230, 204, 0.28);
       }
       entry {
         text-color: #000000;
+        placeholder-color: #121212;
       }
       element {
         text-color: #000000;
+      }
+      element selected {
+        background-color: rgba(${(import ../theme.nix).primaryColorRGB}, 0.58);
+        border-radius: 5px;
       }
     '';
   programs.rofi = {
@@ -64,11 +80,11 @@
         }
 
         window {
+          background-color: transparent;
           transparency: "real";
           fullscreen: true;
           orientation: vertical;
           padding: 27.5% 31.5%;
-          background-color: transparent;
         }
 
         mainbox {
@@ -76,34 +92,32 @@
         }
 
         icon-current-entry {
+          background-color: transparent;
           size: 22 px;
-          background-color: inherit;
+          background-color: transparent;
           padding: 11 6 11 14;
           alignment: vertical;
         }
 
         element {
+          background-color: transparent;
           padding: 4 12;
         }
 
-        element selected {
-          background-color: ${(import ../theme.nix).primaryColor};
-          border-radius: 3px;
-        }
-
         element-text {
-          background-color: inherit;
+          background-color: transparent;
           text-color: inherit;
         }
 
         element-icon {
           size: 24 px;
-          background-color: inherit;
+          background-color: transparent;
           padding: 0 6 0 0;
           alignment: vertical;
         }
 
         listview {
+          background-color: transparent;
           columns: 1;
           padding: 8 0;
           fixed-height: true;
@@ -113,18 +127,22 @@
         }
 
         entry {
-          placeholder-color: #474b4f;
+          cursor-width: 0;
+          blink: false;
+          background-color: transparent;
           padding: 10 10 0 0;
           margin: 0 -2 0 0;
         }
 
         inputbar {
+          background-color: transparent;
           padding: 0 0 0 8;
           margin: 0 0 0 0;
           children: [icon-current-entry, entry];
         }
 
         prompt {
+          background-color: transparent;
           enabled: false;
         }
 
