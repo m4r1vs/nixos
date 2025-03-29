@@ -170,6 +170,8 @@
           "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
           "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator"
           "SUPER, p, exec, ${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle"
+          "SUPER, l, exec, ${pkgs.spotify-player}/bin/spotify_player like && ${import ./scripts/nixos-notify.nix pkgs} -e -t 1800 \"Liked currentry playing Track on Spotify\""
+
           "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
 
           "SUPER, F1, togglespecialworkspace, spotify_player"
