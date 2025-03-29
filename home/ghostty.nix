@@ -74,7 +74,7 @@ pkgs: {
       cursor-color = "#ffffff";
       selection-background = "#3c4048";
       selection-foreground = "#ffffff";
-      background-opacity = 0.89;
+      background-opacity = 0.92;
     };
     cyberdream-light = {
       palette = [
