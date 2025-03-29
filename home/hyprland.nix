@@ -169,6 +169,7 @@
           "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:36px;}inputbar{enabled:false;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
           "SUPER, SPACE, exec, ${import ./scripts/switch-kb-layout.nix pkgs}"
           "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${import ./scripts/rofi-calculator.nix pkgs} -show calculator"
+          "SUPER, p, exec, ${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle"
 
           "SUPER, F1, togglespecialworkspace, spotify_player"
           "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${(import ./spotify-player.nix pkgs).package}/bin/spotify_player"
