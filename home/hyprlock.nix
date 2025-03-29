@@ -27,7 +27,7 @@ pkgs: {
     };
     background = [
       {
-        path = builtins.path {path = ./wallpaper/Staten_Island_Ferry.jpg;};
+        path = builtins.path {path = ./wallpaper/Sunset_Tree.jpg;};
         blur_passes = 2;
         blur_size = 4;
         new_optimizations = true;
@@ -55,19 +55,6 @@ pkgs: {
         position = "0, -218";
       }
       {
-        shadow_passes = 3;
-        shadow_size = 2;
-        shadow_boost = 0.5;
-        text = "cmd[update:2000] echo \" $(${import ./scripts/fprint-privacy.nix pkgs}) \"";
-        font_family = "JetBrainsMono Nerd Font";
-        color = "rgba(${(import ../theme.nix).secondaryColorRGB},0.83)";
-        font_size = 42;
-        text_align = "center";
-        halign = "center";
-        valign = "bottom";
-        position = "0, 122";
-      }
-      {
         text = "cmd[update:128000] ${import ./scripts/date-trivia.nix pkgs} | ${pkgs.cowsay}/bin/cowsay -r";
         font_family = "JetBrainsMono Nerd Font";
         color = "rgba(255,255,255,0.32)";
@@ -80,26 +67,23 @@ pkgs: {
     ];
     input-field = [
       {
-        size = "256, 42";
-        rounding = 4;
-        position = "0, 128";
+        size = "556, 42";
+        position = "0, 192";
         halign = "center";
         valign = "bottom";
         monitor = "";
         dots_center = true;
         fade_on_empty = false;
-        font_color = "rgb(${(import ../theme.nix).secondaryColorRGB})";
-        check_color = "rgb(${(import ../theme.nix).secondaryColorRGB})";
-        inner_color = "rgb(${(import ../theme.nix).backgroundColorRGB})";
+        font_color = "rgba(255,255,255,0.78)";
+        check_color = "rgba(0,0,0,0)";
+        inner_color = "rgba(0,0,0,0)";
+        fail_color = "rgba(0,0,0,0)";
+        font_size = 18;
         outline_thickness = 0;
-        fail_color = "rgb(${(import ../theme.nix).backgroundColorRGB})";
         fail_timeout = 4000;
         font_family = "JetBrainsMono Nerd Font";
         fail_text = "Keep Trying.";
-        placeholder_text = "<span foreground=\"#${(import ../theme.nix).secondaryColor}\"> 󰌾 Password </span>";
-        shadow_passes = 3;
-        shadow_boost = 0.5;
-        shadow_size = 2;
+        placeholder_text = "Type Password or Swipe Finger";
       }
     ];
   };
