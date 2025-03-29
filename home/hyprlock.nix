@@ -28,15 +28,13 @@ pkgs: {
     background = [
       {
         path = builtins.path {path = ./wallpaper/Staten_Island_Ferry.jpg;};
-        blur_passes = 0;
-        blur_size = 0;
+        blur_passes = 2;
+        blur_size = 4;
+        new_optimizations = true;
       }
     ];
     label = [
       {
-        # shadow_passes = 3;
-        # shadow_size = 1;
-        # shadow_boost = 0.3;
         text = "$TIME";
         font_family = "JetBrainsMono NF Light";
         color = "rgba(255,255,255,0.54)";
@@ -47,9 +45,6 @@ pkgs: {
         position = "0, -102";
       }
       {
-        # shadow_passes = 2;
-        # shadow_size = 1;
-        # shadow_boost = 1;
         text = "cmd[update:60000] echo \"$(date +\"%a, %b %d\")  $(${pkgs.wttrbar}/bin/wttrbar --nerd --custom-indicator \"{ICON} {temp_C}°\" | ${pkgs.jq}/bin/jq .text -r)\"";
         font_family = "JetBrainsMono NF Light";
         color = "rgba(255,255,255,0.42)";
@@ -61,8 +56,8 @@ pkgs: {
       }
       {
         shadow_passes = 3;
-        shadow_size = 1;
-        shadow_boost = 1.8;
+        shadow_size = 2;
+        shadow_boost = 0.5;
         text = "cmd[update:2000] echo \" $(${import ./scripts/fprint-privacy.nix pkgs}) \"";
         font_family = "JetBrainsMono Nerd Font";
         color = "rgba(${(import ../theme.nix).secondaryColorRGB},0.83)";
@@ -73,9 +68,6 @@ pkgs: {
         position = "0, 122";
       }
       {
-        # shadow_passes = 2;
-        # shadow_size = 1;
-        # shadow_boost = 1.5;
         text = "cmd[update:128000] ${import ./scripts/date-trivia.nix pkgs} | ${pkgs.cowsay}/bin/cowsay -r";
         font_family = "JetBrainsMono Nerd Font";
         color = "rgba(255,255,255,0.32)";
@@ -105,8 +97,8 @@ pkgs: {
         font_family = "JetBrainsMono Nerd Font";
         fail_text = "Keep Trying.";
         placeholder_text = "<span foreground=\"#${(import ../theme.nix).secondaryColor}\"> 󰌾 Password </span>";
-        shadow_passes = 4;
-        shadow_boost = 0.8;
+        shadow_passes = 3;
+        shadow_boost = 0.5;
         shadow_size = 2;
       }
     ];
