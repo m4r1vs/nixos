@@ -74,7 +74,7 @@ pkgs.writeShellScript "rofi-cliphist"
 
   selected_item=$((
     ${pkgs.cliphist}/bin/cliphist list | gawk "$prog"
-  ) | ${pkgs.rofi-wayland}/bin/rofi -dmenu -show-icons -multi-select -i -display-columns 2 -theme-str "entry{placeholder:\"  Clipboard...\";}element{children:[element-text,element-icon];}inputbar{padding: 0 0 0 0;}" -ballot-selected-str " " -ballot-unselected-str " ")
+  ) | ${pkgs.rofi-wayland}/bin/rofi -dmenu -show-icons -multi-select -i -display-columns 2 -theme-str "entry{placeholder:\"Search your Clipboard...\";}element{children:[element-text,element-icon];}inputbar{padding: 0 0 0 0;}" -ballot-selected-str " " -ballot-unselected-str " ")
   ([ -n "''${selected_item}" ] && echo -e "''${selected_item}" | checkContent) || exit 0
 
   if [ $? -eq 1 ]; then
