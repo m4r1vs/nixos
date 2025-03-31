@@ -289,9 +289,9 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = ["Garamond Libre" "Gentium Plus"];
-        sansSerif = ["Ubuntu" "Cantarell"];
-        monospace = ["JetBrainsMono Nerd Font Proto" "Source Code Pro"];
+        serif = ["EB Garamond 08"];
+        sansSerif = ["Ubuntu"];
+        monospace = ["JetBrainsMono Nerd Font Proto"];
         emoji = ["Apple Color Emoji"];
       };
     };
@@ -299,31 +299,20 @@
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       ubuntu_font_family
-      garamond-libre
+      eb-garamond
       (stdenv.mkDerivation {
         name = "Apple Color Emoji Font";
-        enableParallelBuilding = true;
-        src = fetchFromGitHub {
-          owner = "samuelngs";
-          repo = "apple-emoji-linux";
-          rev = "ios-17.4";
-          sha256 = "sha256-r0xswLw6h4tk2Z2vLSl+5svhLZognn7/xqcmOSyUq0s=";
+        src = fetchurl {
+          url = "https://github.com/samuelngs/apple-emoji-linux/releases/latest/download/AppleColorEmoji.ttf";
+          hash = "sha256-SG3JQLybhY/fMX+XqmB/BKhQSBB0N1VRqa+H6laVUPE=";
         };
-        buildInputs = [
-          which
-          python3
-          python3Packages.fonttools
-          python3Packages.nototools
-          optipng
-          zopfli
-          pngquant
-          gnumake
-          imagemagick
-        ];
+        dontUnpack = true;
         installPhase = ''
           runHook preInstall
+
           mkdir -p $out/share/fonts/truetype
-          cp ./AppleColorEmoji.ttf $out/share/fonts/truetype
+          cp $src $out/share/fonts/truetype/AppleColorEmoji.ttf
+
           runHook postInstall
         '';
       })
