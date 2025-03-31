@@ -6,8 +6,6 @@
   imports = [
     ./disks.nix
     ./hardware-configuration.nix
-    ./programs.nix
-    ./home/scripts/thinkmorse.nix
     ./nixpkgs.nix
   ];
 
@@ -227,6 +225,7 @@
       enable = true;
       allowedTCPPortRanges = [
         {
+          # KDE Connect
           from = 1714;
           to = 1764;
         }

@@ -1,0 +1,22 @@
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.programs.configured.fzf;
+in {
+  options.programs.configured.fzf = {
+    enable = mkEnableOption "Fuzzy Finder";
+  };
+  config = mkIf cfg.enable {
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = false; # manually enable in zsh init
+      defaultOptions = [
+        "--bind ctrl-e:preview-down,ctrl-y:preview-up,alt-k:up,alt-j:down"
+        "--preview-window=right,65%"
+      ];
+    };
+  };
+}

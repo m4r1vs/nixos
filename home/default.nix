@@ -1,27 +1,12 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
-    ./neovim
-    ./xdg.nix
-    ./swappy.nix
-    ./hyprland.nix
-    ./waybar
-    ./rofi.nix
-
-    ./services/cliphist.nix
-    ./services/darkman.nix
-    ./services/kdeconnect.nix
-    ./services/swaync.nix
-    ./services/hypridle.nix
+    ./modules
+    ./packages.nix
   ];
 
   home = {
     username = "mn";
     homeDirectory = "/home/mn";
-    packages = import ./packages.nix pkgs;
     sessionVariables = {
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
       NIXOS_OZONE_WL = "1";
@@ -30,50 +15,55 @@
   };
 
   services = {
+    configured = {
+      cliphist.enable = true;
+      darkman.enable = true;
+      dunst.enable = false;
+      hypridle.enable = true;
+      kdeconnect.enable = true;
+      ollama.enable = true;
+      swaync.enable = true;
+    };
     blueman-applet.enable = true;
+    mpris-proxy.enable = true;
     network-manager-applet.enable = true;
     polkit-gnome.enable = true;
     swww.enable = true;
-    mpris-proxy.enable = true;
   };
 
   programs = {
-    lazydocker.enable = true;
-    newsboat.enable = true;
-    obs-studio.enable = true;
-    k9s.enable = true;
-
-    bat = import ./bat.nix;
-    chromium = import ./brave.nix pkgs;
-    direnv = import ./direnv.nix;
-    fzf = import ./fzf.nix;
-    ghostty = import ./ghostty.nix pkgs;
-    git = import ./git.nix;
+    configured = {
+      brave.enable = true;
+      direnv.enable = true;
+      fzf.enable = true;
+      ghostty.enable = true;
+      git.enable = true;
+      hyprland.enable = true;
+      hyprlock.enable = true;
+      lazygit.enable = true;
+      mpv.enable = true;
+      neovim.enable = true;
+      newsboat.enable = true;
+      rofi.enable = true;
+      spotify-player.enable = true;
+      ssh.enable = true;
+      swappy.enable = true;
+      tmux.enable = true;
+      waybar.enable = true;
+      yazi.enable = true;
+      zsh.enable = true;
+    };
+    bat.enable = true;
     home-manager.enable = true;
-    hyprlock = import ./hyprlock.nix pkgs;
-    lazygit = import ./lazygit.nix;
-    spotify-player = import ./spotify-player.nix pkgs;
-    ssh = import ./ssh.nix;
-    tmux = import ./tmux {
-      inherit pkgs;
-      inherit lib;
-    };
-    yazi = import ./yazi {
-      inherit pkgs;
-    };
-    zoxide = import ./zoxide.nix;
-    zsh = import ./zsh {
-      inherit pkgs;
-      inherit lib;
-    };
+    k9s.enable = true;
+    obs-studio.enable = true;
+    zoxide.enable = true;
   };
 
-  gtk = import ./gtk.nix pkgs;
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
+  configured = {
+    gtk.enable = true;
+    qt.enable = true;
+    xdg.enable = true;
   };
 
   fonts.fontconfig.enable = true;
