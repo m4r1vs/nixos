@@ -145,6 +145,14 @@
     blueman.enable = true;
   };
 
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
   security = {
     pam.services = {
       login.fprintAuth = true;
@@ -231,6 +239,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   hardware = {
+    nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;
     };
@@ -302,9 +311,10 @@
     users.mn = {
       isNormalUser = true;
       extraGroups = [
-        "wheel"
-        "networkmanager"
         "audio"
+        "networkmanager"
+        "podman"
+        "wheel"
       ];
     };
     defaultUserShell = pkgs.zsh;
@@ -345,6 +355,7 @@
       killall
       kwalletcli
       networkmanagerapplet
+      podman-tui
       ripgrep
       unzip
       wget
