@@ -61,6 +61,8 @@
       enable = true;
       raopOpenFirewall = true;
       pulse.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
       wireplumber = {
         enable = true;
       };
@@ -266,8 +268,20 @@
         nvidiaBusId = "PCI:1:0:0";
       };
     };
-    bluetooth.enable = true;
-    bluetooth.powerOnBoot = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Name = "nixpad";
+          ControllerMode = "dual";
+          FastConnectable = "true";
+          Experimental = "true";
+        };
+        Policy = {AutoEnable = "true";};
+        LE = {EnableAdvMonInterleaveScan = "true";};
+      };
+    };
   };
 
   fonts = {
