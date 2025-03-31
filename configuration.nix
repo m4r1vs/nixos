@@ -315,6 +315,19 @@
           runHook postInstall
         '';
       })
+      (stdenv.mkDerivation {
+        name = "Samsung Classic Clock Font";
+        src = ./assets/fonts/samsung/samsung-clock-classic.ttf;
+        dontUnpack = true;
+        installPhase = ''
+          runHook preInstall
+
+          mkdir -p $out/share/fonts/truetype
+          cp $src $out/share/fonts/truetype/SamsungClockClassic.ttf
+
+          runHook postInstall
+        '';
+      })
     ];
     fontDir.enable = true;
   };

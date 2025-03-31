@@ -51,17 +51,17 @@ in {
         label = [
           {
             text = "$TIME";
-            font_family = "JetBrainsMono NF Light";
+            font_family = "Clock BoldSerif";
             color = "rgba(${theme.backgroundColorLightRGB},0.86)";
-            font_size = 72;
+            font_size = 74;
             text_align = "center";
             halign = "center";
             valign = "center";
-            position = "0, 218";
+            position = "0, 228";
             shadow_size = 4;
             shadow_passes = 4;
             shadow_color = "rgb(0,0,0)";
-            shadow_boost = 3;
+            shadow_boost = 2;
           }
           # {
           #   text = "cmd[update:128000] ${scripts.date-trivia} | ${pkgs.cowsay}/bin/cowsay -r";
@@ -88,7 +88,6 @@ in {
             shadow_boost = 3.2;
           }
           {
-            # Use ./scripts relative to this file's location
             text = "cmd[update:1000] ${scripts.mpris-hyprlock} --title";
             color = "rgba(${theme.backgroundColorLightRGB}, 0.86)";
             font_size = 12;
@@ -149,51 +148,51 @@ in {
             text = "cmd[update:60000] echo \"$(date +\"%a, %b %d\")  $(${pkgs.wttrbar}/bin/wttrbar --nerd --custom-indicator \"{ICON} {temp_C}°\" | ${pkgs.jq}/bin/jq .text -r)\"";
             font_family = "JetBrainsMono NF Light";
             color = "rgba(${theme.backgroundColorLightRGB},0.72)";
-            font_size = 14;
+            font_size = 15;
             text_align = "center";
             halign = "center";
             valign = "center";
-            position = "0, 142";
+            position = "0, 152";
             shadow_size = 2;
             shadow_passes = 3;
             shadow_color = "rgb(0,0,0)";
             shadow_boost = 4;
           }
-          # {
-          #   text = "cmd[update:2000] echo \" $(${scripts.fprint-privacy}) \"";
-          #   font_family = "JetBrainsMono Nerd Font";
-          #   color = "rgba(${theme.backgroundColorLightRGB},0.22)";
-          #   font_size = 34;
-          #   text_align = "center";
-          #   halign = "center";
-          #   valign = "bottom";
-          #   position = "0, 162";
-          # }
+          {
+            text = "cmd[update:2000] echo \" $(${scripts.fprint-privacy}) \"";
+            font_family = "JetBrainsMono Nerd Font";
+            color = "rgba(255,255,255,0.72)";
+            font_size = 42;
+            text_align = "center";
+            halign = "center";
+            valign = "bottom";
+            position = "0, 142";
+            shadow_size = 4;
+            shadow_passes = 4;
+            shadow_color = "rgb(0,0,0)";
+            shadow_boost = 3;
+          }
         ];
         input-field = [
           {
             size = "338, 42";
-            position = "0, -38";
+            position = "0, 38";
             halign = "center";
             valign = "center";
             monitor = "";
             dots_center = true;
             fade_on_empty = false;
-            font_color = "rgba(${theme.primaryColorRGB},1)";
-            rounding = 5;
-            check_color = "rgba(${theme.primaryColorRGB},0.56)";
-            inner_color = "rgba(${theme.backgroundColorRGB},0.92)";
+            font_color = "rgba(255,255,255,0.76)";
+            rounding = 0;
+            check_color = "rgba(${theme.primaryColorRGB},1)";
+            inner_color = "rgba(0,0,0,0)";
             fail_color = "rgba(${theme.secondaryColorRGB},1)";
             outline_thickness = 0;
             fail_timeout = 4000;
             font_family = "JetBrainsMono Nerd Font";
             fail_text = "Keep Trying.";
-            placeholder_text = " 󰌾 Password ";
+            placeholder_text = "";
             swap_font_color = true;
-            shadow_size = 2;
-            shadow_passes = 5;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 1.5;
           }
         ];
         image = [
