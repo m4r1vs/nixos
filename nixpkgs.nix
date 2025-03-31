@@ -6,11 +6,6 @@
       Temporary Fixes / Updates
       */
       (final: prev: {
-        libfprint-tod = prev.libfprint-tod.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ [prev.nss];
-        });
-      })
-      (final: prev: {
         tmux = prev.tmux.overrideAttrs {
           src = pkgs.fetchFromGitHub {
             owner = "m4r1vs";
