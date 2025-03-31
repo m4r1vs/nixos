@@ -363,6 +363,10 @@
   environment = {
     systemPackages = with pkgs; [
       bibata-cursors
+      (runCommandLocal "breeze-cursor-default-theme" {} ''
+        mkdir -p $out/share/icons
+        ln -s ${bibata-cursors}/share/icons/Bibata-Modern-Ice $out/share/icons/default
+      '')
       curl
       ffmpeg
       fzf
