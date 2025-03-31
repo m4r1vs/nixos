@@ -374,9 +374,7 @@
       imagemagick
       jq
       kdePackages.kwallet
-      kdePackages.kwalletmanager
       killall
-      networkmanagerapplet
       libsecret
       podman-tui
       ripgrep

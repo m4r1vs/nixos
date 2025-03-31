@@ -1,28 +1,35 @@
-{pkgs, ...}:
-with pkgs; [
-  blender
-  discord
-  dracula-theme
-  fastfetch
-  gimp
-  hyprcursor
-  hyprpicker
-  hyprshot
-  hyprutils
-  inkscape-with-extensions
-  kwalletcli
-  libnotify
-  mpv
-  nautilus
-  nerd-fonts.jetbrains-mono
-  obsidian
-  pavucontrol
-  polkit_gnome
-  slack
-  spotify
-  swayimg
-  wireplumber
-  wl-clipboard
-  yt-dlp
-  zathura
-]
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    blender
+    discord
+    dracula-theme
+    fastfetch
+    gimp
+    gnome-chess
+    gnome-clocks
+    gnome-decoder
+    gnome-network-displays
+    hyprcursor
+    hyprpicker
+    hyprshot
+    hyprutils
+    inkscape-with-extensions
+    kdePackages.kwalletmanager
+    kwalletcli
+    libnotify
+    nautilus
+    nerd-fonts.jetbrains-mono
+    networkmanagerapplet
+    obsidian
+    pavucontrol
+    polkit_gnome
+    slack
+    spotify
+    stockfish
+    swayimg
+    wireplumber
+    wl-clipboard
+    yt-dlp
+    zathura
+  ];
+}
