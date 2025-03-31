@@ -1,6 +1,6 @@
 {
-  backgroundColor = "#21201C";
-  backgroundColorRGB = "34,32,28";
+  backgroundColor = "#15130F";
+  backgroundColorRGB = "21,19,15";
 
   backgroundColorLight = "#F5E6CC";
   backgroundColorLightRGB = "245,230,204";
@@ -10,8 +10,13 @@
 
   # primaryColor = "#5F6E84";
 
-  primaryColor = "#716C45";
-  primaryColorRGB = "113,108,69";
+  # Other Green
+  primaryColor = "#658257";
+  primaryColorRGB = "101,130,87";
+
+  # Red
+  # primaryColor = "#FF0B00";
+  # primaryColorRGB = "255,11,0";
 
   # Green
   # primaryColor = "#ADA559";
@@ -20,6 +25,10 @@
   # Teal
   # primaryColor = "#57826f";
   # primaryColorRGB = "87,130,111";
+
+  # Blue-Gray
+  # secondaryColor = "#566273";
+  # secondaryColorRGB = "86,98,115";
 
   # Orange
   secondaryColor = "#fa8621";
