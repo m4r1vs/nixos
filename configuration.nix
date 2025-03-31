@@ -376,8 +376,8 @@
       kdePackages.kwallet
       kdePackages.kwalletmanager
       killall
-      kwalletcli
       networkmanagerapplet
+      libsecret
       podman-tui
       ripgrep
       unzip
