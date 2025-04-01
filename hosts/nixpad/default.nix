@@ -1,0 +1,89 @@
+{
+  config,
+  systemArgs,
+  ...
+}: {
+  imports = [
+    ./disks.nix
+    ./hardware-configuration.nix
+  ];
+
+  configured = {
+    nvidia.enable = true;
+  };
+
+  services = {
+    /*
+    Blinking ThinkPad LED
+    */
+    thinkmorse = {
+      message = "Leck Eier";
+      enable = true;
+    };
+
+    /*
+    Fingerprint Scanner Driver
+    */
+    "06cb-009a-fingerprint-sensor" = {
+      enable = true;
+      backend = "libfprint-tod";
+      calib-data-file = ./calib-data.bin;
+    };
+
+    /*
+    Limit CPU when on battery
+    */
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 40;
+      };
+    };
+
+    /*
+    B-Tree FS
+    */
+    btrfs = {
+      autoScrub = {
+        enable = true;
+        interval = "weekly";
+        fileSystems = ["/"];
+      };
+    };
+  };
+
+  /*
+  Extra Nvidia Settings
+  */
+  hardware = {
+    nvidia = {
+      open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      prime = {
+        sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+  };
+
+  security = {
+    pam.services = {
+      login.fprintAuth = true;
+      sudo.fprintAuth = true;
+    };
+  };
+
+  system = {
+    nixos.label = systemArgs.hostname + ".cc.systems";
+  };
+}

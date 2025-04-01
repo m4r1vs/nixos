@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  systemArgs,
+  ...
+}: let
+  isDesktop = systemArgs.isDesktop;
+in {
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
@@ -16,15 +22,19 @@
         };
       })
       (final: prev: {
-        hyprfocus = prev.hyprlandPlugins.hyprfocus.overrideAttrs {
-          src = pkgs.fetchFromGitHub {
-            owner = "daxisunder";
-            repo = "hyprfocus";
-            rev = "main";
-            hash = "sha256-ST5FFxyw5El4A7zWLaWbXb9bD9C/tunU+flmNxWCcEY=";
+        hyprlandPlugins =
+          prev.hyprlandPlugins
+          // {
+            hyprfocus = prev.hyprlandPlugins.hyprfocus.overrideAttrs {
+              src = pkgs.fetchFromGitHub {
+                owner = "daxisunder";
+                repo = "hyprfocus";
+                rev = "main";
+                hash = "sha256-ST5FFxyw5El4A7zWLaWbXb9bD9C/tunU+flmNxWCcEY=";
+              };
+              meta.broken = false;
+            };
           };
-          meta.broken = false;
-        };
       })
       /*
       Own Forks
@@ -32,12 +42,15 @@
       (final: prev: {
         spotify-player =
           (prev.spotify-player.override {
-            withStreaming = true;
-            withDaemon = true;
-            withAudioBackend = "pulseaudio";
-            withMediaControl = true;
-            withImage = true;
-            withNotify = true;
+            withStreaming = isDesktop;
+            withDaemon = isDesktop;
+            withAudioBackend =
+              if isDesktop
+              then "pulseaudio"
+              else "";
+            withMediaControl = isDesktop;
+            withImage = isDesktop;
+            withNotify = isDesktop;
             withSixel = false;
             withFuzzy = true;
           })
