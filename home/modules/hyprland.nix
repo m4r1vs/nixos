@@ -130,8 +130,9 @@ in {
           blur = {
             special = true;
             enabled = true;
-            size = 6;
-            passes = 2;
+            size = 5;
+            vibrancy = 0.35;
+            passes = 4;
             new_optimizations = true;
             ignore_opacity = true;
             xray = false;
