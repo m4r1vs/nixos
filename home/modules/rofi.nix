@@ -21,7 +21,7 @@ in {
           background-color: transparent;
         }
         window {
-          background-color: rgba(0, 0, 0, 0.28);
+          background-color: rgba(0, 0, 0, 0.24);
         }
         entry {
           text-color: #EFE7DD;
@@ -44,7 +44,7 @@ in {
           background-color: transparent;
         }
         window {
-          background-color: rgba(245, 230, 204, 0.28);
+          background-color: rgba(245, 230, 204, 0.24);
         }
         entry {
           text-color: #000000;
@@ -65,7 +65,7 @@ in {
       extraConfig = {
         display-drun = "";
         display-dmenu = "";
-        font = "JetBrainsMono Nerd Font 12";
+        font = "JetBrainsMono NF SemiBold 12";
         location = 0;
         icon-theme = "Papirus";
         show-icons = true;
