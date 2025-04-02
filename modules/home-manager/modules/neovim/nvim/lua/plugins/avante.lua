@@ -24,7 +24,6 @@ return {
       model = "gpt-4o",
       timeout = 30000,
       temperature = 0,
-      max_completion_tokens = 8192,
       api_key_name = "cmd:secret-tool lookup openai password",
       --reasoning_effort = "medium",
     },
