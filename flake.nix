@@ -44,8 +44,8 @@
             arch = "x86_64-linux";
             isDesktop = true;
             theme = makeTheme {
-              primary = "purplish_grey";
-              secondary = "red";
+              primary = "green";
+              secondary = "orange";
             };
             hostname = "nixpad";
           };
