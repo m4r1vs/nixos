@@ -14,7 +14,7 @@ return {
   opts = {
     auto_save = true,
     auto_create = function()
-      local cmd = 'git rev-parse --is-inside-work-tree'
+      local cmd = '[ -d .git ] && echo true || echo false'
       return vim.fn.system(cmd) == 'true\n'
     end,
     suppressed_dirs = { "~/", "/run/*" },
