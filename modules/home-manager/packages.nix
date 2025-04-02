@@ -14,6 +14,7 @@ in {
       if isDesktop
       then [
         blender
+        dbeaver-bin
         diebahn
         discord
         gimp-with-plugins
