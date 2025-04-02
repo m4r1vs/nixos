@@ -17,6 +17,7 @@
         status=$(${pkgs.playerctl}/bin/playerctl -p "$player" status 2>/dev/null)
         if [ "$status" = "Playing" ]; then
           PLAYER="$player"
+          break
         fi
       done
 
@@ -25,6 +26,7 @@
           status=$(${pkgs.playerctl}/bin/playerctl -p "$player" status 2>/dev/null)
           if [ "$status" = "Paused" ]; then
             PLAYER="$player"
+            break
           fi
         done
       fi
