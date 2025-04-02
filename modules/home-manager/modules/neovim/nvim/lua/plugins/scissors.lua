@@ -10,7 +10,7 @@ return {
     telescope = {
       alsoSearchSnippetBody = true,
     },
-    snippetDir = "~/NixOS/home/modules/neovim/nvim/snippets",
+    snippetDir = "~/NixOS/modules/home-manager/modules/neovim/nvim/snippets",
     backdrop = {
       enabled = false,
     }
