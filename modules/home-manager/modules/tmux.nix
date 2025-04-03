@@ -83,6 +83,12 @@ in {
           set -ga update-environment TERM
           set -ga update-environment TERM_PROGRAM
 
+          set-option -g set-titles on
+          set-option -g set-titles-string "${mkTmuxWindowStatusFormat {
+            shellIconMap = cfg.shellIconMap;
+            showPaneCount = cfg.showPaneCount;
+          }}"
+
           bind-key -n M-L switch-client -n
           bind-key -n M-H switch-client -p
           bind-key -n M-N new-session

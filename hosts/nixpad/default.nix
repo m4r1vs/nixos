@@ -1,6 +1,7 @@
 {
   config,
   systemArgs,
+  lib,
   ...
 }: {
   imports = [
@@ -10,6 +11,16 @@
 
   configured = {
     nvidia.enable = true;
+    desktop = {
+      enable = true;
+      x11 = false;
+    };
+  };
+
+  specialisation = {
+    x11.configuration = {
+      configured.desktop.x11 = lib.mkForce true;
+    };
   };
 
   services = {

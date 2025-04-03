@@ -1,6 +1,8 @@
 {
   pkgs,
   systemArgs,
+  config,
+  lib,
   ...
 }: let
   isDesktop = systemArgs.isDesktop;
@@ -74,6 +76,22 @@ in {
           '';
         });
       })
+      # (final: prev: {
+      #   polybar = prev.polybar.override {
+      #     nlSupport = true; # networking
+      #     iwSupport = true; # WiFi
+      #     i3Support = true;
+      #     alsaSupport = true;
+      #     githubSupport = true;
+      #   };
+      # })
+      /*
+      Specialisations
+      */
+      (lib.mkIf (!config.configured.desktop.x11)
+        (final: prev: {
+          rofi = prev.rofi-wayland;
+        }))
     ];
   };
 }

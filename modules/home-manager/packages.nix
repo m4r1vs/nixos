@@ -13,6 +13,7 @@ in {
     ++ (
       if isDesktop
       then [
+        amberol
         blender
         dbeaver-bin
         diebahn
@@ -23,10 +24,6 @@ in {
         gnome-decoder
         gnome-network-displays
         libnotify
-        hyprcursor
-        hyprpicker
-        hyprshot
-        hyprutils
         inkscape-with-extensions
         kdePackages.kwalletmanager
         nautilus
@@ -38,9 +35,7 @@ in {
         slack
         spotify
         stockfish
-        swayimg
         wireplumber
-        wl-clipboard
         zathura
       ]
       else []
