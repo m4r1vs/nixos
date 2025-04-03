@@ -13,6 +13,7 @@ in {
   };
   config = mkIf cfg.enable {
     home-manager = {
+      backupFileExtension = ".hm-backup";
       useGlobalPkgs = true;
       useUserPackages = true;
       users.${systemArgs.username} = import ./home.nix;
