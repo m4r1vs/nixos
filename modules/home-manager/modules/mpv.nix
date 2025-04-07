@@ -23,7 +23,7 @@ in {
           src = fetchFromGitHub {
             owner = "m4r1vs";
             repo = "mpv-notify-send";
-            rev = "master";
+            rev = "6d0915470aa5bcf1967da946e3c10d1814bad9ed";
             hash = "sha256-Tzk1XZmsiVXzsIUaMh8ROlkXkFs0GpoKbSv6QdsvO6M=";
           };
           passthru.extraWrapperArgs = [
