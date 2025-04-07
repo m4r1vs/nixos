@@ -34,6 +34,7 @@ with pkgs; [
   shfmt
   sourcekit-lsp
   swift
+  terraform-ls
   tinymist
   tree-sitter
   typstyle
