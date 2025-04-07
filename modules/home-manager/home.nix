@@ -1,5 +1,9 @@
-{systemArgs, ...}: let
-  isDesktop = systemArgs.isDesktop;
+{
+  systemArgs,
+  osConfig,
+  ...
+}: let
+  isDesktop = osConfig.configured.desktop.enable;
 in {
   imports = [
     ./modules
@@ -21,12 +25,9 @@ in {
 
   services = {
     configured = {
-      cliphist.enable = isDesktop;
       darkman.enable = isDesktop;
-      hypridle.enable = isDesktop;
       kdeconnect.enable = isDesktop;
       ollama.enable = true;
-      swaync.enable = isDesktop;
     };
     blueman-applet.enable = isDesktop;
     mpris-proxy.enable = isDesktop;
@@ -42,8 +43,6 @@ in {
       fzf.enable = true;
       ghostty.enable = isDesktop;
       git.enable = true;
-      hyprland.enable = isDesktop;
-      hyprlock.enable = isDesktop;
       lazygit.enable = true;
       mpv.enable = isDesktop;
       neovim.enable = true;

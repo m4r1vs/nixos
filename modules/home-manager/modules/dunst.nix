@@ -2,10 +2,12 @@
   lib,
   config,
   pkgs,
+  systemArgs,
   ...
 }:
 with lib; let
   cfg = config.services.configured.dunst;
+  theme = systemArgs.theme;
 in {
   options.services.configured.dunst = {
     enable = mkEnableOption "Simple Notification-Daemon";
@@ -24,7 +26,7 @@ in {
           width = "(420, 1200)";
           height = "(0, 300)";
           origin = "top-right";
-          offset = "(3, 3)";
+          offset = "(12, 36)";
           scale = 0;
           notification_limit = 0;
 
@@ -37,13 +39,12 @@ in {
 
           # Other display settings
           indicate_hidden = true;
-          transparency = 22;
+          transparency = 8;
           separator_height = 2;
           padding = 8;
           horizontal_padding = 8;
           text_icon_padding = 0;
-          frame_width = 2;
-          frame_color = "#aaaaaa";
+          frame_width = 0;
           gap_size = 5;
           sort = true;
 
@@ -51,7 +52,7 @@ in {
           font = "JetBrainsMono Nerd Font 10";
           line_height = 2;
           markup = "full";
-          format = "<b>%s</b>\n%b";
+          format = "<b>%s</b>\\n%b";
           alignment = "left";
           vertical_alignment = "center";
           show_age_threshold = 60;
@@ -91,19 +92,25 @@ in {
           per_monitor_dpi = false;
         };
 
+        Slack = {
+          appname = "Slack";
+          default_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/slack.svg";
+        };
+
+        nixpad = {
+          appname = "nixpad";
+          default_icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/48x48/apps/element4l.svg";
+        };
+
         urgency_low = {
-          background = "#131313AA";
+          background = "${theme.backgroundColor}";
           foreground = "#FCFCFCE6";
-          frame_color = "#82828203";
-          icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/128x128/apps/minigalaxy.svg";
           timeout = 5;
         };
 
         urgency_normal = {
-          background = "#131313AA";
+          background = "${theme.backgroundColor}";
           foreground = "#FCFCFCE6";
-          frame_color = "#2B2B2B03";
-          icon = "${pkgs.papirus-icon-theme}/share/icons/Papirus/128x128/apps/minigalaxy.svg";
           timeout = 5;
         };
       };

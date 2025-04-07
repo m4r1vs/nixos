@@ -15,7 +15,7 @@ in {
       enable = true;
       package = pkgs.brave;
       commandLineArgs = [
-        "--ozone-platform-hint=wayland"
+        "--ozone-platform-hint=auto"
         "--enable-features=TouchpadOverscrollHistoryNavigation"
         "--use-gl=desktop"
       ];

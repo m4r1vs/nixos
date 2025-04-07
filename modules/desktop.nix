@@ -10,13 +10,31 @@ with lib; let
 in {
   options.configured.desktop = {
     enable = mkEnableOption "Enable a Desktop Environment";
+    x11 = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use x11 instead of Wayland";
+    };
   };
   config = mkIf cfg.enable {
+    environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
+
+    configured.i3.enable = cfg.x11;
+    configured.hyprland.enable = !cfg.x11;
+
     services = {
       /*
       Touchpad support
       */
-      libinput.enable = true;
+      libinput = {
+        enable = true;
+        touchpad = {
+          tapping = true;
+          naturalScrolling = true;
+          scrollMethod = "twofinger";
+          disableWhileTyping = true;
+        };
+      };
 
       /*
       CUPS
@@ -62,37 +80,6 @@ in {
       };
 
       /*
-      geTTY replacement with TTF support
-      */
-      kmscon = {
-        enable = true;
-        fonts = [
-          {
-            name = "JetBrainsMono NF";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-          }
-        ];
-        extraOptions = "--term xterm-256color";
-      };
-
-      /*
-      Greeter with auto-login
-      */
-      greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${pkgs.hyprland}/bin/Hyprland";
-            user = systemArgs.username;
-          };
-          initial_session = {
-            command = "${pkgs.hyprland}/bin/Hyprland > ~/.hyprland.log 2>&1";
-            user = systemArgs.username;
-          };
-        };
-      };
-
-      /*
       Misc
       */
       dbus.enable = true;
@@ -100,13 +87,7 @@ in {
     };
 
     security = {
-      pam.services = {
-        greetd.kwallet = {
-          enable = true;
-          package = pkgs.kdePackages.kwallet-pam;
-        };
-        hyprlock = {};
-      };
+      polkit.enable = true;
       rtkit.enable = true;
     };
 
@@ -190,28 +171,17 @@ in {
         eb-garamond
         (stdenv.mkDerivation {
           name = "Apple Color Emoji Font";
-          enableParallelBuilding = true;
-          src = fetchFromGitHub {
-            owner = "mistu01";
-            repo = "apple-emoji-linux";
-            rev = "ios-17.4";
-            sha256 = "sha256-k4RFvhvl8tdaFA3Mlp3+ql88lFyEShaPen4PApDlbDc=";
+          src = fetchurl {
+            url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v18.4/AppleColorEmoji.ttf";
+            hash = "sha256-pP0He9EUN7SUDYzwj0CE4e39SuNZ+SVz7FdmUviF6r0=";
           };
-          buildInputs = [
-            which
-            python3
-            python3Packages.fonttools
-            python3Packages.nototools
-            optipng
-            zopfli
-            pngquant
-            gnumake
-            imagemagick
-          ];
+          dontUnpack = true;
           installPhase = ''
             runHook preInstall
+
             mkdir -p $out/share/fonts/truetype
-            cp ./AppleColorEmoji.ttf $out/share/fonts/truetype
+            cp $src $out/share/fonts/truetype/AppleColorEmoji.ttf
+
             runHook postInstall
           '';
         })
@@ -233,14 +203,13 @@ in {
     };
 
     programs = {
+      dconf.enable = true;
       steam = {
         enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
       };
-      hyprland.enable = true;
-      hyprlock.enable = true;
       kdeconnect.enable = true;
       _1password.enable = true;
       _1password-gui = {
@@ -257,10 +226,6 @@ in {
           ln -s ${bibata-cursors}/share/icons/Bibata-Modern-Ice $out/share/icons/default
         '')
       ];
-      sessionVariables = {
-        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-        NIXOS_OZONE_WL = "1";
-      };
     };
   };
 }

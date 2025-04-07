@@ -85,7 +85,7 @@ in {
         };
         brave-browser = {
           name = "cc.systems Browser";
-          exec = ''${pkgs.brave}/bin/brave --profile-directory=cc-profile --ozone-platform-hint=wayland --use-gl=desktop --enable-features=TouchpadOverscrollHistoryNavigation %U'';
+          exec = ''${pkgs.brave}/bin/brave --profile-directory=cc-profile --ozone-platform-hint=auto --use-gl=desktop --enable-features=TouchpadOverscrollHistoryNavigation %U'';
           icon = "brave-browser-dev";
           terminal = false;
           type = "Application";
@@ -109,7 +109,7 @@ in {
         };
         brave-personal = {
           name = "Personal Browser";
-          exec = ''${pkgs.brave}/bin/brave --profile-directory=Default --ozone-platform-hint=wayland --use-gl=desktop --enable-features=TouchpadOverscrollHistoryNavigation %U'';
+          exec = ''${pkgs.brave}/bin/brave --profile-directory=Default --ozone-platform-hint=auto --use-gl=desktop --enable-features=TouchpadOverscrollHistoryNavigation %U'';
           icon = "brave-browser-nightly";
           terminal = false;
           type = "Application";

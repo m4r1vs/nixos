@@ -2,12 +2,9 @@
   pkgs,
   systemArgs,
   ...
-}: let
-  isDesktop = systemArgs.isDesktop;
-in {
+}: {
   configured = {
     home-manager.enable = true;
-    desktop.enable = isDesktop;
   };
 
   services = {
@@ -49,8 +46,11 @@ in {
     };
     consoleLogLevel = 0;
     loader = {
-      timeout = 0;
-      systemd-boot.enable = true;
+      timeout = 1;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
       efi.canTouchEfiVariables = true;
     };
     tmp.cleanOnBoot = true;

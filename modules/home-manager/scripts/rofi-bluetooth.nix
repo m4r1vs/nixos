@@ -284,7 +284,7 @@
     }
 
     # Rofi command to pipe into, can add any options here
-    rofi_command="${pkgs.rofi-wayland}/bin/rofi"
+    rofi_command="${pkgs.rofi}/bin/rofi"
 
     case "$1" in
         --status)

@@ -1,18 +1,18 @@
 {
   pkgs,
-  systemArgs,
+  osConfig,
   ...
 }: let
-  isDesktop = systemArgs.isDesktop;
+  isDesktop = osConfig.configured.desktop.enable;
+  isWayland = !osConfig.configured.desktop.x11;
 in {
   home.packages = with pkgs;
     [
       fastfetch
       yt-dlp
     ]
-    ++ (
-      if isDesktop
-      then [
+    ++ lib.optionals isDesktop ([
+        amberol
         blender
         dbeaver-bin
         diebahn
@@ -22,15 +22,10 @@ in {
         gnome-clocks
         gnome-decoder
         gnome-network-displays
-        libnotify
-        hyprcursor
-        hyprpicker
-        hyprshot
-        hyprutils
         inkscape-with-extensions
         kdePackages.kwalletmanager
+        libnotify
         nautilus
-        nerd-fonts.jetbrains-mono
         networkmanagerapplet
         obsidian
         pavucontrol
@@ -38,11 +33,21 @@ in {
         slack
         spotify
         stockfish
-        swayimg
         wireplumber
-        wl-clipboard
         zathura
       ]
-      else []
-    );
+      ++ (
+        if isWayland
+        then [
+          hyprcursor
+          hyprpicker
+          hyprshot
+          hyprutils
+          swayimg
+        ]
+        else [
+          arandr
+          feh
+        ]
+      ));
 }

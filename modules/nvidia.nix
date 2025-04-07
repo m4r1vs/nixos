@@ -1,11 +1,10 @@
 {
   lib,
   config,
-  systemArgs,
   ...
 }:
 with lib; let
-  isDesktop = systemArgs.isDesktop;
+  isDesktop = config.configured.desktop.enable;
   cfg = config.configured.nvidia;
 in {
   options.configured.nvidia = {

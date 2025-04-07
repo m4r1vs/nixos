@@ -42,7 +42,6 @@
           globalArgs
           // {
             arch = "x86_64-linux";
-            isDesktop = true;
             theme = makeTheme {
               primary = "green";
               secondary = "orange";

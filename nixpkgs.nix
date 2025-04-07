@@ -1,9 +1,11 @@
 {
   pkgs,
-  systemArgs,
+  config,
+  lib,
   ...
 }: let
-  isDesktop = systemArgs.isDesktop;
+  isWayland = !config.configured.desktop.x11;
+  isDesktop = config.configured.desktop.enable;
 in {
   nixpkgs = {
     config.allowUnfree = true;
@@ -16,8 +18,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "m4r1vs";
             repo = "tmux";
-            rev = "master";
-            hash = "sha256-O24yiUNPzUvn7ba2nvDzzKGl1j5hOBi5CHYIbCiIWhg=";
+            rev = "159971c823a31d989925f8ad82774bb949f97e20";
+            hash = "sha256-TP0jL+oA/qHHlOYG2zyDZmSxa39+UgLWM2NvPEoVXyE=";
           };
         };
       })
@@ -29,8 +31,8 @@ in {
               src = pkgs.fetchFromGitHub {
                 owner = "daxisunder";
                 repo = "hyprfocus";
-                rev = "main";
-                hash = "sha256-ST5FFxyw5El4A7zWLaWbXb9bD9C/tunU+flmNxWCcEY=";
+                rev = "8061b05a04432da5331110e0ffaa8c81e1035725";
+                hash = "sha256-n8lCf4zQehWEK6UJWcLuGUausXuRgqggGuidc85g20I=";
               };
               meta.broken = false;
             };
@@ -39,30 +41,50 @@ in {
       /*
       Own Forks
       */
-      (final: prev: {
-        spotify-player =
-          (prev.spotify-player.override {
-            withStreaming = isDesktop;
-            withDaemon = isDesktop;
-            withAudioBackend =
-              if isDesktop
-              then "pulseaudio"
-              else "";
-            withMediaControl = isDesktop;
-            withImage = isDesktop;
-            withNotify = isDesktop;
-            withSixel = false;
-            withFuzzy = true;
-          })
-          .overrideAttrs {
-            src = pkgs.fetchFromGitHub {
+      (final: prev:
+        with prev; {
+          spotify-player = rustPlatform.buildRustPackage {
+            pname = "spotify-player";
+            version = "0.20.4";
+
+            src = fetchFromGitHub {
               owner = "m4r1vs";
               repo = "spotify-player";
-              rev = "master";
-              hash = "sha256-Ck8ma6TTyeCu7XgpiEnrVSFBcZIDco+9k7Fs2hqIJxo=";
+              rev = "afbad6784ba4c43371def403a789e0994f84af3b";
+              hash = "sha256-gY/7Pxn8Am/K9PuWAatWmVKZ2SGEPNEvJ4T45hMFRNQ=";
             };
+
+            useFetchCargoVendor = true;
+            cargoHash = "sha256-35HuRXp9YFQr0Zxoh0ee7VwqIlHtwcdbIx9K7RSVnU4=";
+
+            nativeBuildInputs = [
+              pkg-config
+              cmake
+              rustPlatform.bindgenHook
+            ];
+
+            buildInputs =
+              [
+                openssl
+                dbus
+                fontconfig
+              ]
+              ++ lib.optionals isDesktop [libpulseaudio];
+
+            buildNoDefaultFeatures = true;
+
+            buildFeatures =
+              ["fzf"]
+              ++ lib.optionals isDesktop [
+                "pulseaudio-backend"
+                "media-control"
+                "image"
+                "daemon"
+                "notify"
+                "streaming"
+              ];
           };
-      })
+        })
       /*
       Mods to packages
       */
@@ -74,6 +96,23 @@ in {
           '';
         });
       })
+      (final: prev: {
+        polybar = prev.polybar.override {
+          nlSupport = true; # networking
+          iwSupport = true; # WiFi
+          i3Support = true;
+          pulseSupport = true;
+          alsaSupport = true;
+          githubSupport = true;
+        };
+      })
+      /*
+      Specialisations
+      */
+      (lib.mkIf isWayland
+        (final: prev: {
+          rofi = prev.rofi-wayland;
+        }))
     ];
   };
 }

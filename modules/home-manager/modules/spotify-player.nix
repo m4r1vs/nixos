@@ -1,11 +1,11 @@
 {
   lib,
   config,
-  systemArgs,
+  osConfig,
   ...
 }:
 with lib; let
-  isDesktop = systemArgs.isDesktop;
+  isDesktop = osConfig.configured.desktop.enable;
   cfg = config.programs.configured.spotify-player;
 in {
   options.programs.configured.spotify-player = {
@@ -37,6 +37,7 @@ in {
         }
       ];
       settings = {
+        client_id = "228dbbe5c96a418586e5847a6d2e1a73";
         theme = "dracula";
         client_port = 8080;
         login_redirect_uri = "http://127.0.0.1:8888/login";

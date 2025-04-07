@@ -12,6 +12,11 @@ in {
     enable = mkEnableOption "Tiling Wayland Window Manager";
   };
   config = mkIf cfg.enable {
+    services.configured = {
+      cliphist.enable = true;
+      hypridle.enable = true;
+      swaync.enable = true;
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       plugins = with pkgs; [
@@ -211,12 +216,12 @@ in {
             "SUPER+Shift, Space, togglefloating"
 
             "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
-            "SUPER, d, exec, ${pkgs.rofi-wayland}/bin/rofi -theme-str \"entry {placeholder: \\\"Launch a Program...\\\";}entry{padding: 10 10 0 12;}\" -combi-modi search:${scripts.rofi-search},drun -show combi"
+            "SUPER, d, exec, ${pkgs.rofi}/bin/rofi -theme-str \"entry {placeholder: \\\"Launch a Program...\\\";}entry{padding: 10 10 0 12;}\" -combi-modi search:${scripts.rofi-search},drun -show combi"
             "SUPER, s, exec, ${scripts.screenshot}"
             "SUPER, E, exec, ${pkgs.ghostty}/bin/ghostty --class=ghostty.yazi -e EDITOR=nvim ${pkgs.yazi}/bin/yazi ~/Downloads/"
             "SUPER, m, exec, ${pkgs.rofimoji}/bin/rofimoji --selector-args=\"-theme-str \\\"listview{dynamic:true;columns:12;layout:vertical;flow:horizontal;reverse:false;lines:10;}element-text{enabled:false;}element-icon{size:32px;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 24;}\\\"\" --use-icons --typer wtype --clipboarder wl-copy --skin-tone neutral --selector rofi --max-recent 0 --action clipboard"
             "SUPER, SPACE, exec, ${scripts.switch-kb-layout}"
-            "SUPER, c, exec, ${pkgs.rofi-wayland}/bin/rofi -modi calculator:${scripts.rofi-calculator} -show calculator -theme-str \"entry {placeholder:\\\"Ask a Question...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}\""
+            "SUPER, c, exec, ${pkgs.rofi}/bin/rofi -modi calculator:${scripts.rofi-calculator} -show calculator -theme-str \"entry {placeholder:\\\"Ask a Question...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}\""
             "SUPER, p, exec, ${pkgs.waybar-mpris}/bin/waybar-mpris --send toggle"
 
             "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
@@ -256,7 +261,7 @@ in {
             "SUPER+Shift, w, exec, ${scripts.random-wallpaper ../wallpaper}"
             "SUPER+Shift, z, exec, ${scripts.toggle-zen}"
             "SUPER+Shift, P, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a"
-            "SUPER+Shift, q, exec,  ${pkgs.rofi-wayland}/bin/rofi -show power-menu -modi power-menu:${scripts.rofi-power-menu} -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 44%;}\""
+            "SUPER+Shift, q, exec,  ${pkgs.rofi}/bin/rofi -show power-menu -modi power-menu:${scripts.rofi-power-menu} -theme-str \"entry {placeholder:\\\"Power Menu...\\\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 44%;}\""
             "SUPER+Shift, b, exec,  ${scripts.rofi-bluetooth}"
             "SUPER+Shift, i, exec, ${pkgs._1password-gui}/bin/1password --quick-access --ozone-platform-hint=x11"
             "SUPER+Shift, v, exec, ${scripts.rofi-cliphist}"
