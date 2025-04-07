@@ -26,7 +26,7 @@ in {
           width = "(420, 1200)";
           height = "(0, 300)";
           origin = "top-right";
-          offset = "(12, 36)";
+          offset = "(12, 12)";
           scale = 0;
           notification_limit = 0;
 
@@ -39,7 +39,7 @@ in {
 
           # Other display settings
           indicate_hidden = true;
-          transparency = 8;
+          transparency = 0;
           separator_height = 2;
           padding = 8;
           horizontal_padding = 8;

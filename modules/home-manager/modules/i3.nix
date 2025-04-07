@@ -43,7 +43,8 @@ in {
       config = {
         modifier = mod;
         gaps = {
-          inner = 7;
+          bottom = 8 + 20;
+          inner = 6;
           smartGaps = false;
         };
         bars = [];
@@ -58,11 +59,18 @@ in {
               polybar-msg cmd quit
               if type "xrandr"; then
                 for m in $(xrandr --query | grep " connected" | cut -d " " -f1); do
-                  MONITOR=$m polybar --reload polybar &
+                  MONITOR=$m polybar --reload clock &
+                  MONITOR=$m polybar --reload media &
+                  MONITOR=$m polybar --reload workspaces &
+                  MONITOR=$m polybar --reload sysinfo &
                 done
               else
-                polybar --reload polybar &
+                polybar --reload clock &
+                polybar --reload media &
+                polybar --reload workspaces &
+                polybar --reload sysinfo &
               fi
+              polybar --reload tray &
             ''}";
             always = true;
             notification = false;
@@ -152,7 +160,7 @@ in {
           "${mod}+k" = "focus up";
           "${mod}+l" = "focus right";
 
-          "${mod}+Shift+d" = "exec ${pkgs.darkman}/bin/darkman toggle";
+          "${mod}+Shift+d" = "exec --no-startup-id ${pkgs.darkman}/bin/darkman toggle";
           "${mod}+Shift+w" = "exec --no-startup-id ${pkgs.feh}/bin/feh --bg-fill --randomize ${builtins.path {path = ../wallpaper;}}/*";
           "${mod}+Shift+s" = "exec --no-startup-id ${pkgs.flameshot}/bin/flameshot gui";
           "${mod}+Shift+n" = "move workspace to output next";

@@ -94,10 +94,10 @@ in {
     boot = {
       plymouth = {
         enable = true;
-        theme = "abstract_ring"; # rings and colorful_sliced also good
+        theme = "colorful_sliced"; # rings and abstract_ring also good
         themePackages = with pkgs; [
           (adi1090x-plymouth-themes.override {
-            selected_themes = ["abstract_ring"];
+            selected_themes = ["colorful_sliced"];
           })
         ];
       };

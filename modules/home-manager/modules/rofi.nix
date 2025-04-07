@@ -159,7 +159,7 @@ in {
             enabled: false;
           }
 
-          @import "~/.theme/rofi/current.rasi"
+          @import "${config.home.homeDirectory}/.theme/rofi/current.rasi"
         '');
     };
   };
