@@ -64,16 +64,16 @@ in {
             shadow_color = "rgb(0,0,0)";
             shadow_boost = 2;
           }
-          # {
-          #   text = "cmd[update:128000] ${scripts.date-trivia} | ${pkgs.cowsay}/bin/cowsay -r";
-          #   font_family = "JetBrainsMono Nerd Font";
-          #   color = "rgba(${theme.backgroundColorLightRGB},0.22)";
-          #   font_size = 8;
-          #   text_align = "left";
-          #   halign = "left";
-          #   valign = "bottom";
-          #   position = "70, 0";
-          # }
+          {
+            text = "cmd[update:128000] ${scripts.date-trivia} | ${pkgs.cowsay}/bin/cowsay -r";
+            font_family = "JetBrainsMono Nerd Font";
+            color = "rgba(${theme.backgroundColorLightRGB},0.22)";
+            font_size = 8;
+            text_align = "left";
+            halign = "left";
+            valign = "bottom";
+            position = "70, 0";
+          }
           {
             text = " Plugged In"; # Consider making this dynamic based on battery status
             color = "rgba(${theme.backgroundColorLightRGB}, 0.86)";
@@ -88,63 +88,63 @@ in {
             shadow_color = "rgb(0,0,0)";
             shadow_boost = 3.2;
           }
-          {
-            text = "cmd[update:1000] ${scripts.mpris-hyprlock} --title";
-            color = "rgba(${theme.backgroundColorLightRGB}, 0.86)";
-            font_size = 12;
-            font_family = "JetBrainsMono NF SemiBold";
-            position = "118, -24";
-            text_align = "left";
-            halign = "left";
-            valign = "top";
-            shadow_size = 2;
-            shadow_passes = 3;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 2;
-          }
-          {
-            text = "cmd[update:1000] ${scripts.mpris-hyprlock} --length";
-            color = "rgba(${theme.backgroundColorLightRGB}, 0.56)";
-            font_size = 12;
-            font_family = "JetBrainsMono NF SemiBold";
-            position = "118, -80";
-            text_align = "left";
-            halign = "left";
-            valign = "top";
-            shadow_size = 2;
-            shadow_passes = 3;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 2;
-          }
-          {
-            text = "cmd[update:1000] ${scripts.mpris-hyprlock} --source";
-            color = "rgba(${theme.secondaryColor.rgb}, 0.32)";
-            font_size = 64;
-            font_family = "JetBrainsMono Nerd Font";
-            position = "-24, -6";
-            text_align = "left";
-            zindex = 1;
-            halign = "left";
-            valign = "top";
-            shadow_size = 2;
-            shadow_passes = 3;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 2;
-          }
-          {
-            text = "cmd[update:1000] ${scripts.mpris-hyprlock} --artist";
-            color = "rgba(${theme.backgroundColorLightRGB}, 0.56)";
-            font_family = "JetBrainsMono Nerd Font";
-            font_size = 12;
-            position = "118, -46";
-            text_align = "left";
-            halign = "left";
-            valign = "top";
-            shadow_size = 2;
-            shadow_passes = 3;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 2;
-          }
+          # {
+          #   text = "cmd[update:1000] ${scripts.mpris-hyprlock} --title";
+          #   color = "rgba(${theme.backgroundColorLightRGB}, 0.86)";
+          #   font_size = 12;
+          #   font_family = "JetBrainsMono NF SemiBold";
+          #   position = "118, -24";
+          #   text_align = "left";
+          #   halign = "left";
+          #   valign = "top";
+          #   shadow_size = 2;
+          #   shadow_passes = 3;
+          #   shadow_color = "rgb(0,0,0)";
+          #   shadow_boost = 2;
+          # }
+          # {
+          #   text = "cmd[update:1000] ${scripts.mpris-hyprlock} --length";
+          #   color = "rgba(${theme.backgroundColorLightRGB}, 0.56)";
+          #   font_size = 12;
+          #   font_family = "JetBrainsMono NF SemiBold";
+          #   position = "118, -80";
+          #   text_align = "left";
+          #   halign = "left";
+          #   valign = "top";
+          #   shadow_size = 2;
+          #   shadow_passes = 3;
+          #   shadow_color = "rgb(0,0,0)";
+          #   shadow_boost = 2;
+          # }
+          # {
+          #   text = "cmd[update:1000] ${scripts.mpris-hyprlock} --source";
+          #   color = "rgba(${theme.secondaryColor.rgb}, 0.32)";
+          #   font_size = 64;
+          #   font_family = "JetBrainsMono Nerd Font";
+          #   position = "-24, -6";
+          #   text_align = "left";
+          #   zindex = 1;
+          #   halign = "left";
+          #   valign = "top";
+          #   shadow_size = 2;
+          #   shadow_passes = 3;
+          #   shadow_color = "rgb(0,0,0)";
+          #   shadow_boost = 2;
+          # }
+          # {
+          #   text = "cmd[update:1000] ${scripts.mpris-hyprlock} --artist";
+          #   color = "rgba(${theme.backgroundColorLightRGB}, 0.56)";
+          #   font_family = "JetBrainsMono Nerd Font";
+          #   font_size = 12;
+          #   position = "118, -46";
+          #   text_align = "left";
+          #   halign = "left";
+          #   valign = "top";
+          #   shadow_size = 2;
+          #   shadow_passes = 3;
+          #   shadow_color = "rgb(0,0,0)";
+          #   shadow_boost = 2;
+          # }
           {
             text = "cmd[update:60000] echo \"$(date +\"%a, %b %d\")  $(${pkgs.wttrbar}/bin/wttrbar --nerd --custom-indicator \"{ICON} {temp_C}°\" | ${pkgs.jq}/bin/jq .text -r)\"";
             font_family = "JetBrainsMono NF Light";
@@ -196,24 +196,24 @@ in {
             swap_font_color = true;
           }
         ];
-        image = [
-          {
-            size = 82;
-            rounding = 5;
-            border_size = 0;
-            rotate = 0;
-            reload_time = 2;
-            reload_cmd = "${scripts.mpris-hyprlock} --arturl";
-            position = "24, -21";
-            halign = "left";
-            valign = "top";
-            zindex = 2;
-            shadow_size = 2;
-            shadow_passes = 4;
-            shadow_color = "rgb(0,0,0)";
-            shadow_boost = 1;
-          }
-        ];
+        # image = [
+        #   {
+        #     size = 82;
+        #     rounding = 5;
+        #     border_size = 0;
+        #     rotate = 0;
+        #     reload_time = 2;
+        #     reload_cmd = "${scripts.mpris-hyprlock} --arturl";
+        #     position = "24, -21";
+        #     halign = "left";
+        #     valign = "top";
+        #     zindex = 2;
+        #     shadow_size = 2;
+        #     shadow_passes = 4;
+        #     shadow_color = "rgb(0,0,0)";
+        #     shadow_boost = 1;
+        #   }
+        # ];
       };
     };
   };
