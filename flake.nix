@@ -4,26 +4,32 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
+      # Configure programs using nix
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-06cb-009a-fingerprint-sensor = {
+      # Drivers for the ThinkPad P52 fingerprint scanner
       url = "github:m4r1vs/nixos-06cb-009a-fingerprint-sensor?ref=24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
+      # Declare how disks are formatted and partitioned
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
+      # Find files exported by packages in nixpkgs
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators = {
+      # Create ISO and other images from config
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
+      # Enable Secureboot
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
