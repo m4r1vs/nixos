@@ -98,14 +98,12 @@
       htop-vim
       imagemagick
       jq
-      kdePackages.kwallet
-      killall
       libsecret
       podman-tui
+      psmisc
       ripgrep
       unzip
       wget
-      xdg-utils
     ];
     pathsToLink = ["/share/zsh"];
   };

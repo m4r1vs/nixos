@@ -221,10 +221,12 @@ in {
     environment = {
       systemPackages = with pkgs; [
         bibata-cursors
-        (runCommandLocal "breeze-cursor-default-theme" {} ''
+        (runCommandLocal "bibata-cursor-default-theme" {} ''
           mkdir -p $out/share/icons
           ln -s ${bibata-cursors}/share/icons/Bibata-Modern-Ice $out/share/icons/default
         '')
+        kdePackages.kwallet
+        xdg-utils
       ];
     };
   };
