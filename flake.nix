@@ -19,6 +19,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -41,7 +45,7 @@
         systemArgs =
           globalArgs
           // {
-            arch = "x86_64-linux";
+            system = "x86_64-linux";
             theme = makeTheme {
               primary = "green";
               secondary = "orange";
@@ -49,7 +53,7 @@
             hostname = "nixpad";
           };
       in {
-        system = systemArgs.arch;
+        inherit (systemArgs) system;
         modules = [
           ./hosts/nixpad
 
@@ -65,6 +69,33 @@
           {config._module.args = {inherit systemArgs;};}
         ];
       });
+    };
+    packages.x86_64-linux = let
+      systemArgs =
+        globalArgs
+        // {
+          arch = "x86_64-linux";
+          theme = makeTheme {
+            primary = "green";
+            secondary = "orange";
+          };
+          hostname = "nixiso";
+          format = "iso";
+        };
+    in {
+      iso = inputs.nixos-generators.nixosGenerate {
+        inherit (systemArgs) format system;
+        modules = [
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+
+          {config._module.args = {inherit systemArgs;};}
+        ];
+      };
     };
   };
 }
