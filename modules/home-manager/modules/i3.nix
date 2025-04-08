@@ -22,6 +22,7 @@ in {
         dunst.enable = true;
         picom.enable = true;
         polybar.enable = true;
+        flameshot.enable = true;
       };
     };
 
