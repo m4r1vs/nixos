@@ -31,7 +31,6 @@ in {
         pavucontrol
         polkit_gnome
         slack
-        spotify
         stockfish
         wireplumber
         zathura
