@@ -39,22 +39,7 @@
     };
   };
 
-  boot = {
-    initrd = {
-      verbose = false;
-      systemd.enable = true;
-    };
-    consoleLogLevel = 0;
-    loader = {
-      timeout = 1;
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 20;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    tmp.cleanOnBoot = true;
-  };
+  boot.tmp.cleanOnBoot = true;
 
   networking = {
     hostName = systemArgs.hostname;

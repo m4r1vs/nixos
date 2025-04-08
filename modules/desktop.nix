@@ -94,6 +94,19 @@ in {
     };
 
     boot = {
+      initrd = {
+        verbose = false;
+        systemd.enable = true;
+      };
+      consoleLogLevel = 0;
+      loader = {
+        timeout = 1;
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 20;
+        };
+        efi.canTouchEfiVariables = true;
+      };
       plymouth = {
         enable = true;
         theme = "colorful_sliced"; # rings and abstract_ring also good
@@ -162,7 +175,7 @@ in {
         defaultFonts = {
           serif = ["EB Garamond 08"];
           sansSerif = ["Ubuntu"];
-          monospace = ["JetBrainsMono Nerd Font Proto"];
+          monospace = ["JetBrainsMono Nerd Font Propo"];
           emoji = ["Apple Color Emoji"];
         };
       };

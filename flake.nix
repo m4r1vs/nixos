@@ -70,32 +70,35 @@
         ];
       });
     };
-    packages.x86_64-linux = let
-      systemArgs =
-        globalArgs
-        // {
-          arch = "x86_64-linux";
-          theme = makeTheme {
-            primary = "green";
-            secondary = "orange";
+    packages.x86_64-linux = {
+      nixiso = inputs.nixos-generators.nixosGenerate (let
+        systemArgs =
+          globalArgs
+          // {
+            username = "nixos"; # default user during installation
+            system = "x86_64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "nixiso";
+            format = "install-iso";
           };
-          hostname = "nixiso";
-          format = "iso";
-        };
-    in {
-      iso = inputs.nixos-generators.nixosGenerate {
+      in {
         inherit (systemArgs) format system;
         modules = [
+          ./hosts/nixiso
+
           ./hosts
           ./nixpkgs.nix
           ./modules
 
-          inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
+          inputs.nix-index-database.nixosModules.nix-index
 
           {config._module.args = {inherit systemArgs;};}
         ];
-      };
+      });
     };
   };
 }

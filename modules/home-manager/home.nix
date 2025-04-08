@@ -44,7 +44,7 @@ in {
       ghostty.enable = isDesktop;
       git.enable = true;
       lazygit.enable = true;
-      mpv.enable = isDesktop;
+      mpv.enable = true;
       neovim.enable = true;
       newsboat.enable = true;
       rofi.enable = isDesktop;
