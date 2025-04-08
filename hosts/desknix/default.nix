@@ -1,0 +1,54 @@
+{
+  config,
+  systemArgs,
+  lib,
+  ...
+}: {
+  imports = [
+    ./disks.nix
+    ./hardware-configuration.nix
+  ];
+
+  configured = {
+    nvidia.enable = true;
+    desktop = {
+      enable = true;
+      x11 = false;
+    };
+  };
+
+  specialisation = {
+    x11.configuration = {
+      configured.desktop.x11 = lib.mkForce true;
+    };
+  };
+
+  services = {
+    /*
+    B-Tree FS
+    */
+    btrfs = {
+      autoScrub = {
+        enable = true;
+        interval = "weekly";
+        fileSystems = ["/"];
+      };
+    };
+  };
+
+  time.hardwareClockInLocalTime = true;
+
+  /*
+  Extra Nvidia Settings
+  */
+  hardware = {
+    nvidia = {
+      open = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+  };
+
+  system = {
+    nixos.label = systemArgs.hostname + ".niveri.de";
+  };
+}

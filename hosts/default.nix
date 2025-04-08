@@ -87,6 +87,7 @@
       podman-tui
       psmisc
       ripgrep
+      sbctl
       unzip
       wget
     ];

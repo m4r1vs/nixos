@@ -23,6 +23,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -63,6 +67,33 @@
 
           inputs.disko.nixosModules.disko
           inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+
+          {config._module.args = {inherit systemArgs;};}
+        ];
+      });
+      desknix = inputs.nixpkgs.lib.nixosSystem (let
+        systemArgs =
+          globalArgs
+          // {
+            system = "x86_64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "desknix";
+          };
+      in {
+        inherit (systemArgs) system;
+        modules = [
+          ./hosts/desknix
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.disko.nixosModules.disko
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
 
