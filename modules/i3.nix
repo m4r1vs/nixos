@@ -28,18 +28,23 @@ in {
       };
     };
     security.pam.services = {
-      login.kwallet = {
+      greetd.kwallet = {
         enable = true;
         package = pkgs.kdePackages.kwallet-pam;
       };
     };
     services = {
-      displayManager = {
-        defaultSession = "none+i3";
+      greetd = {
         enable = true;
-        autoLogin = {
-          enable = true;
-          user = systemArgs.username;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
+            user = systemArgs.username;
+          };
+          initial_session = {
+            command = "startx > ~/.i3.log 2>&1";
+            user = systemArgs.username;
+          };
         };
       };
       xserver = {
@@ -52,6 +57,12 @@ in {
         };
         desktopManager = {
           xterm.enable = false;
+        };
+        displayManager = {
+          startx = {
+            enable = true;
+            generateScript = true;
+          };
         };
         windowManager.i3 = {
           enable = true;
