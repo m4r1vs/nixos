@@ -41,6 +41,10 @@
   outputs = {...} @ inputs: let
     globalArgs = {
       username = "mn";
+      git = {
+        name = "Marius Niveri";
+        email = "marius.niveri@gmail.com";
+      };
     };
     makeTheme = import ./makeTheme.nix;
   in {
@@ -54,6 +58,7 @@
               primary = "green";
               secondary = "orange";
             };
+            git.email = "mniveri@cc.systems";
             hostname = "nixpad";
           };
       in {
