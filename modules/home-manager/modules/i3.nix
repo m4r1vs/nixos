@@ -59,6 +59,7 @@ in {
             command = "${pkgs.writeShellScript "launch-polybar" ''
               polybar-msg cmd quit
               sleep 2
+              WLAN_INTERFACE=$(ip a | grep wlp | awk -F': ' '{ print $2 }')
               if type "xrandr"; then
                 for m in $(xrandr --query | grep " connected" | cut -d " " -f1); do
                   MONITOR=$m polybar --reload clock &

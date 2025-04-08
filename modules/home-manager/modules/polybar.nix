@@ -241,7 +241,7 @@ in {
         "module/wlan" = {
           "inherit" = "network-base";
           interface-type = "wireless";
-          interface = "wlp0s20f3";
+          interface = "\${env:WLAN_INTERFACE}";
 
           format-connected = "<ramp-signal> <label-connected>";
           label-connected = "%local_ip%";
