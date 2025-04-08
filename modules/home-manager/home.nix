@@ -27,7 +27,7 @@ in {
     configured = {
       darkman.enable = isDesktop;
       kdeconnect.enable = isDesktop;
-      ollama.enable = true;
+      ollama.enable = false;
     };
     blueman-applet.enable = isDesktop;
     mpris-proxy.enable = isDesktop;
