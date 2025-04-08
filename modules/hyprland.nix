@@ -34,16 +34,6 @@ in {
       hyprlock.enable = true;
     };
     services = {
-      kmscon = {
-        enable = true;
-        fonts = [
-          {
-            name = "JetBrainsMono NF";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-          }
-        ];
-        extraOptions = "--term xterm-256color";
-      };
       greetd = {
         enable = true;
         settings = {

@@ -23,6 +23,8 @@ in {
     configured.hyprland.enable = !cfg.x11;
 
     services = {
+      configured.kmscon.enable = true;
+
       /*
       Touchpad support
       */
