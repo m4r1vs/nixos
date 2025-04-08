@@ -49,7 +49,7 @@ in {
         ];
         input = {
           kb_layout = "us,de";
-          kb_options = "caps:swapescape";
+          kb_options = "caps:escape";
           touchpad = {
             natural_scroll = true;
           };

@@ -53,7 +53,7 @@ in {
         enable = true;
         xkb = {
           layout = "us,de";
-          options = "caps:swapescape";
+          options = "caps:escape";
         };
         desktopManager = {
           xterm.enable = false;
