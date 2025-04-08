@@ -11,6 +11,7 @@
 
   configured = {
     nvidia.enable = true;
+    razer.enable = true;
     desktop = {
       enable = true;
       x11 = false;
