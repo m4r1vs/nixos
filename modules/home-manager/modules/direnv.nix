@@ -14,7 +14,7 @@ in {
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
-      mise.enable = true;
+      mise.enable = false;
       silent = true;
     };
   };
