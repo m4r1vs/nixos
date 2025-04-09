@@ -10,7 +10,7 @@ with lib; let
   theme = systemArgs.theme;
 in {
   options.services.configured.flameshot = {
-    enable = mkEnableOption "Enable Flameshot for X11 Screenshots";
+    enable = mkEnableOption "Enable Flameshot daemon for X11 screenshots.";
   };
   config = mkIf cfg.enable {
     services.flameshot = {

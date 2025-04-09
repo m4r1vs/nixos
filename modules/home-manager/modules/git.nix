@@ -9,7 +9,7 @@ with lib; let
   git = systemArgs.git;
 in {
   options.programs.configured.git = {
-    enable = mkEnableOption "Version Control";
+    enable = mkEnableOption "The version controlling software.";
   };
   config = mkIf cfg.enable {
     programs.git = {

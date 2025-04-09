@@ -9,7 +9,7 @@ with lib; let
   cfg = config.services.configured.darkman;
 in {
   options.services.configured.darkman = {
-    enable = mkEnableOption "Automatically Change dark/light theme based on the sun.";
+    enable = mkEnableOption "Automatically change dark/light theme based on the position of the sun in the sky.";
   };
   config = mkIf cfg.enable {
     services.darkman = {

@@ -7,7 +7,7 @@ with lib; let
   cfg = config.programs.configured.fzf;
 in {
   options.programs.configured.fzf = {
-    enable = mkEnableOption "Fuzzy Finder";
+    enable = mkEnableOption "Quick fuzzy finder.";
   };
   config = mkIf cfg.enable {
     programs.fzf = {

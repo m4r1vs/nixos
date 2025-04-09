@@ -10,7 +10,7 @@ with lib; let
   theme = systemArgs.theme;
 in {
   options.programs.configured.ghostty = {
-    enable = mkEnableOption "Terminal Emulator";
+    enable = mkEnableOption "Cross-platform terminal emulator.";
   };
   config = mkIf cfg.enable {
     programs.ghostty = {

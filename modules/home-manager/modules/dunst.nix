@@ -10,7 +10,7 @@ with lib; let
   theme = systemArgs.theme;
 in {
   options.services.configured.dunst = {
-    enable = mkEnableOption "Simple Notification-Daemon";
+    enable = mkEnableOption "Simple X11 notification daemon.";
   };
   config = mkIf cfg.enable {
     services.dunst = {
@@ -74,8 +74,8 @@ in {
           history_length = 20;
 
           # Misc/Advanced
-          # dmenu = "/usr/bin/rofi -config \"/home/mn/.config/rofi/notification.rasi\" -dmenu -p dunst:";
-          # browser = "/usr/bin/xdg-open";
+          dmenu = "${pkgs.rofi}/bin/rofi -dmenu";
+          browser = "${pkgs.xdg-utils}/bin/xdg-open";
           always_run_script = true;
           title = "Dunst";
           class = "Dunst";
@@ -104,13 +104,13 @@ in {
 
         urgency_low = {
           background = "${theme.backgroundColor}";
-          foreground = "#FCFCFCE6";
+          foreground = "${theme.backgroundColorLight}";
           timeout = 5;
         };
 
         urgency_normal = {
           background = "${theme.backgroundColor}";
-          foreground = "#FCFCFCE6";
+          foreground = "${theme.backgroundColorLight}";
           timeout = 5;
         };
       };

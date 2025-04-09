@@ -8,7 +8,7 @@ with lib; let
   cfg = config.configured.gtk;
 in {
   options.configured.gtk = {
-    enable = mkEnableOption "Gnome/GNU/GUI Toolkit";
+    enable = mkEnableOption "Gnome/GNU/GUI Toolkit for UI.";
   };
   config = mkIf cfg.enable {
     gtk = {

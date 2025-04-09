@@ -8,7 +8,7 @@ with lib; let
   cfg = config.programs.configured.brave;
 in {
   options.programs.configured.brave = {
-    enable = mkEnableOption "Description";
+    enable = mkEnableOption "Enable the Brave web browser.";
   };
   config = mkIf cfg.enable {
     programs.chromium = {
