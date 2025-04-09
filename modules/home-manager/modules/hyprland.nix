@@ -265,6 +265,10 @@ in {
             "SUPER+Shift, b, exec,  ${scripts.rofi-bluetooth}"
             "SUPER+Shift, i, exec, ${pkgs._1password-gui}/bin/1password --quick-access --ozone-platform-hint=x11"
             "SUPER+Shift, v, exec, ${scripts.rofi-cliphist}"
+
+            # bound to mousewheel left/right
+            "SUPER+Ctrl, Left, workspace, m-1"
+            "SUPER+Ctrl, Right, workspace, m+1"
           ]
           ++ (
             builtins.concatLists (builtins.genList (
