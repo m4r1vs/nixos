@@ -16,6 +16,9 @@ in {
       enable = true;
       userName = git.name;
       userEmail = git.email;
+      extraConfig = {
+        pull.rebase = true;
+      };
     };
   };
 }
