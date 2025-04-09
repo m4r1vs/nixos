@@ -141,7 +141,6 @@
           ./nixpkgs.nix
           ./modules
 
-          inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-wsl.nixosModules.default
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager

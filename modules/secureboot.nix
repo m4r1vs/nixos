@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  options,
   ...
 }:
 with lib; let
@@ -19,9 +20,11 @@ in {
       description = "How many systemd-boot entries to show.";
     };
   };
-  config = mkIf cfg.enable {
+
+  # Only evaluate if lanzaboote is imported
+  config = optionalAttrs (options.boot ? lanzaboote) (mkIf cfg.enable {
     boot = {
-      loader.systemd-boot.enable = lib.mkForce false;
+      loader.systemd-boot.enable = mkForce false;
       lanzaboote = {
         enable = true;
         pkiBundle = "/var/lib/sbctl";
@@ -32,5 +35,5 @@ in {
         };
       };
     };
-  };
+  });
 }
