@@ -21,7 +21,7 @@ in {
         {
           pull.rebase = true;
         }
-        // (optionalAttrs osConfig.wsl.enable {
+        // (optionalAttrs (builtins.hasAttr "wsl" osConfig && osConfig.wsl.enable) {
           core.sshCommand = "ssh.exe";
         });
     };
