@@ -40,6 +40,14 @@
   time.hardwareClockInLocalTime = true;
 
   /*
+  Enable Secure Boot
+  */
+  boot.configured.secureboot = {
+    enable = true;
+    consoleMode = 4;
+  };
+
+  /*
   Extra Nvidia Settings
   */
   hardware = {
