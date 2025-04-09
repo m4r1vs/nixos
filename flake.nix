@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixos-wsl = {
+      # Run NixOS on Windows Subsystem for Linux
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       # Configure programs using nix
       url = "github:nix-community/home-manager?ref=master";
@@ -116,13 +121,41 @@
           {config._module.args = {inherit systemArgs;};}
         ];
       });
+      winix = inputs.nixpkgs.lib.nixosSystem (let
+        systemArgs =
+          globalArgs
+          // {
+            system = "x86_64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "winix";
+          };
+      in {
+        inherit (systemArgs) system;
+        modules = [
+          ./hosts/winix
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.nixos-wsl.nixosModules.default
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+
+          {config._module.args = {inherit systemArgs;};}
+        ];
+      });
     };
     packages.x86_64-linux = {
       nixiso = inputs.nixos-generators.nixosGenerate (let
         systemArgs =
           globalArgs
           // {
-            username = "nixos"; # default user during installation
+            username = "nixos";
             system = "x86_64-linux";
             theme = makeTheme {
               primary = "green";

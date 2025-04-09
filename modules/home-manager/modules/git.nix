@@ -2,6 +2,7 @@
   lib,
   config,
   systemArgs,
+  osConfig,
   ...
 }:
 with lib; let
@@ -16,9 +17,13 @@ in {
       enable = true;
       userName = git.name;
       userEmail = git.email;
-      extraConfig = {
-        pull.rebase = true;
-      };
+      extraConfig =
+        {
+          pull.rebase = true;
+        }
+        // (optionalAttrs osConfig.wsl.enable {
+          core.sshCommand = "ssh.exe";
+        });
     };
   };
 }
