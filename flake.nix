@@ -64,7 +64,10 @@
               primary = "green";
               secondary = "orange";
             };
-            git.email = "mniveri@cc.systems";
+            git = {
+              name = "Marius Niveri";
+              email = "mniveri@cc.systems";
+            };
             hostname = "nixpad";
           };
       in {
@@ -76,6 +79,7 @@
           ./nixpkgs.nix
           ./modules
 
+          inputs.lanzaboote.nixosModules.lanzaboote
           inputs.disko.nixosModules.disko
           inputs.nixos-06cb-009a-fingerprint-sensor.nixosModules."06cb-009a-fingerprint-sensor"
           inputs.nix-index-database.nixosModules.nix-index

@@ -87,6 +87,13 @@
     };
   };
 
+  /*
+  Enable Secure Boot
+  */
+  boot.configured.secureboot = {
+    enable = true;
+  };
+
   security = {
     pam.services = {
       login.fprintAuth = true;
