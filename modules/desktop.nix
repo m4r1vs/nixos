@@ -19,8 +19,11 @@ in {
   config = mkIf cfg.enable {
     environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
 
-    configured.i3.enable = cfg.x11;
-    configured.hyprland.enable = !cfg.x11;
+    configured = {
+      i3.enable = cfg.x11;
+      hyprland.enable = !cfg.x11;
+      fonts.enable = true;
+    };
 
     services = {
       configured.kmscon.enable = true;
@@ -166,55 +169,6 @@ in {
           LE = {EnableAdvMonInterleaveScan = "true";};
         };
       };
-    };
-
-    fonts = {
-      enableDefaultPackages = true;
-
-      fontconfig = {
-        defaultFonts = {
-          serif = ["EB Garamond 08"];
-          sansSerif = ["Ubuntu"];
-          monospace = ["JetBrainsMono Nerd Font Propo"];
-          emoji = ["Apple Color Emoji"];
-        };
-      };
-
-      packages = with pkgs; [
-        nerd-fonts.jetbrains-mono
-        ubuntu_font_family
-        eb-garamond
-        (stdenv.mkDerivation {
-          name = "Apple Color Emoji Font";
-          src = fetchurl {
-            url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v18.4/AppleColorEmoji.ttf";
-            hash = "sha256-pP0He9EUN7SUDYzwj0CE4e39SuNZ+SVz7FdmUviF6r0=";
-          };
-          dontUnpack = true;
-          installPhase = ''
-            runHook preInstall
-
-            mkdir -p $out/share/fonts/truetype
-            cp $src $out/share/fonts/truetype/AppleColorEmoji.ttf
-
-            runHook postInstall
-          '';
-        })
-        (stdenv.mkDerivation {
-          name = "Samsung Classic Clock Font";
-          src = ../assets/fonts/samsung/samsung-clock-classic.ttf;
-          dontUnpack = true;
-          installPhase = ''
-            runHook preInstall
-
-            mkdir -p $out/share/fonts/truetype
-            cp $src $out/share/fonts/truetype/SamsungClockClassic.ttf
-
-            runHook postInstall
-          '';
-        })
-      ];
-      fontDir.enable = true;
     };
 
     programs = {

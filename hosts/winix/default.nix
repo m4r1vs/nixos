@@ -10,6 +10,10 @@
     interop.includePath = false;
   };
 
+  configured = {
+    fonts.enable = true;
+  };
+
   services.openssh.enable = lib.mkForce false;
 
   system = {
