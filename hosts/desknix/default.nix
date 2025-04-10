@@ -37,8 +37,6 @@
     };
   };
 
-  time.hardwareClockInLocalTime = true;
-
   /*
   Enable Secure Boot
   */
