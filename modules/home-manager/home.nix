@@ -4,6 +4,7 @@
   ...
 }: let
   isDesktop = osConfig.configured.desktop.enable;
+  isWindows = osConfig ? wsl && osConfig.wsl.enable;
 in {
   imports = [
     ./modules
@@ -41,7 +42,7 @@ in {
       brave.enable = isDesktop;
       direnv.enable = true;
       fzf.enable = true;
-      ghostty.enable = isDesktop;
+      ghostty.enable = isDesktop || isWindows;
       git.enable = true;
       lazygit.enable = true;
       mpv.enable = true;
