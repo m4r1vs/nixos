@@ -26,16 +26,17 @@ in {
           width = "(420, 1200)";
           height = "(0, 300)";
           origin = "top-right";
-          offset = "(12, 12)";
+          offset = "(0, 12)";
           scale = 0;
           notification_limit = 0;
 
           # Progress bar
           progress_bar = true;
-          progress_bar_height = 10;
-          progress_bar_frame_width = 1;
-          progress_bar_min_width = 150;
-          progress_bar_max_width = 300;
+          progress_bar_height = 12;
+          progress_bar_frame_width = 0;
+          progress_bar_corner_radius = 3;
+          progress_bar_min_width = 408;
+          progress_bar_max_width = 1188;
 
           # Other display settings
           indicate_hidden = true;
@@ -80,6 +81,7 @@ in {
           title = "Dunst";
           class = "Dunst";
           corner_radius = 4;
+          corners = "left";
           ignore_dbusclose = false;
 
           # Mouse
@@ -105,12 +107,14 @@ in {
         urgency_low = {
           background = "${theme.backgroundColor}";
           foreground = "${theme.backgroundColorLight}";
+          highlight = "${theme.secondaryColor.hex}";
           timeout = 5;
         };
 
         urgency_normal = {
           background = "${theme.backgroundColor}";
           foreground = "${theme.backgroundColorLight}";
+          highlight = "${theme.secondaryColor.hex}";
           timeout = 5;
         };
       };

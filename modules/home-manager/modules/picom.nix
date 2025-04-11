@@ -52,6 +52,9 @@ in {
         transition-pow-w = 0.1;
         transition-pow-x = 0.1;
         transition-pow-y = 0.1;
+        rounded-corners-exclude = [
+          "class_g = 'Dunst'"
+        ];
         shadow-exclude = [
           "window_type = 'dock'"
           "window_type = 'menu'"
