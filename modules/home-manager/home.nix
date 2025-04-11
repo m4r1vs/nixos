@@ -49,7 +49,7 @@ in {
       neovim.enable = true;
       newsboat.enable = true;
       rofi.enable = isDesktop;
-      spotify-player.enable = true;
+      spotify-player.enable = isDesktop;
       ssh.enable = true;
       swappy.enable = isDesktop;
       tmux.enable = true;

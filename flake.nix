@@ -93,6 +93,33 @@
           {config._module.args = {inherit systemArgs;};}
         ];
       });
+      nixner = inputs.nixpkgs.lib.nixosSystem (let
+        systemArgs =
+          globalArgs
+          // {
+            system = "aarch64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "nixner";
+          };
+      in {
+        inherit (systemArgs) system;
+        modules = [
+          ./hosts/nixner
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.disko.nixosModules.disko
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+
+          {config._module.args = {inherit systemArgs;};}
+        ];
+      });
       desknix = inputs.nixpkgs.lib.nixosSystem (let
         systemArgs =
           globalArgs
@@ -150,7 +177,7 @@
       });
     };
     packages.x86_64-linux = {
-      nixiso = inputs.nixos-generators.nixosGenerate (let
+      bootstrap_local_x86_64 = inputs.nixos-generators.nixosGenerate (let
         systemArgs =
           globalArgs
           // {
@@ -166,7 +193,35 @@
       in {
         inherit (systemArgs) format system;
         modules = [
-          ./hosts/nixiso
+          ./bootstrap/local.nix
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.home-manager.nixosModules.home-manager
+          inputs.nix-index-database.nixosModules.nix-index
+
+          {config._module.args = {inherit systemArgs;};}
+        ];
+      });
+      bootstrap_remote_arm64 = inputs.nixos-generators.nixosGenerate (let
+        systemArgs =
+          globalArgs
+          // {
+            username = "nixos";
+            system = "aarch64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "nixiso_remote_arm";
+            format = "install-iso";
+          };
+      in {
+        inherit (systemArgs) format system;
+        modules = [
+          ./bootstrap/remote.nix
 
           ./hosts
           ./nixpkgs.nix

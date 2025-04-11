@@ -39,7 +39,17 @@
     };
   };
 
-  boot.tmp.cleanOnBoot = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      timeout = 1;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking = {
     hostName = systemArgs.hostname;
@@ -60,6 +70,9 @@
         "networkmanager"
         "podman"
         "wheel"
+      ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN6sMTjk1LAXVX9qRKsB3VgsfqCfcJSeosgoYWTgSHW"
       ];
     };
     defaultUserShell = pkgs.zsh;

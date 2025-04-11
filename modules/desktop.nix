@@ -97,19 +97,12 @@ in {
     };
 
     boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         verbose = false;
         systemd.enable = true;
       };
       consoleLogLevel = 0;
-      loader = {
-        timeout = 1;
-        systemd-boot = {
-          enable = true;
-          configurationLimit = 20;
-        };
-        efi.canTouchEfiVariables = true;
-      };
       plymouth = {
         enable = true;
         theme = "colorful_sliced"; # rings and abstract_ring also good

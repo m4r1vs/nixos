@@ -19,7 +19,7 @@ in {
       users.${systemArgs.username} = import ./home.nix;
       extraSpecialArgs = {
         inherit systemArgs;
-        scripts = (import ./makeScripts.nix) {inherit pkgs systemArgs;};
+        scripts = (import ./makeScripts.nix) {inherit pkgs systemArgs config;};
       };
     };
   };
