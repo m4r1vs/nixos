@@ -1,0 +1,54 @@
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.services.configured.nginx;
+in {
+  options.services.configured.nginx = {
+    enable = mkEnableOption "Enable NGINX as a reverse proxy to serve different stuff on the WWW.";
+    domain = mkOption {
+      type = types.singleLineStr;
+      default = null;
+      description = "The Domain to be used.";
+    };
+  };
+  config = mkIf cfg.enable {
+    services.nginx = {
+      enable = true;
+      enableReload = true;
+
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts."${cfg.domain}" = {
+        forceSSL = true;
+        useACMEHost = cfg.domain;
+        globalRedirect = "marius.${cfg.domain}";
+      };
+
+      virtualHosts."nixner.${cfg.domain}" = {
+        forceSSL = true;
+        useACMEHost = cfg.domain;
+        globalRedirect = "github.com/m4r1vs/NixConfig/tree/main/hosts/nixner";
+      };
+
+      virtualHosts."marius.${cfg.domain}" = {
+        forceSSL = true;
+        useACMEHost = cfg.domain;
+        locations."/" = {
+          root = ./marius.niveri.dev;
+          index = "index.html";
+          extraConfig = ''
+            default_type text/html;
+            limit_except GET HEAD {
+              deny all;
+            }
+          '';
+        };
+      };
+    };
+  };
+}

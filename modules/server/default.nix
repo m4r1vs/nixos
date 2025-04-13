@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   ...
 }:
 with lib; let
@@ -18,8 +17,6 @@ in {
 
   config = mkIf cfg.enable {
     configured.server.terminfo.enable = true;
-
-    nixpkgs.overlays = [inputs.slidecontrol.overlays.default];
 
     services = {
       fail2ban.enable = true;

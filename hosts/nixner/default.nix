@@ -6,7 +6,21 @@
   imports = [
     ./disks.nix
     ./hardware-configuration.nix
+    ./www
   ];
+
+  services = {
+    configured = {
+      nginx = {
+        enable = true;
+        inherit domain;
+      };
+      slidecontrol = {
+        enable = true;
+        inherit domain;
+      };
+    };
+  };
 
   configured.server = {
     networking = {
