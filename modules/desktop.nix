@@ -97,6 +97,7 @@ in {
     };
 
     boot = {
+      binfmt.emulatedSystems = ["aarch64-linux"];
       initrd = {
         verbose = false;
         systemd.enable = true;
