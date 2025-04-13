@@ -13,12 +13,14 @@ return {
         ".local/share/nvim/lazy",
       },
       formatter_by_ft = {
+        c = formatters.lsp,
         css = formatters.prettierd,
+        dart = formatters.lsp,
         html = formatters.lsp,
         java = formatters.lsp,
+        javascriptreact = formatters.prettierd,
         json = formatters.lsp,
         lua = formatters.lsp,
-        toml = formatters.lsp,
         markdown = formatters.prettierd,
         openscad = formatters.lsp,
         rust = formatters.lsp,
@@ -26,12 +28,11 @@ return {
         scss = formatters.prettierd,
         sh = formatters.shfmt,
         terraform = formatters.lsp,
+        tex = formatters.lsp,
+        toml = formatters.lsp,
         typescript = formatters.prettierd,
         typescriptreact = formatters.prettierd,
         yaml = formatters.lsp,
-        dart = formatters.lsp,
-        tex = formatters.lsp,
-        c = formatters.lsp,
 
         nix = {
           formatters.shell({ cmd = { "alejandra" } })
