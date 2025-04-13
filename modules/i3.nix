@@ -52,7 +52,7 @@ in {
         upscaleDefaultCursor = true;
         enable = true;
         xkb = {
-          layout = "us,de";
+          layout = "us";
           options = "caps:escape";
         };
         desktopManager = {
