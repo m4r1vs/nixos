@@ -91,6 +91,7 @@ in {
       acceptTerms = true;
       defaults.email = cfg.email;
       certs."${cfg.domain}" = {
+        group = "nginx";
         dnsProvider = "rfc2136";
         domain = "*.${cfg.domain}";
         extraDomainNames = [cfg.domain];

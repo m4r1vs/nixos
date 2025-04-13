@@ -31,22 +31,19 @@ in {
 
       virtualHosts."${cfg.domain}" = {
         forceSSL = true;
-        sslCertificate = "/var/lib/acme/${cfg.domain}/cert.pem";
-        sslCertificateKey = "/var/lib/acme/${cfg.domain}/key.pem";
+        useACMEHost = cfg.domain;
         globalRedirect = "marius.${cfg.domain}";
       };
 
       virtualHosts."nixner.${cfg.domain}" = {
         forceSSL = true;
-        sslCertificate = "/var/lib/acme/${cfg.domain}/cert.pem";
-        sslCertificateKey = "/var/lib/acme/${cfg.domain}/key.pem";
+        useACMEHost = cfg.domain;
         globalRedirect = "github.com/m4r1vs/NixConfig";
       };
 
       virtualHosts."slides.${cfg.domain}" = {
         forceSSL = true;
-        sslCertificate = "/var/lib/acme/${cfg.domain}/cert.pem";
-        sslCertificateKey = "/var/lib/acme/${cfg.domain}/key.pem";
+        useACMEHost = cfg.domain;
         locations."/" = {
           root = "${pkgs.slidecontrol-pwa}/dist";
           index = "index.html";
@@ -62,8 +59,7 @@ in {
 
       virtualHosts."sc-server.${cfg.domain}" = {
         forceSSL = true;
-        sslCertificate = "/var/lib/acme/${cfg.domain}/cert.pem";
-        sslCertificateKey = "/var/lib/acme/${cfg.domain}/key.pem";
+        useACMEHost = cfg.domain;
 
         locations."/" = {
           proxyPass = "http://0.0.0.0:1337";
@@ -82,8 +78,7 @@ in {
 
       virtualHosts."marius.${cfg.domain}" = {
         forceSSL = true;
-        sslCertificate = "/var/lib/acme/${cfg.domain}/cert.pem";
-        sslCertificateKey = "/var/lib/acme/${cfg.domain}/key.pem";
+        useACMEHost = cfg.domain;
         locations."/" = {
           root = ./root;
           index = "index.html";
