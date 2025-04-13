@@ -34,8 +34,8 @@ in {
       };
       shellAliases = {
         lg = "${pkgs.lazygit}/bin/lazygit";
-        rebuild = "sudo nixos-rebuild switch --flake ~/NixOS/#${systemArgs.hostname}";
-        upgrade = "nix flake update --flake ~/NixOS && sudo nixos-rebuild switch --flake ~/NixOS/#${systemArgs.hostname}";
+        rebuild = "sudo nixos-rebuild switch --flake ~/NixConfig/#${systemArgs.hostname}";
+        upgrade = "nix flake update --flake ~/NixConfig && sudo nixos-rebuild switch --flake ~/NixConfig/#${systemArgs.hostname}";
       };
       initExtra = import ./init.nix pkgs;
       plugins = [

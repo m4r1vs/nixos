@@ -30,7 +30,7 @@ return {
       dashboard.button("s", "󰆋   Sessions", ":silent SessionSearch<CR>"),
       dashboard.button("u", "󰮭   Update Lazy", ":silent Lazy update<CR>"),
       dashboard.button("n", "   New Empty File", ":silent ene <BAR> startinsert <CR>"),
-      dashboard.button("d", "   Dotfiles", ":silent SessionRestore /home/mn/NixOS<CR>"),
+      dashboard.button("d", "   Dotfiles", ":silent SessionRestore /home/mn/NixConfig<CR>"),
       dashboard.button("o", "󰠮   Obsidian", ":silent SessionRestore /home/mn/Documents/Marius' Remote Vault<CR>"),
       dashboard.button("q", "󰛉   Quit", ":qa<CR>"),
     }
