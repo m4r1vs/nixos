@@ -93,6 +93,34 @@
           {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
+      nixner = inputs.nixpkgs.lib.nixosSystem (let
+        systemArgs =
+          globalArgs
+          // {
+            system = "aarch64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "nixner";
+          };
+      in {
+        inherit (systemArgs) system;
+        modules = [
+          ./hosts/nixner
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.disko.nixosModules.disko
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+          inputs.slidecontrol.nixosModules.slidecontrol-server
+
+          {config._module.args = {inherit systemArgs self inputs;};}
+        ];
+      });
       desknix = inputs.nixpkgs.lib.nixosSystem (let
         systemArgs =
           globalArgs
