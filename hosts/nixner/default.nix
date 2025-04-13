@@ -22,6 +22,7 @@
     };
     enable = true;
     services = {
+      hello-nginx.enable = true;
       acme = {
         enable = true;
         domain = "niveri.dev";
