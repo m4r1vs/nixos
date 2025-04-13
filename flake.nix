@@ -150,7 +150,7 @@
       });
     };
     packages.x86_64-linux = {
-      nixiso = inputs.nixos-generators.nixosGenerate (let
+      bootstrap_local_x86_64 = inputs.nixos-generators.nixosGenerate (let
         systemArgs =
           globalArgs
           // {
@@ -166,7 +166,7 @@
       in {
         inherit (systemArgs) format system;
         modules = [
-          ./hosts/nixiso
+          ./bootstrap/local.nix
 
           ./hosts
           ./nixpkgs.nix
@@ -175,7 +175,35 @@
           inputs.home-manager.nixosModules.home-manager
           inputs.nix-index-database.nixosModules.nix-index
 
-          {config._module.args = {inherit systemArgs self;};}
+          {config._module.args = {inherit systemArgs self inputs;};}
+        ];
+      });
+      bootstrap_remote_arm64 = inputs.nixos-generators.nixosGenerate (let
+        systemArgs =
+          globalArgs
+          // {
+            username = "nixos";
+            system = "aarch64-linux";
+            theme = makeTheme {
+              primary = "green";
+              secondary = "orange";
+            };
+            hostname = "nixiso_remote_arm";
+            format = "install-iso";
+          };
+      in {
+        inherit (systemArgs) format system;
+        modules = [
+          ./bootstrap/remote.nix
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.home-manager.nixosModules.home-manager
+          inputs.nix-index-database.nixosModules.nix-index
+
+          {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
     };
