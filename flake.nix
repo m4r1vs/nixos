@@ -49,7 +49,7 @@
     ];
   };
 
-  outputs = {...} @ inputs: let
+  outputs = {self, ...} @ inputs: let
     globalArgs = {
       username = "mn";
       git = {
@@ -90,7 +90,7 @@
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
 
-          {config._module.args = {inherit systemArgs;};}
+          {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
       desknix = inputs.nixpkgs.lib.nixosSystem (let
@@ -118,7 +118,7 @@
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
 
-          {config._module.args = {inherit systemArgs;};}
+          {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
       winix = inputs.nixpkgs.lib.nixosSystem (let
@@ -145,7 +145,7 @@
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager
 
-          {config._module.args = {inherit systemArgs;};}
+          {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
     };
@@ -175,7 +175,7 @@
           inputs.home-manager.nixosModules.home-manager
           inputs.nix-index-database.nixosModules.nix-index
 
-          {config._module.args = {inherit systemArgs;};}
+          {config._module.args = {inherit systemArgs self;};}
         ];
       });
     };
