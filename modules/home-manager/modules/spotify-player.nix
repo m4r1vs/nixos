@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  systemArgs,
   ...
 }:
 with lib; let
@@ -60,7 +61,7 @@ in {
           then "Always"
           else "Never";
         notify_streaming_only = true;
-        default_device = "spotify-player";
+        default_device = systemArgs.hostname;
         cover_img_width = 7;
         cover_img_length = 16;
         seek_duration_secs = 5;
@@ -73,7 +74,7 @@ in {
           };
         };
         device = {
-          name = "spotify-player";
+          name = systemArgs.hostname;
           device_type = "speaker";
           volume = 100;
           bitrate = 320;
