@@ -39,7 +39,17 @@
     };
   };
 
-  boot.tmp.cleanOnBoot = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      timeout = 1;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   networking = {
     hostName = systemArgs.hostname;
