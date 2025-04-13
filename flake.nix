@@ -8,6 +8,11 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    slidecontrol = {
+      # Google Slides remote
+      url = "github:m4r1vs/slidecontrol?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       # Configure programs using nix
       url = "github:nix-community/home-manager?ref=master";
