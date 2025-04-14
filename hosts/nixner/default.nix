@@ -79,6 +79,10 @@ in {
                                 IN      AAAA    ${ipv6}
         '';
       };
+      cache = {
+        inherit domain;
+        enable = true;
+      };
     };
   };
 
