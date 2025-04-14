@@ -139,8 +139,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "yazi-rs";
             repo = "plugins";
-            sha256 = "sha256-ZLL/dFjNsryjm51kFNOmw5DhSGl2K5IfatHpe1PkuFE=";
-            rev = "79193b3917d0f1b82ee41b4e64ae4df58f2284f6";
+            sha256 = "sha256-LWN0riaUazQl3llTNNUMktG+7GLAHaG/IxNj1gFhDRE=";
+            rev = "b12a9ab085a8c2fe2b921e1547ee667b714185f9";
           };
           installPhase = ''
             runHook preInstall
@@ -154,8 +154,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "yazi-rs";
             repo = "plugins";
-            sha256 = "sha256-ZLL/dFjNsryjm51kFNOmw5DhSGl2K5IfatHpe1PkuFE=";
-            rev = "79193b3917d0f1b82ee41b4e64ae4df58f2284f6";
+            sha256 = "sha256-LWN0riaUazQl3llTNNUMktG+7GLAHaG/IxNj1gFhDRE=";
+            rev = "b12a9ab085a8c2fe2b921e1547ee667b714185f9";
           };
           installPhase = ''
             runHook preInstall
@@ -169,8 +169,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "yazi-rs";
             repo = "plugins";
-            sha256 = "sha256-ZLL/dFjNsryjm51kFNOmw5DhSGl2K5IfatHpe1PkuFE=";
-            rev = "79193b3917d0f1b82ee41b4e64ae4df58f2284f6";
+            sha256 = "sha256-LWN0riaUazQl3llTNNUMktG+7GLAHaG/IxNj1gFhDRE=";
+            rev = "b12a9ab085a8c2fe2b921e1547ee667b714185f9";
           };
           installPhase = ''
             runHook preInstall
@@ -184,8 +184,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "yazi-rs";
             repo = "plugins";
-            sha256 = "sha256-ZLL/dFjNsryjm51kFNOmw5DhSGl2K5IfatHpe1PkuFE=";
-            rev = "79193b3917d0f1b82ee41b4e64ae4df58f2284f6";
+            sha256 = "sha256-LWN0riaUazQl3llTNNUMktG+7GLAHaG/IxNj1gFhDRE=";
+            rev = "b12a9ab085a8c2fe2b921e1547ee667b714185f9";
           };
           installPhase = ''
             runHook preInstall
