@@ -229,34 +229,34 @@ in {
 
             "SUPER, backslash, exec, ${pkgs.pamixer}/bin/pamixer -t"
 
-            "SUPER, F1, togglespecialworkspace, spotify_player"
-            "SUPER, F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${pkgs.spotify-player}/bin/spotify_player"
+            ",F1, togglespecialworkspace, spotify_player"
+            ",F1, exec, pgrep spotify_player || ${pkgs.ghostty}/bin/ghostty --class=ghostty.spotify_player -e ${pkgs.spotify-player}/bin/spotify_player"
 
-            "SUPER, F2, togglespecialworkspace, Slack"
-            "SUPER, F2, exec, pgrep Slack || ${pkgs.slack}/bin/slack"
+            ",F2, togglespecialworkspace, Slack"
+            ",F2, exec, pgrep Slack || ${pkgs.slack}/bin/slack"
 
-            "SUPER, F7, exec, ${scripts.wireless-screen}"
+            ",F7, exec, ${scripts.wireless-screen}"
 
-            "SUPER, F11, togglespecialworkspace, obsidian_nvim"
-            "SUPER, F11, exec, ${scripts.launch-once {
+            ",F11, togglespecialworkspace, obsidian_nvim"
+            ",F11, exec, ${scripts.launch-once {
               command = "${pkgs.obsidian}/bin/obsidian";
               grep = "initialClass: obsidian";
               useHypr = true;
             }}"
-            "SUPER, F11, exec, ${scripts.launch-once {
+            ",F11, exec, ${scripts.launch-once {
               command = "${pkgs.ghostty}/bin/ghostty --class=ghostty.obsidian -e ${config.programs.neovim.finalPackage}/bin/nvim \"~/Documents/Marius\\\'\\\ Remote\\\ Vault\"";
               grep = "ghostty\\\.obsidian";
               useHypr = true;
             }}"
-            "SUPER+Shift, F11, exec, ${scripts.launch-once {
+            "Shift, F11, exec, ${scripts.launch-once {
               command = "${pkgs.obsidian}/bin/obsidian";
               grep = "initialClass: obsidian";
               useHypr = true;
             }}"
-            "SUPER+Shift, F11, togglespecialworkspace, obsidian"
+            "Shift, F11, togglespecialworkspace, obsidian"
 
-            "SUPER, F12, exec, ${pkgs.spotify-player}/bin/spotify_player like && ${scripts.nixos-notify} -e -t 1800 \"Liked currentry playing Track on Spotify\""
-            "SUPER+Shift, F12, exec, ${scripts.random-album-of-the-day}"
+            ",F12, exec, ${pkgs.spotify-player}/bin/spotify_player like && ${scripts.nixos-notify} -e -t 1800 \"Liked currentry playing Track on Spotify\""
+            "Shift, F12, exec, ${scripts.random-album-of-the-day}"
 
             "SUPER+Shift, s, exec, ${scripts.screenshot} edit"
             "SUPER+Shift, c, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
