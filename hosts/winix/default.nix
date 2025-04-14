@@ -16,9 +16,7 @@
 
   services.openssh.enable = lib.mkForce false;
 
-  system = {
-    nixos.label = systemArgs.hostname + ".niveri.de";
-  };
+  boot.loader.systemd-boot.enable = lib.mkForce false;
 
   environment.systemPackages = with pkgs; [
     (writeShellScriptBin "ssh" "/mnt/c/WINDOWS/System32/OpenSSH/ssh.exe $@")
@@ -29,4 +27,8 @@
     (writeShellScriptBin "ssh-keygen" "/mnt/c/WINDOWS/System32/OpenSSH/ssh-keygen.exe $@")
     (writeShellScriptBin "ssh-keyscan" "/mnt/c/WINDOWS/System32/OpenSSH/ssh-keyscan.exe $@")
   ];
+
+  system = {
+    nixos.label = systemArgs.hostname + ".niveri.de";
+  };
 }
