@@ -132,6 +132,34 @@
           {config._module.args = {inherit systemArgs self inputs;};}
         ];
       });
+      falkenberg = inputs.nixpkgs.lib.nixosSystem (let
+        systemArgs =
+          globalArgs
+          // {
+            system = "aarch64-linux";
+            theme = makeTheme {
+              primary = "orange";
+              secondary = "green";
+            };
+            hostname = "kubenix-falkenberg";
+          };
+      in {
+        inherit (systemArgs) system;
+        modules = [
+          ./hosts/kubenix/falkenberg
+
+          ./hosts
+          ./nixpkgs.nix
+          ./modules
+
+          inputs.comin.nixosModules.comin
+          inputs.disko.nixosModules.disko
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.home-manager.nixosModules.home-manager
+
+          {config._module.args = {inherit systemArgs self inputs;};}
+        ];
+      });
       desknix = inputs.nixpkgs.lib.nixosSystem (let
         systemArgs =
           globalArgs
