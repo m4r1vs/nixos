@@ -109,8 +109,8 @@
           // {
             system = "aarch64-linux";
             theme = makeTheme {
-              primary = "green";
-              secondary = "orange";
+              primary = "orange";
+              secondary = "green";
             };
             hostname = "nixner";
           };
