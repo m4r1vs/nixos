@@ -45,11 +45,7 @@ in {
               }
             '';
           };
-        };
-        virtualHosts."sc-server.${cfg.domain}" = {
-          forceSSL = true;
-          useACMEHost = cfg.domain;
-          locations."/" = {
+          locations."/socket" = {
             proxyPass = "http://0.0.0.0:${toString cfg.port}";
             extraConfig = ''
               proxy_set_header Host $host;
