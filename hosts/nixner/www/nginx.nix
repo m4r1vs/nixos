@@ -60,6 +60,14 @@ in {
           '';
         };
       };
+
+      virtualHosts."*.${cfg.domain}" = {
+        forceSSL = true;
+        useACMEHost = cfg.domain;
+        extraConfig = ''
+          return 404;
+        '';
+      };
     };
   };
 }
