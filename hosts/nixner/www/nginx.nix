@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; let
@@ -18,6 +19,16 @@ in {
     services.nginx = {
       enable = true;
       enableReload = true;
+
+      additionalModules = [
+        pkgs.nginxModules.brotli
+      ];
+
+      commonHttpConfig = ''
+        brotli on;
+        brotli_static on;
+        brotli_types *;
+      '';
 
       recommendedOptimisation = true;
       recommendedProxySettings = true;
