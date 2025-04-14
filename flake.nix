@@ -8,6 +8,11 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    comin = {
+      # GitOps
+      url = "github:m4r1vs/comin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     slidecontrol = {
       # Google Slides remote
       url = "github:m4r1vs/slidecontrol?ref=master";
@@ -118,6 +123,7 @@
           ./nixpkgs.nix
           ./modules
 
+          inputs.comin.nixosModules.comin
           inputs.disko.nixosModules.disko
           inputs.nix-index-database.nixosModules.nix-index
           inputs.home-manager.nixosModules.home-manager

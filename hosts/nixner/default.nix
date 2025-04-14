@@ -22,6 +22,18 @@ in {
         inherit domain;
       };
     };
+    comin = {
+      enable = true;
+      debug = true;
+      allowForcePushMain = true;
+      remotes = [
+        {
+          name = "origin";
+          url = "https://github.com/m4r1vs/NixConfig.git";
+          branches.main.name = "main";
+        }
+      ];
+    };
   };
 
   configured.server = {

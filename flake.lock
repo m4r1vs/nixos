@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "comin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1744625985,
+        "narHash": "sha256-Ij8AMiTFZFF51QzuuKlKQzAt1G+iRLQAAnODgjMyXhk=",
+        "owner": "m4r1vs",
+        "repo": "comin",
+        "rev": "c862f3949d12259f6169abbd4e93f0403921d898",
+        "type": "github"
+      },
+      "original": {
+        "owner": "m4r1vs",
+        "repo": "comin",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -117,11 +137,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744498625,
-        "narHash": "sha256-pL52uCt9CUoTTmysGG91c2FeU7XUvpB7Cep6yon2vDk=",
+        "lastModified": 1744618730,
+        "narHash": "sha256-n3gN7aHwVRnnBZI64EDoKyJnWidNYJ0xezhqQtdjH2Q=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "db56335ca8942d86f2200664acdbd5b9212b26ad",
+        "rev": "85dd758c703ffbf9d97f34adcef3a898b54b4014",
         "type": "github"
       },
       "original": {
@@ -317,6 +337,7 @@
     },
     "root": {
       "inputs": {
+        "comin": "comin",
         "disko": "disko",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
