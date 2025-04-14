@@ -10,6 +10,7 @@ in {
     [
       fastfetch
       yt-dlp
+      xdg-utils
     ]
     ++ lib.optionals isDesktop ([
         amberol
