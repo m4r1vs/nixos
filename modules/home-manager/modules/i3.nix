@@ -138,6 +138,10 @@ in {
         };
         keybindings = {
           "${mod}+Return" = "exec ${terminal}";
+          "${mod}+Shift+Return" = "exec ${pkgs.writeShellScript "rofi-ssh" ''
+            ${pkgs.rofi}/bin/rofi -show ssh -theme-str "entry{placeholder:\"SSH into a Remote...\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 42%;}"
+          ''}";
+
           "${mod}+q" = "kill";
 
           "${mod}+Shift+q" = "exec --no-startup-id ${pkgs.writeShellScript "rofi-power-menu" ''

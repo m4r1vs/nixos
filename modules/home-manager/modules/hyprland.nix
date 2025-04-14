@@ -216,6 +216,9 @@ in {
             "SUPER+Shift, Space, togglefloating"
 
             "SUPER, Return, exec, ${pkgs.ghostty}/bin/ghostty"
+            "SUPER+Shift, Return, exec, ${pkgs.writeShellScript "rofi-ssh" ''
+              ${pkgs.rofi}/bin/rofi -show ssh -theme-str "entry{placeholder:\"SSH into a Remote...\";}element-icon{enabled:false;}icon-current-entry{enabled:false;}inputbar{padding: 0 0 0 42;}window{padding: 38% 42%;}"
+            ''}"
             "SUPER, d, exec, ${pkgs.rofi}/bin/rofi -theme-str \"entry {placeholder: \\\"Launch a Program...\\\";}entry{padding: 10 10 0 12;}\" -combi-modi search:${scripts.rofi-search},drun -show combi"
             "SUPER, s, exec, ${scripts.screenshot}"
             "SUPER, E, exec, ${pkgs.ghostty}/bin/ghostty --class=ghostty.yazi -e EDITOR=nvim ${pkgs.yazi}/bin/yazi ~/Downloads/"
