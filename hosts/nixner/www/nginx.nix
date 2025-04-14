@@ -61,6 +61,12 @@ in {
         };
       };
 
+      virtualHosts."dns-admin.${cfg.domain}" = {
+        forceSSL = true;
+        useACMEHost = cfg.domain;
+        globalRedirect = "marius.niveri.de";
+      };
+
       virtualHosts."*.${cfg.domain}" = {
         forceSSL = true;
         useACMEHost = cfg.domain;
