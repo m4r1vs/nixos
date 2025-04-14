@@ -60,20 +60,23 @@ in {
         dnsSettings = ''
           $ORIGIN ${domain}.
           $TTL    1h
-          @               IN      SOA     ns1 dns-admin (
-                                              10  ; Serial
-                                              3h  ; Refresh
-                                              1h  ; Retry
-                                              1w  ; Expire
-                                              1h) ; Negative Cache TTL
-                          IN      NS      ns1
-                          IN      NS      ns2
+          @                     IN      SOA     ns1 dns-admin (
+                                                    10  ; Serial
+                                                    3h  ; Refresh
+                                                    1h  ; Retry
+                                                    1w  ; Expire
+                                                    1h) ; Negative Cache TTL
+                                IN      NS      ns1
+                                IN      NS      ns2
 
-          @               IN      A       ${ipv4}
-                          IN      AAAA    ${ipv6}
+          falkenberg.kubenix    IN      A       91.99.10.215
+                                IN      AAAA    2a01:4f8:c013:e704::1
 
-          *               IN      A       ${ipv4}
-                          IN      AAAA    ${ipv6}
+          @                     IN      A       ${ipv4}
+                                IN      AAAA    ${ipv6}
+
+          *                     IN      A       ${ipv4}
+                                IN      AAAA    ${ipv6}
         '';
       };
     };
