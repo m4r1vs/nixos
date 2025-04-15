@@ -74,11 +74,10 @@ in {
             buildNoDefaultFeatures = true;
 
             buildFeatures =
-              ["fzf"]
+              ["fzf" "image"]
               ++ lib.optionals isDesktop [
                 "pulseaudio-backend"
                 "media-control"
-                "image"
                 "daemon"
                 "notify"
                 "streaming"
