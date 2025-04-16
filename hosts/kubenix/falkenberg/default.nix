@@ -37,10 +37,10 @@ in {
       enable = true;
       clusterDomain = "kubenix.local";
       coredns = {
-        imageName = "coredns/coredns";
-        imageDigest = "sha256:4779e7517f375a597f100524db6f7f8b5b8499a6ccd14aacfa65432d4cfd5789";
-        finalImageTag = "arm64-1.12.1";
-        sha256 = "sha256-z3TUo76w7CyYyf5Z6lVHw/F9nZQ501CZ9NNVFFWcX58=";
+        imageName = "mariusniveri/my-coredns";
+        imageDigest = "sha256:dd3d70eaa614e7228af8124ef37c7d8ccd92e9dd0cbdd823f727428d7b8191f3";
+        finalImageTag = "latest";
+        sha256 = "sha256-ID+qV6/knQDQ8leyq4r08uexPdDiu739Qeh/cBP0GfE=";
       };
     };
     flannel = {
