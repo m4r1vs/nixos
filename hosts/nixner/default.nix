@@ -50,6 +50,9 @@ in {
       acme = {
         enable = true;
         inherit domain;
+        additionalDomains = [
+          "*.kubenix.niveri.dev"
+        ];
         useDNS01 = true;
       };
     };
