@@ -1,31 +1,23 @@
 {
   lib,
   config,
+  systemArgs,
   ...
 }:
 with lib; let
   cfg = config.configured.server.networking;
+  inherit (systemArgs) ipv4 ipv6 domain;
 in {
   options.configured.server.networking = {
     enable = mkEnableOption "Enable custom networking (do not use DHCPCD)";
-    ipv4 = mkOption {
-      type = types.nullOr types.singleLineStr;
-      default = null;
-      description = "Static IPv4 Address to bind to interface";
-    };
     ipv4gateway = mkOption {
-      type = types.nullOr types.singleLineStr;
-      default = null;
+      type = types.singleLineStr;
+      default = "172.31.1.1";
       description = "Static IPv4 Gateway to use on interface";
     };
-    ipv6 = mkOption {
-      type = types.nullOr types.singleLineStr;
-      default = null;
-      description = "Static IPv6 Address to bind to interface";
-    };
     ipv6gateway = mkOption {
-      type = types.nullOr types.singleLineStr;
-      default = null;
+      type = types.singleLineStr;
+      default = "fe80::1";
       description = "Static IPv6 Gateway to use on interface";
     };
     nameservers = mkOption {
@@ -41,39 +33,40 @@ in {
   };
   config = mkIf cfg.enable {
     networking = {
-      dhcpcd.enable = false;
-      useDHCP = lib.mkDefault false;
+      inherit domain;
+      dhcpcd.enable = lib.mkForce false;
+      useDHCP = lib.mkForce false;
       nameservers = mkIf (cfg.nameservers != null) cfg.nameservers;
       enableIPv6 = true;
-      defaultGateway = mkIf (cfg.ipv4gateway != null) {
+      defaultGateway = {
         address = cfg.ipv4gateway;
         interface = cfg.interface;
       };
-      defaultGateway6 = mkIf (cfg.ipv6gateway != null) {
+      defaultGateway6 = {
         address = cfg.ipv6gateway;
         interface = cfg.interface;
       };
       interfaces = {
-        "${cfg.interface}" = mkIf (cfg.ipv4 != null || cfg.ipv6 != null || cfg.ipv4gateway != null || cfg.ipv6gateway != null) {
-          ipv4.addresses = mkIf (cfg.ipv4 != null) [
+        "${cfg.interface}" = {
+          ipv4.addresses = [
             {
-              address = cfg.ipv4;
+              address = ipv4;
               prefixLength = 20;
             }
           ];
-          ipv4.routes = mkIf (cfg.ipv4gateway != null) [
+          ipv4.routes = [
             {
               address = cfg.ipv4gateway;
               prefixLength = 32;
             }
           ];
-          ipv6.addresses = mkIf (cfg.ipv6 != null) [
+          ipv6.addresses = [
             {
-              address = cfg.ipv6;
+              address = ipv6;
               prefixLength = 64;
             }
           ];
-          ipv6.routes = mkIf (cfg.ipv6gateway != null) [
+          ipv6.routes = [
             {
               address = cfg.ipv6gateway;
               prefixLength = 128;

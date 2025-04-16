@@ -1,9 +1,5 @@
 {systemArgs, ...}: let
-  domain = "niveri.dev";
-  ipv4 = "95.217.16.168";
-  ipv4gateway = "172.31.1.1";
-  ipv6 = "2a01:4f9:c013:785::1";
-  ipv6gateway = "fe80::1";
+  inherit (systemArgs) ipv4 ipv6;
 in {
   imports = [
     ./disks.nix
@@ -15,11 +11,11 @@ in {
     configured = {
       nginx = {
         enable = true;
-        inherit domain;
+        domain = "niveri.dev";
       };
       slidecontrol = {
         enable = true;
-        inherit domain;
+        domain = "niveri.dev";
       };
     };
     comin = {
@@ -40,8 +36,6 @@ in {
     enable = true;
     networking = {
       enable = true;
-      inherit ipv4 ipv6 ipv4gateway ipv6gateway;
-      interface = "enp1s0";
       nameservers = [
         "8.8.8.8"
       ];
@@ -49,7 +43,7 @@ in {
     security = {
       acme = {
         enable = true;
-        inherit domain;
+        domain = "niveri.dev";
         additionalDomains = [
           "*.kubenix.niveri.dev"
         ];
@@ -59,9 +53,9 @@ in {
     services = {
       bind = {
         enable = true;
-        inherit domain;
+        domain = "niveri.dev";
         dnsSettings = ''
-          $ORIGIN ${domain}.
+          $ORIGIN niveri.dev.
           $TTL    1h
           @                     IN      SOA     ns1 dns-admin (
                                                     10  ; Serial
@@ -83,7 +77,7 @@ in {
         '';
       };
       cache = {
-        inherit domain;
+        domain = "niveri.dev";
         enable = true;
       };
     };
@@ -91,7 +85,7 @@ in {
 
   networking = {
     firewall = {
-      allowedTCPPorts = [22 53 80 443];
+      allowedTCPPorts = [53 80 443];
       allowedUDPPorts = [53];
     };
   };

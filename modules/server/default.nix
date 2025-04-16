@@ -16,8 +16,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    configured.server.terminfo.enable = true;
-
+    configured.server = {
+      terminfo.enable = true;
+    };
     services = {
       fail2ban.enable = true;
       openssh = {
@@ -27,6 +28,11 @@ in {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
         };
+      };
+    };
+    networking = {
+      firewall = {
+        allowedTCPPorts = [22];
       };
     };
   };

@@ -114,7 +114,10 @@
               primary = "orange";
               secondary = "green";
             };
+            ipv4 = "95.217.16.168";
+            ipv6 = "2a01:4f9:c013:785::1";
             hostname = "nixner";
+            domain = "niveri.dev";
           };
       in {
         inherit (systemArgs) system;
@@ -143,7 +146,10 @@
               primary = "orange";
               secondary = "green";
             };
-            hostname = "kubenix-falkenberg";
+            ipv4 = "91.99.10.215";
+            ipv6 = "2a01:4f8:c013:e704::1";
+            hostname = "falkenberg";
+            domain = "kubenix.niveri.dev";
           };
       in {
         inherit (systemArgs) system;
