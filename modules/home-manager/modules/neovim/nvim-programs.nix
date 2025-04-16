@@ -6,6 +6,7 @@ with pkgs; [
   cargo
   clang-tools
   dart
+  dockerfile-language-server-nodejs
   docker-compose-language-service
   fd
   fzf
