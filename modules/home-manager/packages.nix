@@ -12,6 +12,8 @@ in {
       yt-dlp
       xdg-utils
       w3m-full
+      kubectl
+      kubernetes-helm
     ]
     ++ lib.optionals isDesktop ([
         amberol
