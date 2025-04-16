@@ -19,6 +19,11 @@ in {
       default = null;
       description = "The Domain to certify (including all subdomains)";
     };
+    additionalDomains = mkOption {
+      type = types.nullOr (types.listOf types.singleLineStr);
+      default = null;
+      description = "Additional domains to certify";
+    };
     useDNS01 = mkOption {
       type = types.bool;
       default = false;
@@ -73,7 +78,7 @@ in {
           group = "nginx";
           dnsProvider = "rfc2136";
           domain = "*.${cfg.domain}";
-          extraDomainNames = [cfg.domain];
+          extraDomainNames = [cfg.domain] ++ cfg.additionalDomains;
           environmentFile = "/var/lib/secrets/certs.secret";
           dnsPropagationCheck = false;
         };
