@@ -69,6 +69,15 @@ in {
           falkenberg.kubenix    IN      A       91.99.10.215
                                 IN      AAAA    2a01:4f8:c013:e704::1
 
+          stadeln.kubenix       IN      A       91.107.238.152
+                                IN      AAAA    2a01:4f8:1c1c:373e::1
+
+          ronhof.kubenix        IN      A       91.99.63.12
+                                IN      AAAA    2a01:4f8:1c1b:f047::1
+
+          *.kubenix             IN      A       91.99.10.215
+                                IN      AAAA    2a01:4f8:c013:e704::1
+
           @                     IN      A       ${ipv4}
                                 IN      AAAA    ${ipv6}
 
