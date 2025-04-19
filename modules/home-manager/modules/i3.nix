@@ -160,6 +160,8 @@ in {
             ${pkgs.rofi}/bin/rofi -modi "clipboard:${pkgs.haskellPackages.greenclip}/bin/greenclip print" -show clipboard -run-command '{cmd}' -theme-str "entry{placeholder:\"Search your Clipboard...\";}element{children:[element-text,element-icon];}inputbar{padding: 0 0 0 0;}"
           ''}";
 
+          "${mod}+space" = "exec --no-startup-id ${scripts.switch-kb-layout}";
+
           "${mod}+Shift+i" = "exec --no-startup-id ${pkgs._1password-gui}/bin/1password --quick-access";
 
           "${mod}+h" = "focus left";
@@ -182,8 +184,6 @@ in {
           "${mod}+t" = "layout toggle split";
 
           "${mod}+Shift+space" = "floating toggle";
-
-          # "${mod}+space" = "focus mode_toggle";
 
           "${mod}+Shift+minus" = "move scratchpad";
           "${mod}+minus" = "scratchpad show";
